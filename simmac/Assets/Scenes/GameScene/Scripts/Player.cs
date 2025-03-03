@@ -27,6 +27,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         HandleInput();
         HandleLegRotation();
+        HandleTorsoRotation();
+        SlowPlayer();
         _rb.linearVelocity = _velocity;
     }
 
@@ -35,7 +37,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector2 MoveValue = _move.ReadValue<Vector2>();
         MoveValue *= _speed;
         MoveValue = Vector2.ClampMagnitude(MoveValue, _speed);
-        Debug.Log(MoveValue);
         _velocity = MoveValue;
     }
 
@@ -46,6 +47,29 @@ public class NewMonoBehaviourScript : MonoBehaviour
             float angle = Mathf.Atan2(_velocity.x, _velocity.y) * Mathf.Rad2Deg;
             _legs.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
         }
+    }
+
+    void HandleTorsoRotation()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - _torso.transform.position;
+        float angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
+        _torso.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
+    }
+
+    void SlowPlayer()
+    {
+        OnTriggerEnter2D(_torsoCol);
+        OnTriggerEnter2D(_legsCol);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col == _torsoCol || col == _legsCol)
+        {
+            return;
+        }
+        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
     }
 }
 
