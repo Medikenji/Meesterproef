@@ -72,5 +72,3 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
     }
 }
-
-
