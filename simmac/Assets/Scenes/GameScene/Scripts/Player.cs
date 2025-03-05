@@ -10,7 +10,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private GameObject _torso;
     private Collider2D _legsCol;
     private GameObject _legs;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _setSpeed;
+    private float _speed;
     private InputAction _move;
 
     void Start()
@@ -25,10 +26,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Update()
     {
+        CheckForSlow();
         HandleInput();
         HandleLegRotation();
         HandleTorsoRotation();
-        SlowPlayer();
+        _speed = _setSpeed;
         _rb.linearVelocity = _velocity;
     }
 
@@ -57,18 +59,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
         _torso.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
     }
 
-    void SlowPlayer()
+    void CheckForSlow()
     {
-        OnTriggerEnter2D(_torsoCol);
-        OnTriggerEnter2D(_legsCol);
+        OnTriggerStay2D(_torsoCol);
+        OnTriggerStay2D(_legsCol);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (col == _torsoCol || col == _legsCol)
         {
             return;
         }
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        _speed *= 0.8f;
     }
 }
+
+
