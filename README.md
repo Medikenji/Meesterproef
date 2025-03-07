@@ -1,5 +1,7 @@
 # Simmac: Fast food simulator
 
+---
+
 ### Inhoud
 
 - [Samenvatting](#samenvatting)
