@@ -2,7 +2,7 @@
 
 ---
 
-> ### Inhoud
+### Inhoud
 
 - [Samenvatting](#samenvatting)
 - [Gameplay](#gameplay)
@@ -12,7 +12,7 @@
 
 ---
 
-> ### Samenvatting
+### Samenvatting
 
 In het spel speel jij als de manager van het fastfoodrestaurant Simmac. Het is jouw verantwoordelijkheid om klanten tevreden te houden door eten te serveren en tegelijk 
 het restaurant niet failliet te laten gaan. In het begin regel jij alles zelf, maar naarmate het restaurant bekender en drukker wordt, zul je mensen in moeten huren om 
@@ -20,7 +20,7 @@ te helpen en de drukte aan te kunnen. Dit doe je totdat je besluit het restauran
 
 ---
 
-> ### Gameplay
+### Gameplay
 
 Jij speelt als een restaurantmanager van Simmac. Je kunt rondlopen binnen het restaurant en de benodigde keuken- en servicefuncties bedienen. Wanneer je een bestelling opneemt, 
 wordt deze in de UI opgeslagen. Je moet vervolgens de bestelling maken en serveren door minigames te spelen. Deze minigames bepalen de kwaliteit van het product en 
@@ -54,14 +54,14 @@ ontvangt. Recensies kunnen echter ook sneller negatief worden, waardoor het rest
 
 ---
 
-> ### Visueel
+### Visueel
 
 Het spel wordt gepresenteerd in 2D pixelart, vanuit een top-down perspectief. De camerahoek en graphics zijn geïnspireerd door 
 [Hotline Miami](https://store.steampowered.com/app/219150/Hotline_Miami/) (zonder het geweld).
 
 ---
 
-> ### Scoring
+### Scoring
 
 Het spel eindigt wanneer je besluit het restaurant te verkopen, dit kan alleen nadat het restaurant een bepaalde waarde heeft bereikt of wanneer je failliet gaat of sterft. 
 De score wordt bepaald door de waarde van het restaurant op het moment dat het spel eindigt, plus de hoogste waarde die het restaurant ooit heeft gehad. Daarnaast kun je 
@@ -69,7 +69,7 @@ score-multipliers krijgen afhankelijk van de eindes die je behaalt.
 
 ---
 
-> ### AI
+### AI
 
 De AI bestaat uit drie onderdelen:
 
