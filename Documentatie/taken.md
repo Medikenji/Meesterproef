@@ -8,6 +8,7 @@
     - Camera
     - Game manager
     - Item
+    - UI
 
 - Douwe
     - Player movement
