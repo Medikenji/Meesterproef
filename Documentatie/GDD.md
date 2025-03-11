@@ -45,3 +45,29 @@ Aan het einde van de dag krijg je een overzicht te zien van alle boekhoudgegeven
 
     Klanten hebben een tevredenheidsmeter en een interne kans om een recensie achter te laten. Nadat klanten hebben besteld en betaald, wachten ze in het restaurant. Zo lang ze wachten, gaat hun tevredenheidsmeter omlaag.
     Hoe veel de meter omlaag gaat, verschilt per klant. Nadat ze hun bestelling hebben gekregen, gaat de tevredenheidsmeter omhoog of omlaag op basis van de kwaliteit van hun bestelling. Nadat ze hun bestelling hebben ontvangen, vertrekken ze direct en laten ze mogelijk een recensie achter. Dit hangt af van hun interne recensie-kans, maar ook van hun bestelling; een hele goede of hele slechte bestelling verandert de kans op een recensie.
+
+### Minigames
+
+De producten in Simmac worden gemaakt door naar een station te lopen in het restaurant. Wanneer je naast een station staat kan je met de muis hierop klikken. Hierdoor komt een popup tevoorschijn waarin je kan kiezen wat voor product je wil maken (bv. voor burgers, is deze normaal, rood, blauw, ect).
+
+- #### Burger Minigame - Burger Stack
+
+    De burger minigame is geinspireerd op [Tower Stack](https://www.1001games.com/skill/stack-tower). Het onderste broodje van de burger ligt op de onderkant van het scherm, en elk volgend onderdeel van de burger slide van links naar rechts en terug over het broodje (net zoals in tower stack, maar dan zonder de alternatieve hoeken). Het is de speler hun taak om in te klikken wanneer dit onderdeel perfect boven het onderdeel eronder ligt. Dit zal heel makkelijk zijn voor de eerste onderdelen, maar na elk onderdeel gaan de volgende sneller heen en weer bewegen, waardoor de timing lastiger is.
+
+-   #### Fries Minigame - Put the fries in the bag
+
+-   #### Drinks Minigame - Milkshake Shift
+
+-   #### Dessert Minigame - Sniper Showdown / Pop the cherry
+
+### UI
+
+### Game Manager
+
+### Achievements
+
+### Save States
+
+### Audiovisual
+
+### more?
