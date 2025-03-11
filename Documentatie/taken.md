@@ -3,12 +3,26 @@
 - Nolan
     - Saving states
     - Achievements
-    - Sniper showdown
+    - Minigames
+        - Sniper showdown
     - Camera
     - Game manager
     - Item
 
 - Douwe
+    - Player movement
+    - Player colliders
+    - Asset design
+        - Player
+        - Floor
+        - Walls
+        - Basic devart for stations
+        - Customer
+    - OnClick interaction for stations
+    - Minigames
+        - Burger Stack
+        - Put the fries in the bag
+        - Shake shift
 
 ### Gameplay
 
@@ -23,7 +37,7 @@
 - Customer -> GameManager -> Player <- OAT sharing orders code, actually no clue how technical this is
 - Scene communication (the burger minigame should result in a burger of x type being placed in the OAT)
 - Minigames
-    - Object orientated so its easy to add to
+    - Global functionality to manage which order a minigame returns and its quality
     - Burger stack
     - Fry catcher
     - Shake shift
