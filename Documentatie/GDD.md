@@ -11,6 +11,16 @@
     - [Bestellingen](#bestellingen)
     - [OAT](#oat)
     - [Klanten](#klanten)
+- [Minigames](#minigames)
+    - [Burger Stack](#burger-minigame---burger-stack)
+    - [Put the Fries In the Bag (PFIB)](#fries-minigame---put-the-fries-in-the-bag)
+    - [Shake Shifter](#drinks-minigame---milkshake-shift)
+    - [Sniper Showdown/ Pop the Cherry](#dessert-minigame---sniper-showdown--pop-the-cherry)
+- [UI](#ui)
+- [Game Manager](#game-manager)
+- [Achievements](#achievements)
+- [Save States](#save-states)
+- [Audiovisueel](#audiovisual)
 
 ### Inleiding
 
@@ -56,9 +66,15 @@ De producten in Simmac worden gemaakt door naar een station te lopen in het rest
 
 -   #### Fries Minigame - Put the fries in the bag
 
--   #### Drinks Minigame - Milkshake Shift
+    In PFIB (Put the Fries In the Bag) zie je een friet zakje aan de onderkant van je scherm, deze kan je met A en D (of linkerpijltje en rechterpijltje) heen en weer bewegen. In het begin van het spel krijg je een random friet zak van grootte small, medium en large. Hoe groter de zak, hoe makkelijker de minigame. De uiteindelijke score van de frietjes is gebonden aan hoeveel friet je hebt gevangen in het spel.
+
+-   #### Drinks Minigame - Shake Shifter
+
+    In shake Shifter zie je een transparante foto van een milkshake beker. Bovenin het scherm staat een percentage. Achter het plaatje van de milkshake beker beweegt een kleur op een neer, deze kleur vult de beker, en daarna wordt de beker weer transparant. Het is de speler hun taak om te klikken wanneer deze kleur de beker bedekt voor de hoeveelheid procent dat bovenaan het scherm staat. (bv. bij 50%, klik wanneer het in het midden gevuld is).
 
 -   #### Dessert Minigame - Sniper Showdown / Pop the cherry
+
+    In Sniper Showdown krijg je een ijsje met een kers er op te zien. Onderin je scherm zie je een hotbar met twee items, een sniper, en een afstandberekener (een soort verrekijker). Linksbovenin het scherm zie je informatie betreft de afstand van het ijsje, de windrichting, en de windsnelheid. Met de afstand berekenaar kan je uitzoeken hoe je de sniper scope moet richten om het kersje perfect te raken. De speler krijgt 4 pogingen om het kersje te raken. Bij elk gemist schot gaat de kwaliteit van het dessert met 10% naar beneden.
 
 ### UI
 
