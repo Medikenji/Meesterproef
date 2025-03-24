@@ -1,49 +1,31 @@
+using System.Collections.Generic;
 using System.IO;
 using MessagePack;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // public fields
+    public _GameState current_state;
+    public List<Order> orders;
+
+    // private fields
     private static GameManager _instance;
-    private static string filePath;
-
-    [MessagePackObject]
-    public struct _GameState
-    {
-        [Key(0)]
-        public bool is_current_game;
-        [Key(1)]
-        public bool game_over;
-        [Key(2)]
-        public int current_day;
-        [Key(3)]
-        public float money;
-        [Key(4)]
-        public int customers_served;
-    }
-    _GameState current_state;
-
-    void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
+    private static string _mainSavePath;
 
     void Start()
     {
-        filePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
+        _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
         _instance.current_state = loadCurrentGame();
         saveCurrentGame();
     }
 
-    public static GameManager Instance
+    void Update()
+    {
+
+    }
+
+    public static GameManager instance
     {
         get
         {
@@ -53,16 +35,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-    }
-
+    // ############### Start savegame functions ###############
     private _GameState loadCurrentGame()
     {
         try
         {
-            return MessagePackSerializer.Deserialize<_GameState>(File.ReadAllBytes(filePath));
+            return MessagePackSerializer.Deserialize<_GameState>(File.ReadAllBytes(_mainSavePath));
         }
         catch
         {
@@ -72,7 +50,30 @@ public class GameManager : MonoBehaviour
 
     public static void saveCurrentGame()
     {
-        byte[] bytes = MessagePackSerializer.Serialize(_instance.current_state);
-        File.WriteAllBytes(filePath, bytes);
+        byte[] bytes = MessagePackSerializer.Serialize(instance.current_state);
+        File.WriteAllBytes(_mainSavePath, bytes);
+    }
+
+    // ############### End savegame functions ###############
+
+
+    // ############### Structs ###############
+
+    /// <summary>
+    /// A struct that stores everything needed for saving and loading a game
+    /// </summary>
+    [MessagePackObject]
+    public struct _GameState
+    {
+        [Key(1)]
+        public bool is_current_game;
+        [Key(2)]
+        public bool game_over;
+        [Key(3)]
+        public int current_day;
+        [Key(4)]
+        public float money;
+        [Key(5)]
+        public int customers_served;
     }
 }
