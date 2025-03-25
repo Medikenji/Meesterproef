@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 
 public class Bag : MonoBehaviour
 {
-    public List<Rigidbody2D> rigidbodies;
-    public List<GameObject> sprites;
+    [SerializeField]
+    private Collider2D trigger;
+    [SerializeField]
+    private Rigidbody2D rb;
     public float speed;
     public int friesInBag;
     private InputAction _move;
@@ -17,6 +19,7 @@ public class Bag : MonoBehaviour
 
     void Update()
     {
+        OnTriggerEnter2D(trigger);
         HandleInput();
     }
 
@@ -24,24 +27,17 @@ public class Bag : MonoBehaviour
     {
         Vector2 moveValue = _move.ReadValue<Vector2>();
         Vector2 velocity = new(moveValue.x * speed, 0);
-
-        // Botched ass code to make sure the rigidbodies actually stay inside the
-        // bag instead of clipping through I swear I tried so many alternative
-        // routes but this is the only solution that worked reliably
-
-        foreach (Rigidbody2D rb in rigidbodies)
-        {
-            rb.MovePosition(rb.position + velocity * Time.deltaTime);
-        }
-
-        foreach (GameObject sprite in sprites)
-        {
-            sprite.transform.position = sprite.transform.position + (Vector3)velocity * Time.deltaTime;
-        }
+        rb.linearVelocity = velocity;
     }
+
+    private HashSet<Collider2D> triggeredColliders = new HashSet<Collider2D>();
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(++friesInBag);
+        if (!triggeredColliders.Contains(collision))
+        {
+            triggeredColliders.Add(collision);
+            print(++friesInBag);
+        }
     }
 }
