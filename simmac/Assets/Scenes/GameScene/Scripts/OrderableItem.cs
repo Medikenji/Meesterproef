@@ -4,18 +4,15 @@ using UnityEngine;
 public class OrderableItem
 {
     public float quality = 100;
-    public int state = (int)Order.State.Imagined;
-    void Start()
+    public Order.State state = Order.State.Imagined;
+    public Type type;
+
+    public OrderableItem()
     {
-
+        Array values = Enum.GetValues(typeof(Type));
+        System.Random random = new System.Random();
+        type = (Type)values.GetValue(random.Next(values.Length));
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public enum Modifier
     {
@@ -23,5 +20,13 @@ public class OrderableItem
         Red,
         Green,
         Blue
+    }
+
+    public enum Type
+    {
+        Burger,
+        Fries,
+        Milkshake,
+        Icecream
     }
 }

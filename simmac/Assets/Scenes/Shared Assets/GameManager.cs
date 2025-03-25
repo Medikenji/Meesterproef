@@ -8,21 +8,27 @@ public class GameManager : MonoBehaviour
     // public fields
     public _GameState current_state;
     public List<Order> orders;
+    public float dayTimeLeft { get; private set; }
+    public EventHandler eventHandler;
 
     // private fields
-    private static GameManager _instance;
+    private static GameManager _instance = null;
     private static string _mainSavePath;
+    private bool _passTime;
+
+    // const fields
+    public const float dayDurationInSeconds = 300;
 
     void Start()
     {
         _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
-        _instance.current_state = loadCurrentGame();
-        saveCurrentGame();
+        instance.current_state = loadCurrentGame();
+        StartDayTime();
     }
 
     void Update()
     {
-
+        HandleDayTime();
     }
 
     public static GameManager instance
@@ -30,12 +36,57 @@ public class GameManager : MonoBehaviour
         get
         {
             if (_instance == null)
-                _instance = new GameManager();
+            {
+                _instance = new GameObject("GameManager").AddComponent<GameManager>();
+                Debug.Log("Created GameManager instance");
+            }
             return _instance;
         }
     }
 
-    // ############### Start savegame functions ###############
+    private void EndOfDay()
+    {
+    }
+
+    private void HandleDayTime()
+    {
+        if (_passTime)
+        {
+            dayTimeLeft -= Time.deltaTime;
+        }
+        if (dayTimeLeft <= 0)
+        {
+            EndOfDay();
+        }
+
+    }
+
+    #region  DayTime functions
+
+    public void StartDayTime()
+    {
+        dayTimeLeft = dayDurationInSeconds;
+        _passTime = true;
+    }
+    public void StopDayTime()
+    {
+        _passTime = false;
+    }
+
+    public void SkipDayTime(float amountOfSeconds)
+    {
+        dayTimeLeft -= amountOfSeconds;
+    }
+
+    public void ToggleDayTime()
+    {
+        _passTime = !_passTime;
+    }
+
+    #endregion
+
+    #region  SaveGame functions
+
     private _GameState loadCurrentGame()
     {
         try
@@ -54,10 +105,10 @@ public class GameManager : MonoBehaviour
         File.WriteAllBytes(_mainSavePath, bytes);
     }
 
-    // ############### End savegame functions ###############
+    #endregion
 
 
-    // ############### Structs ###############
+    #region  Structs
 
     /// <summary>
     /// A struct that stores everything needed for saving and loading a game
@@ -76,4 +127,6 @@ public class GameManager : MonoBehaviour
         [Key(5)]
         public int customers_served;
     }
+
+    #endregion
 }
