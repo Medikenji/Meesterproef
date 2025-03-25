@@ -202,6 +202,134 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "SniperShowdown",
+            "id": "92d0e8c7-3fff-4597-9fc0-39320fddd98b",
+            "actions": [
+                {
+                    "name": "CalibrateUp",
+                    "type": "Button",
+                    "id": "ca525178-9aee-49ab-b462-12468edcabab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CalibrateDown",
+                    "type": "Button",
+                    "id": "ddfda74a-1a0b-42fc-854a-86348d84e410",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CalibrateRight",
+                    "type": "Button",
+                    "id": "38d09f7c-0914-416a-88ad-a76821803c00",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CalibrateLeft",
+                    "type": "Button",
+                    "id": "7696fabe-81c0-4549-9b30-03eb22194b6f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveScope",
+                    "type": "Value",
+                    "id": "21b2da1b-f139-42fd-8d51-bc582f2541f3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "0a199ee5-6c7e-4654-9c11-9531c7d7dc6b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aef982cd-1058-4fe0-b1c5-087d5fd3d4ae",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CalibrateUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49d638d1-a2e4-4738-8e91-78a554220940",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CalibrateDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f6c12dd-0a69-4275-be0b-0948411b8824",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CalibrateRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97bbba17-5d4b-4222-9284-d8d4ed7348bc",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CalibrateLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed12aa3d-7748-402d-858f-8edf83556840",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveScope",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4bad1ce1-45f2-4400-ae47-583c90a0d7ec",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
