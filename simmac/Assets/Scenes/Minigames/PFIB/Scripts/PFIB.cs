@@ -9,6 +9,15 @@ public class PFIB : MonoBehaviour
     public int friesToCreate;
     private int _n;
     private int _yPosNewFry = 10;
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+
+    }
 
     void FixedUpdate()
     {

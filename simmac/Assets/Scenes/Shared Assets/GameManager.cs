@@ -105,6 +105,29 @@ public class GameManager : MonoBehaviour
         File.WriteAllBytes(_mainSavePath, bytes);
     }
 
+    // ############### End savegame functions ###############
+
+
+    // ############### Structs ###############
+
+    /// <summary>
+    /// A struct that stores everything needed for saving and loading a game
+    /// </summary>
+    [MessagePackObject]
+    public struct _GameState
+    {
+        [Key(1)]
+        public bool is_current_game;
+        [Key(2)]
+        public bool game_over;
+        [Key(3)]
+        public int current_day;
+        [Key(4)]
+        public float money;
+        [Key(5)]
+        public int customers_served;
+    }
+
     #endregion
 
 
