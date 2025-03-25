@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:simmac/Assets/Resources/Tilemap/Simmac-v2/Customer.prefab.meta
 guid: 89fe2ce93d4d08ef88f8d9f093d51d9c
+========
+guid: fd0fd083254a263a28722fe323506b7c
+>>>>>>>> origin/Map:simmac/Assets/Resources/Tilemap/Simmac-v2/Simmac-v2.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
