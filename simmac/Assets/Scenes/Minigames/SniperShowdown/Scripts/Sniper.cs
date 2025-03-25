@@ -37,8 +37,8 @@ public class Sniper : MonoBehaviour
     private const float SwayIncreaseFactor = 0.05f;
     private const float MaxDistanceCal = 30.0f;
     private const float MaxWindCal = 20.0f;
-    private const float MinPosition = -8.0f;
-    private const float MaxPosition = 8.0f;
+    private const float MinPosition = -17.0f;
+    private const float MaxPosition = 17.0f;
     private const float MinRecoil = 1.5f;
     private const float MaxRecoil = 3.5f;
 

@@ -84,7 +84,7 @@ public class BurgerStack : MonoBehaviour
 
         if (_textTriggered)
         {
-            // textField.enabled = true;
+            textField.enabled = true;
             StartCoroutine(WaitForSeconds(2));
         }
     }

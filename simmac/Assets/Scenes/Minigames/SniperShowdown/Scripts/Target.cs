@@ -18,8 +18,8 @@ public class Target : MonoBehaviour
     // const values
     public const float ScaleFactor = -0.15f;
     public const float ScaleOffset = 3.85f;
-    private const float MinDistance = 10f;
-    private const float MaxDistance = 25f;
+    private const float MinDistance = 3.0f;
+    private const float MaxDistance = 12.0f;
     private const float MinWindStrength = -8f;
     private const float MaxWindStrength = 8f;
     private const float TravelTimeFactor = 0.01f;
