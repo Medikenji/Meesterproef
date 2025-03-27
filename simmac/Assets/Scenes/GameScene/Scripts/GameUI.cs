@@ -7,33 +7,59 @@ public class GameUI : MonoBehaviour
     private GameObject orderPrefab;
     [SerializeField]
     private GameObject orderItemPrefab;
+    [SerializeField]
+    private TextMeshProUGUI moneyText;
+    [SerializeField]
+    private TextMeshProUGUI dayText;
     static private bool instantiated = false;
+
+    // make sure the restaurant isnt open after 24:00 because the clock really isnt made for that
+    private const int dayDurationInHours = 15;
+    private const int openingTimeHour = 9;
     void Update()
     {
-        if (!instantiated)
-        {
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
-            for (int i = 0; i < GameManager.instance.orders.Count; i++)
-            {
-                GameObject order = Instantiate(orderPrefab, transform);
-                createOrderSquare(ref order, i);
-                if (i > 10)
-                {
-                    break;
-                }
-            }
-            instantiated = true;
-        }
+        FormatTimeText();
+        FormatMoneyText();
+        InstantiateOrders();
     }
 
+    void FormatTimeText()
+    {
+        float metricTime = GameManager.instance.dayTimeLeft;
+        int totalMinutes = Mathf.FloorToInt((GameManager.dayDurationInSeconds - metricTime) / GameManager.dayDurationInSeconds * dayDurationInHours * 60);
+        int hours = openingTimeHour + totalMinutes / 60;
+        int minutes = totalMinutes % 60;
+        dayText.text = $"{hours:D2}:{minutes:D2}";
+    }
+
+    void FormatMoneyText()
+    {
+        moneyText.text = "€" + GameManager.instance.current_state.money.ToString("F2");
+    }
+
+    #region OrderFunctions
     public static void UpdateOrderAmount()
     {
         instantiated = false;
     }
 
+    void InstantiateOrders()
+    {
+        if (instantiated) return;
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject == moneyText.gameObject || child.gameObject == dayText.gameObject)
+                continue;
+            Destroy(child.gameObject);
+        }
+        int maxOrders = Mathf.Min(GameManager.instance.orders.Count, 10);
+        for (int i = 0; i < maxOrders; i++)
+        {
+            GameObject order = Instantiate(orderPrefab, transform);
+            createOrderSquare(ref order, i);
+        }
+        instantiated = true;
+    }
     private void createOrderSquare(ref GameObject order, int i)
     {
         TextMeshProUGUI text = order.GetComponentInChildren<TextMeshProUGUI>();
@@ -69,4 +95,5 @@ public class GameUI : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(25 + column * 50, -25 - row * 50);
         }
     }
+    #endregion
 }
