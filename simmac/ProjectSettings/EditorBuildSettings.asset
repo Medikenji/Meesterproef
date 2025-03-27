@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AchievementsScene.unity
     guid: 6ca3ba4b9f880544e902f69a32f1621e
+  - enabled: 1
+    path: Assets/Scenes/Minigames/BurgerStack.unity
+    guid: 79bcf1977d8ddc366ae11960958866ce
+  - enabled: 1
+    path: Assets/Scenes/Minigames/PFIB.unity
+    guid: 20dbc4569360d31eb855fb3b5d911880
+  - enabled: 1
+    path: Assets/Scenes/Minigames/ShakeShifter.unity
+    guid: 114cb2837476c9e12a8a1559dc7e7320
+  - enabled: 1
+    path: Assets/Scenes/Minigames/SniperShowdown.unity
+    guid: 202754be537ef7b4a818d0e489f09dde
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f765ae2141a14ae459b7f8d535cf1470, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
