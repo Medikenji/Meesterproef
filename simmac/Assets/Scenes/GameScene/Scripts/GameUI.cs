@@ -1,6 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour
