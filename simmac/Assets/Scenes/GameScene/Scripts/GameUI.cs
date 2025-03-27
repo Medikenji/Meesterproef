@@ -1,4 +1,6 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class GameUI : MonoBehaviour
@@ -53,6 +55,15 @@ public class GameUI : MonoBehaviour
         for (int j = 0; j < currentOrder._orderableItems.Count; j++)
         {
             GameObject item = Instantiate(orderItemPrefab, order.transform);
+            UnityEngine.UI.Image image = item.GetComponent<UnityEngine.UI.Image>();
+            image.color = currentOrder._orderableItems[j].modifier switch
+            {
+                OrderableItem.Modifier.Default => Color.white,
+                OrderableItem.Modifier.Red => Color.red,
+                OrderableItem.Modifier.Green => Color.green,
+                OrderableItem.Modifier.Blue => Color.cyan,
+                _ => Color.black,
+            };
             RectTransform rectTransform = item.GetComponent<RectTransform>();
             rectTransform.SetParent(order.transform);
             int row = j / 4;
