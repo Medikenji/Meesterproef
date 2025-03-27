@@ -7,9 +7,8 @@ public class GameManager : MonoBehaviour
 {
     // public fields
     public _GameState current_state;
-    public List<Order> orders;
+    public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
-    public EventHandler eventHandler;
 
     // private fields
     private static GameManager _instance = null;
