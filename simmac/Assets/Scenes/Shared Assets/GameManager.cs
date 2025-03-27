@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     // public fields
     public _GameState current_state;
+    [SerializeField]
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
 
