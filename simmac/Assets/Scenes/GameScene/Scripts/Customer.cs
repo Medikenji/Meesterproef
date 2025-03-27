@@ -17,8 +17,7 @@ public class Customer : MonoBehaviour
         satisfaction = Random.Range(90, 100);
         orderSize = Mathf.FloorToInt(Random.Range(1f, 1f + 0.2f * Mathf.Pow(GameManager.instance.current_state.current_day, 0.7f)));
         CreateOrder();
-        Debug.Log(order._orderableItems.Count);
-        GameManager.instance.customerAmount++;
+
     }
 
     // Update is called once per frame

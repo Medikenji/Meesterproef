@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
+        Debug.Log(loadCurrentGame());
         instance.current_state = loadCurrentGame();
+        saveCurrentGame();
         StartOfDay();
     }
 
@@ -107,7 +109,7 @@ public class GameManager : MonoBehaviour
         }
         catch
         {
-            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 0.0f, customers_served = 0, stars = 1 };
+            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
         }
     }
 
