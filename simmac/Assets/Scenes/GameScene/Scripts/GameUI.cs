@@ -75,7 +75,6 @@ public class GameUI : MonoBehaviour
     private void createOrderContent(ref GameObject order, int i)
     {
         Order currentOrder = GameManager.instance.orders[i];
-        Debug.Log(currentOrder._orderableItems.Count);
         for (int j = 0; j < currentOrder._orderableItems.Count; j++)
         {
             GameObject item = Instantiate(orderItemPrefab, order.transform);
