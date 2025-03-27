@@ -15,6 +15,21 @@ public class OrderableItem
         System.Random random = new System.Random();
         type = (Type)values.GetValue(random.Next(values.Length));
         modifier = (Modifier)values.GetValue(random.Next(values.Length));
+        switch (type)
+        {
+            case Type.Burger:
+                cost = 10.45f;
+                break;
+            case Type.Fries:
+                cost = 7.50f;
+                break;
+            case Type.Milkshake:
+                cost = 14.50f;
+                break;
+            case Type.Icecream:
+                cost = 6.95f;
+                break;
+        }
     }
 
     public enum Modifier

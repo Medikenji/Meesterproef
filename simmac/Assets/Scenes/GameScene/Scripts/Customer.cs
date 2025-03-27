@@ -44,6 +44,12 @@ public class Customer : MonoBehaviour
     {
         isWaiting = true;
         order.setActive();
+        float cost = 0;
+        foreach (OrderableItem item in order._orderableItems)
+        {
+            cost += item.cost;
+        }
+        GameManager.instance.current_state.money += cost;
         GameManager.instance.orders.Add(order);
     }
 
