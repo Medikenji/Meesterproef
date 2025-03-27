@@ -4,6 +4,7 @@ using UnityEngine;
 public class OrderableItem
 {
     public float quality = 100;
+    public float cost { private set; get; }
     public Order.State state = Order.State.Imagined;
     public Type type;
     public Modifier modifier;
