@@ -11,6 +11,16 @@ public class GameUI : MonoBehaviour
     private TextMeshProUGUI moneyText;
     [SerializeField]
     private TextMeshProUGUI dayText;
+
+    [SerializeField]
+    private Sprite burgerSprite;
+    [SerializeField]
+    private Sprite friesSprite;
+    [SerializeField]
+    private Sprite milkshakeSprite;
+    [SerializeField]
+    private Sprite dessertSprite;
+
     static private bool instantiated = false;
 
     // make sure the restaurant isnt open after 24:00 because the clock really isnt made for that
