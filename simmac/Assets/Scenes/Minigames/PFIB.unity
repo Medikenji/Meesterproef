@@ -132,6 +132,18 @@ PrefabInstance:
       value: Bag
       objectReference: {fileID: 0}
     - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -169,6 +181,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993684280380013328, guid: 418208e90acea069ba84991776b8b537, type: 3}

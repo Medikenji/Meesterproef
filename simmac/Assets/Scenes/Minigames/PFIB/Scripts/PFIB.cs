@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PFIB : MonoBehaviour
@@ -7,8 +7,8 @@ public class PFIB : MonoBehaviour
     public GameObject fry;
     public List<GameObject> fries;
     public int friesToCreate;
+    private int _fryCount;
     private int _n;
-    private int _yPosNewFry = 10;
     void Start()
     {
 
@@ -16,13 +16,27 @@ public class PFIB : MonoBehaviour
 
     void Update()
     {
+        for (int i = fries.Count - 1; i >= 0; i--)
+        {
+            if (fries[i].transform.position.y <= -10)
+            {
+                GameObject fryToRemove = fries[i];
+                fries.RemoveAt(i);
+                Destroy(fryToRemove);
+            }
+        }
 
+        if (_fryCount == friesToCreate)
+        {
+            StartCoroutine(Timeout(10));
+            print($"You got {fries.Count}");
+        }
     }
 
     void FixedUpdate()
     {
-        if (++_n != 5) { return; }
-        if (fries.Count >= friesToCreate) { return; }
+        if (++_n != 7) { return; }
+        if (_fryCount >= friesToCreate) { return; }
 
         CreateFryAndTrackInList();
 
@@ -34,9 +48,8 @@ public class PFIB : MonoBehaviour
         if (fries.Count == 0)
         {
             int randX = Random.Range(-8, 8);
-            _yPosNewFry += 6;
 
-            GameObject tempFry = Instantiate(fry, new Vector3(randX, _yPosNewFry, 0), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(randX, 10, 0), Quaternion.identity);
             fries.Add(tempFry);
         }
         else
@@ -46,10 +59,14 @@ public class PFIB : MonoBehaviour
             float offset = Random.Range(-2f, 2f);
             float newX = Mathf.Clamp(prevPosition.x + offset, -8f, 8f);
 
-            _yPosNewFry += 6;
-
-            GameObject tempFry = Instantiate(fry, new Vector3(newX, _yPosNewFry, 0), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(newX, 10, 0), Quaternion.identity);
             fries.Add(tempFry);
         }
+        _fryCount++;
+    }
+
+    IEnumerator Timeout(int s)
+    {
+        yield return new WaitForSeconds(s);
     }
 }
