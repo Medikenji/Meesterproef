@@ -1715,6 +1715,10 @@ MonoBehaviour:
   orderItemPrefab: {fileID: 1425356107820521950, guid: ec8cbb72c064afcc69746cedf5b16880, type: 3}
   moneyText: {fileID: 1907366930}
   dayText: {fileID: 1108971439}
+  burgerSprite: {fileID: -121653005, guid: 50fc8bbc6933a6ce9a5f3a6d145b9ed3, type: 3}
+  friesSprite: {fileID: -424427223, guid: 50fc8bbc6933a6ce9a5f3a6d145b9ed3, type: 3}
+  milkshakeSprite: {fileID: 863746347, guid: 50fc8bbc6933a6ce9a5f3a6d145b9ed3, type: 3}
+  dessertSprite: {fileID: -178212707, guid: 50fc8bbc6933a6ce9a5f3a6d145b9ed3, type: 3}
 --- !u!224 &1000291285
 RectTransform:
   m_ObjectHideFlags: 0
