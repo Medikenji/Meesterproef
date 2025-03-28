@@ -49,6 +49,7 @@ public class Customer : MonoBehaviour
         }
         GameManager.instance.current_state.money += cost;
         GameManager.instance.orders.Add(order);
+        GameUI.UpdateOrderAmount();
     }
 
     void handleSatisfaction()

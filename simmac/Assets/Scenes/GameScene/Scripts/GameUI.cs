@@ -11,7 +11,17 @@ public class GameUI : MonoBehaviour
     private TextMeshProUGUI moneyText;
     [SerializeField]
     private TextMeshProUGUI dayText;
-    static private bool instantiated = false;
+
+    [SerializeField]
+    private Sprite burgerSprite;
+    [SerializeField]
+    private Sprite friesSprite;
+    [SerializeField]
+    private Sprite milkshakeSprite;
+    [SerializeField]
+    private Sprite dessertSprite;
+
+    static private bool instantiated;
 
     // make sure the restaurant isnt open after 24:00 because the clock really isnt made for that
     private const int dayDurationInHours = 15;
@@ -52,7 +62,7 @@ public class GameUI : MonoBehaviour
                 continue;
             Destroy(child.gameObject);
         }
-        int maxOrders = Mathf.Min(GameManager.instance.orders.Count, 10);
+        int maxOrders = Mathf.Min(GameManager.instance.orders.Count, 6);
         for (int i = 0; i < maxOrders; i++)
         {
             GameObject order = Instantiate(orderPrefab, transform);
@@ -66,8 +76,8 @@ public class GameUI : MonoBehaviour
         text.text = "#Order " + i;
         RectTransform rectTransform = order.GetComponent<RectTransform>();
         rectTransform.SetParent(transform, false);
-        int row = i / 5;
-        int column = i % 5;
+        int row = i / 3;
+        int column = i % 3;
         rectTransform.anchoredPosition = new Vector2(100 + column * 200, -100 - row * 250);
         createOrderContent(ref order, i);
     }
@@ -92,6 +102,14 @@ public class GameUI : MonoBehaviour
             int row = j / 4;
             int column = j % 4;
             rectTransform.anchoredPosition = new Vector2(25 + column * 50, -25 - row * 50);
+            image.sprite = currentOrder._orderableItems[j].type switch
+            {
+                OrderableItem.Type.Burger => burgerSprite,
+                OrderableItem.Type.Fries => friesSprite,
+                OrderableItem.Type.Milkshake => milkshakeSprite,
+                OrderableItem.Type.Icecream => dessertSprite,
+                _ => null
+            };
         }
     }
     #endregion
