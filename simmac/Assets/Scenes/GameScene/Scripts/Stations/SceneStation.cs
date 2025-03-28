@@ -5,6 +5,7 @@ using System.Collections;
 public class SceneStation : Station
 {
     public string nameOfSceneToOpen;
+
     public override void OnClick()
     {
         StartCoroutine(LoadScene());
@@ -12,6 +13,12 @@ public class SceneStation : Station
 
     private IEnumerator LoadScene()
     {
+        if (nameOfSceneToOpen.Length == 0)
+        {
+            print($"{gameObject.name} has no scene name specified.");
+            yield break;
+        }
+
         yield return null;
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nameOfSceneToOpen);

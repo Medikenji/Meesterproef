@@ -171,12 +171,8 @@ Na het spelen van de minigame, verschijnt de consumptie die je hebt gemaakt in d
 
 #### **Burger Minigame - Burger Stack**
 
-De burger minigame is geïnspireerd op [Tower Stack](https://www.1001games.com/skill/stack-tower).
-Het onderste broodje ligt onderaan het scherm, elk volgend ingrediënt beweegt van
-links naar rechts.
-
-De speler moet klikken om het onderdeel perfect te stapelen. Dit wordt steeds
-moeilijker omdat de snelheid toeneemt.
+In de Burger Stack moet je proberen een perfecte burger te maken. Dit doe je door alle ingrediënten perfect te stapelen.
+Je begint met het onderste broodje die je links en rechts kan bewegen terwijl ingrediënten uit de lucht vallen. Probeer deze zo recht mogelijk op de burger te krijgen om een hogere score te krijgen.
 
 #### **Fries Minigame - Put the Fries In the Bag**
 
@@ -197,66 +193,43 @@ De speler moet klikken wanneer de vulling exact overeenkomt met het percentage.
 #### **Dessert Minigame - Sniper Showdown / Pop the Cherry**
 
 De speler staat op een schietbaan en moet een kers op een ijsje schieten. Dit doet de speler met behulp van instrumenten zoals zijn afstandsmeter, windmeter en geweer.
+Ook kan de speler zijn geweer calibreren voor hele verre schoten.
 
-De speler krijgt vier pogingen om het kersje er goed op te schieten. Bij elke misser gaat de kwaliteit met een vaste hoeveelheid omlaag en als de speler alles mist wordt de kwaliteit een vaste lage waarde.
+De speler krijgt vier pogingen om het kersje er goed op te schieten. 
+Bij elke misser gaat de kwaliteit met een vaste hoeveelheid omlaag en als de speler alles mist wordt de kwaliteit een vaste lage waarde.
 
 ---
-
-# alles na dit punt moet nog ingevuld worden
-
-
 
 ### **UI**
-*(Beschrijf de verschillende schermen en HUD-elementen.)*
 
----
+Links boven in het scherm staan alle bestellingen, hier kun je de volgorde en de producten zien, ook staat hier welke producten al gereed zijn.
 
-### Eindes
-*(Benoem verschillende eindes en hun impact op de score)*
+Recht boven staat hoeveel geld het restaurant heeft, dit is om de speler te motiveren om door te gaan. Ook staat hier hoe laat het is in een 24 uur's klok. Hierdoor weet de speler hoe lang de dag nog duurt.
 
 ---
 
 ### **Game Manager**
-*(Leg uit hoe de game manager bestellingen, klanten en economie beheert.)*
 
----
+De GameManager is het centrale punt van het spel en regelt alle verbindingen via een static singleton.
+Hierdoor hoeven we alleen maar alle code naar een soort spel-database te sturen voor eenvoudig gebruik.
 
-### **Progressie & Spelbalans**
-*(Hoe wordt het spel moeilijker? Welke upgrades zijn er?)*
+Daarnaast beheert de GameManager savefiles en autosaves.
+Deze worden opgeslagen in de persistentDataPath als een savegame.simmac-bestand.
 
----
-
-### **Evenementen & Speciale Mechanieken**
-*(Welke random events zijn er? Bijvoorbeeld inspecities, storingen, etc.)*
-
----
-
-### **Achievements**
-*(Welke achievements zijn er en hoe worden ze behaald?)*
+Ook worden alle orders in de GameManager opgeslagen en vervolgens doorgestuurd naar de UI en de OAT. Verder wordt de tijdsdoorloop geregeld met functies vanuit de GameManager.
 
 ---
 
 ### **Save States**
 
-De gebruiker krijgt 1 actieve save of mee te spelen, deze save laad de gamemanager in die alle benodigde info heeft om het spel op de juiste manier op te zetten.
+"De gebruiker krijgt één actieve save om mee te spelen. Deze save laadt de GameManager in, die alle benodigde informatie bevat om het spel correct op te starten.
 
-Het spel wordt aan het eind van de dag opgeslagen in het tussendaagse menu, of aan het einde van de dag wanneer de speler failliet is. Hierdoor kun je halverwege de dag stoppen om het opnieuw te proberen.
+Het spel wordt automatisch opgeslagen in het tussendaagse menu aan het einde van de dag. Hierdoor kan de speler halverwege de dag stoppen en later opnieuw proberen.
 
-Wanneer het spel wordt geladen verschijnt of het begin van de dag als je halverwege de dag stopt, het tussendaagse menu wanneer je de vorige keer aan het eind van de dag bent gestopt of het failliet scherm als je aan het einde van de dag bent gestopt en failliet bent.
+Bij het laden van het spel verschijnt één van de volgende schermen, afhankelijk van wanneer de vorige sessie eindigde:
 
----
+- Het begin van de dag – Als de speler halverwege de dag is gestopt.
 
-### **Audiovisueel**
-*(Beschrijf hoe de game eruitziet en klinkt.)*
+- Het tussendaagse menu – Als de vorige sessie aan het einde van de dag eindigde.
 
----
-
-### **Taakverdeling**
-*(Wie is verantwoordelijk voor welk onderdeel?)*
-
----
-
-### **Speelduur & Moeilijkheid**
-*(Hoe lang duurt een gemiddelde sessie? Welke moeilijkheidsgraden zijn er?)*
-
----
+- Het failliet-scherm – Als de speler aan het einde van de dag failliet ging en stopte.

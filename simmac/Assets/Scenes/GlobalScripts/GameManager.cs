@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
+    public EventHandler eventHandler;
+    public int customerAmount;
 
     // private fields
     private static GameManager _instance = null;
@@ -22,8 +24,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
+        Debug.Log(loadCurrentGame());
         instance.current_state = loadCurrentGame();
-        StartDayTime();
+        saveCurrentGame();
+        StartOfDay();
     }
 
     void Update()
@@ -44,8 +48,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartOfDay()
+    {
+        customerAmount = 0;
+        dayTimeLeft = dayDurationInSeconds;
+        _passTime = true;
+    }
     private void EndOfDay()
     {
+        StopDayTime();
+        if (customerAmount > 0)
+        {
+            return;
+        }
+        saveCurrentGame();
     }
 
     private void HandleDayTime()
@@ -62,10 +78,8 @@ public class GameManager : MonoBehaviour
     }
 
     #region  DayTime functions
-
     public void StartDayTime()
     {
-        dayTimeLeft = dayDurationInSeconds;
         _passTime = true;
     }
     public void StopDayTime()
@@ -95,7 +109,7 @@ public class GameManager : MonoBehaviour
         }
         catch
         {
-            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 0.0f, customers_served = 0 };
+            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
         }
     }
 
@@ -106,7 +120,6 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
 
     #region  Structs
 
@@ -126,6 +139,8 @@ public class GameManager : MonoBehaviour
         public float money;
         [Key(5)]
         public int customers_served;
+        [Key(6)]
+        public float stars;
     }
 
     #endregion

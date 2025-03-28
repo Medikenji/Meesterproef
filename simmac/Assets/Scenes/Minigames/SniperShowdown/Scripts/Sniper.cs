@@ -16,7 +16,6 @@ public class Sniper : MonoBehaviour
     private Target _target;
     [SerializeField]
     private GameObject _projectile;
-    [SerializeField]
 
     // private fields
     private float _reloadTimer = 0;
