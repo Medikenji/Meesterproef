@@ -9,6 +9,7 @@ public class PFIB : MonoBehaviour
     public int friesToCreate;
     private int _fryCount;
     private int _n;
+
     void Start()
     {
 
@@ -28,14 +29,14 @@ public class PFIB : MonoBehaviour
 
         if (_fryCount == friesToCreate)
         {
-            StartCoroutine(Timeout(10));
+            StartCoroutine(Timeout(friesToCreate / 4));
             print($"You got {fries.Count}");
         }
     }
 
     void FixedUpdate()
     {
-        if (++_n != 7) { return; }
+        if (++_n != 1) { return; }
         if (_fryCount >= friesToCreate) { return; }
 
         CreateFryAndTrackInList();
