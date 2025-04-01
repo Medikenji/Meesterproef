@@ -11,6 +11,7 @@ public class Bag : MonoBehaviour
 
     void Start()
     {
+        transform.localScale *= Random.Range(1, 3); // small, medium, or large size bag
         _move = InputSystem.actions.FindAction("Move");
     }
 
