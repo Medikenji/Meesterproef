@@ -11,10 +11,20 @@ public class OrderableItem
 
     public OrderableItem()
     {
+        InitializeRandomTypeAndModifier();
+        CalculateCostBasedOnType();
+    }
+
+    private void InitializeRandomTypeAndModifier()
+    {
         Array values = Enum.GetValues(typeof(Type));
         System.Random random = new System.Random();
         type = (Type)values.GetValue(random.Next(values.Length));
         modifier = (Modifier)values.GetValue(random.Next(values.Length));
+    }
+
+    private void CalculateCostBasedOnType()
+    {
         switch (type)
         {
             case Type.Burger:

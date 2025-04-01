@@ -26,23 +26,30 @@ public class GameUI : MonoBehaviour
     // make sure the restaurant isnt open after 24:00 because the clock really isnt made for that
     private const int dayDurationInHours = 15;
     private const int openingTimeHour = 9;
+
     void Update()
     {
-        FormatTimeText();
-        FormatMoneyText();
-        InstantiateOrders();
+        UpdateTimeDisplay();
+        UpdateMoneyDisplay();
+        UpdateOrdersDisplay();
     }
 
-    void FormatTimeText()
+    private void UpdateTimeDisplay()
     {
         float metricTime = GameManager.instance.dayTimeLeft;
-        int totalMinutes = Mathf.FloorToInt((GameManager.dayDurationInSeconds - metricTime) / GameManager.dayDurationInSeconds * dayDurationInHours * 60);
+        int totalMinutes = CalculateTotalMinutes(metricTime);
         int hours = openingTimeHour + totalMinutes / 60;
         int minutes = totalMinutes % 60;
         dayText.text = $"{hours:D2}:{minutes:D2}";
     }
 
-    void FormatMoneyText()
+    private int CalculateTotalMinutes(float metricTime)
+    {
+        return Mathf.FloorToInt((GameManager.dayDurationInSeconds - metricTime) /
+                               GameManager.dayDurationInSeconds * dayDurationInHours * 60);
+    }
+
+    private void UpdateMoneyDisplay()
     {
         moneyText.text = "€" + GameManager.instance.current_state.money.ToString("F2");
     }
@@ -53,64 +60,110 @@ public class GameUI : MonoBehaviour
         instantiated = false;
     }
 
-    void InstantiateOrders()
+    private void UpdateOrdersDisplay()
     {
         if (instantiated) return;
+
+        ClearExistingOrders();
+        CreateNewOrderDisplays();
+
+        instantiated = true;
+    }
+
+    private void ClearExistingOrders()
+    {
         foreach (Transform child in transform)
         {
             if (child.gameObject == moneyText.gameObject || child.gameObject == dayText.gameObject)
                 continue;
             Destroy(child.gameObject);
         }
+    }
+
+    private void CreateNewOrderDisplays()
+    {
         int maxOrders = Mathf.Min(GameManager.instance.orders.Count, 6);
         for (int i = 0; i < maxOrders; i++)
         {
             GameObject order = Instantiate(orderPrefab, transform);
-            createOrderSquare(ref order, i);
+            SetupOrderDisplay(ref order, i);
         }
-        instantiated = true;
-    }
-    private void createOrderSquare(ref GameObject order, int i)
-    {
-        TextMeshProUGUI text = order.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = "#Order " + i;
-        RectTransform rectTransform = order.GetComponent<RectTransform>();
-        rectTransform.SetParent(transform, false);
-        int row = i / 3;
-        int column = i % 3;
-        rectTransform.anchoredPosition = new Vector2(100 + column * 200, -100 - row * 250);
-        createOrderContent(ref order, i);
     }
 
-    private void createOrderContent(ref GameObject order, int i)
+    private void SetupOrderDisplay(ref GameObject order, int orderIndex)
     {
-        Order currentOrder = GameManager.instance.orders[i];
+        SetupOrderHeader(order, orderIndex);
+        PositionOrderDisplay(order, orderIndex);
+        CreateOrderItemsDisplay(order, orderIndex);
+    }
+
+    private void SetupOrderHeader(GameObject order, int orderIndex)
+    {
+        TextMeshProUGUI text = order.GetComponentInChildren<TextMeshProUGUI>();
+        text.text = "#Order " + orderIndex;
+    }
+
+    private void PositionOrderDisplay(GameObject order, int orderIndex)
+    {
+        RectTransform rectTransform = order.GetComponent<RectTransform>();
+        rectTransform.SetParent(transform, false);
+        int row = orderIndex / 3;
+        int column = orderIndex % 3;
+        rectTransform.anchoredPosition = new Vector2(100 + column * 200, -100 - row * 250);
+    }
+
+    private void CreateOrderItemsDisplay(GameObject order, int orderIndex)
+    {
+        Order currentOrder = GameManager.instance.orders[orderIndex];
         for (int j = 0; j < currentOrder._orderableItems.Count; j++)
         {
-            GameObject item = Instantiate(orderItemPrefab, order.transform);
-            UnityEngine.UI.Image image = item.GetComponent<UnityEngine.UI.Image>();
-            image.color = currentOrder._orderableItems[j].modifier switch
-            {
-                OrderableItem.Modifier.Default => Color.white,
-                OrderableItem.Modifier.Red => Color.red,
-                OrderableItem.Modifier.Green => Color.green,
-                OrderableItem.Modifier.Blue => Color.cyan,
-                _ => Color.black,
-            };
-            RectTransform rectTransform = item.GetComponent<RectTransform>();
-            rectTransform.SetParent(order.transform);
-            int row = j / 4;
-            int column = j % 4;
-            rectTransform.anchoredPosition = new Vector2(25 + column * 50, -25 - row * 50);
-            image.sprite = currentOrder._orderableItems[j].type switch
-            {
-                OrderableItem.Type.Burger => burgerSprite,
-                OrderableItem.Type.Fries => friesSprite,
-                OrderableItem.Type.Milkshake => milkshakeSprite,
-                OrderableItem.Type.Icecream => dessertSprite,
-                _ => null
-            };
+            CreateOrderItemDisplay(order, currentOrder, j);
         }
+    }
+
+    private void CreateOrderItemDisplay(GameObject order, Order currentOrder, int itemIndex)
+    {
+        OrderableItem item = currentOrder._orderableItems[itemIndex];
+        GameObject itemDisplay = Instantiate(orderItemPrefab, order.transform);
+
+        UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
+        image.color = GetColorForModifier(item.modifier);
+        image.sprite = GetSpriteForItemType(item.type);
+
+        PositionOrderItem(itemDisplay, order, itemIndex);
+    }
+
+    private void PositionOrderItem(GameObject itemDisplay, GameObject order, int itemIndex)
+    {
+        RectTransform rectTransform = itemDisplay.GetComponent<RectTransform>();
+        rectTransform.SetParent(order.transform);
+        int row = itemIndex / 4;
+        int column = itemIndex % 4;
+        rectTransform.anchoredPosition = new Vector2(25 + column * 50, -25 - row * 50);
+    }
+
+    private Color GetColorForModifier(OrderableItem.Modifier modifier)
+    {
+        return modifier switch
+        {
+            OrderableItem.Modifier.Default => Color.white,
+            OrderableItem.Modifier.Red => Color.red,
+            OrderableItem.Modifier.Green => Color.green,
+            OrderableItem.Modifier.Blue => Color.cyan,
+            _ => Color.black,
+        };
+    }
+
+    private Sprite GetSpriteForItemType(OrderableItem.Type type)
+    {
+        return type switch
+        {
+            OrderableItem.Type.Burger => burgerSprite,
+            OrderableItem.Type.Fries => friesSprite,
+            OrderableItem.Type.Milkshake => milkshakeSprite,
+            OrderableItem.Type.Icecream => dessertSprite,
+            _ => null
+        };
     }
     #endregion
 }

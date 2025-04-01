@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Bag : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     public float speed;
     private InputAction _move;
 

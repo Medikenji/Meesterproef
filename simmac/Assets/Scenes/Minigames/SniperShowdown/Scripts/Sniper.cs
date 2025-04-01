@@ -3,21 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Sniper : MonoBehaviour
 {
-    // public fields
     public Vector3 hitpoint;
     public float distanceCal = 0;
     public float windCal = 0;
     public int ammoAmount;
 
-    // serialized private fields
-    [SerializeField]
-    private Sniper _scope;
-    [SerializeField]
-    private Target _target;
-    [SerializeField]
-    private GameObject _projectile;
+    [SerializeField] private Sniper _scope;
+    [SerializeField] private Target _target;
+    [SerializeField] private GameObject _projectile;
 
-    // private fields
     private float _reloadTimer = 0;
     private float _swayStrength;
     private Vector3 _sway = Vector3.zero;
@@ -28,7 +22,6 @@ public class Sniper : MonoBehaviour
     private InputAction _move;
     private InputAction _shoot;
 
-    // const values
     private const int AmmoAmount = 4;
     private const float SwayStart = 1;
     private const float ReloadTime = 3.0f;
@@ -43,18 +36,43 @@ public class Sniper : MonoBehaviour
 
     void Start()
     {
-        SetInputs();
-        ammoAmount = AmmoAmount;
-        _swayStrength = SwayStart;
+        InitializeSniper();
     }
 
     void Update()
     {
-        Debug.DrawLine(_scope.transform.position, hitpoint);
+        DrawDebugLine();
         HandleMovement();
         HandleSway();
         HandleHitpoint();
-        Shoot();
+        HandleShooting();
+        ApplySway();
+    }
+
+    private void InitializeSniper()
+    {
+        SetInputs();
+        InitializeAmmo();
+        InitializeSway();
+    }
+
+    private void InitializeAmmo()
+    {
+        ammoAmount = AmmoAmount;
+    }
+
+    private void InitializeSway()
+    {
+        _swayStrength = SwayStart;
+    }
+
+    private void DrawDebugLine()
+    {
+        Debug.DrawLine(_scope.transform.position, hitpoint);
+    }
+
+    private void ApplySway()
+    {
         _scope.transform.position += _sway;
     }
 
@@ -80,6 +98,12 @@ public class Sniper : MonoBehaviour
 
     void HandleHitpoint()
     {
+        HandleCalibration();
+        CalculateHitpoint();
+    }
+
+    private void HandleCalibration()
+    {
         if (_calibrateDistanceUp.triggered)
         {
             distanceCal += Random.Range(0.5f, 1.0f);
@@ -96,8 +120,18 @@ public class Sniper : MonoBehaviour
         {
             windCal -= Random.Range(0.5f, 1.0f);
         }
+
+        ClampCalibrationValues();
+    }
+
+    private void ClampCalibrationValues()
+    {
         distanceCal = Mathf.Clamp(distanceCal, -MaxDistanceCal, MaxDistanceCal);
         windCal = Mathf.Clamp(windCal, -MaxWindCal, MaxWindCal);
+    }
+
+    private void CalculateHitpoint()
+    {
         hitpoint = _scope.transform.position + new Vector3(_target.windStrength - windCal, -_target.distance + distanceCal, 0);
     }
 
@@ -111,17 +145,32 @@ public class Sniper : MonoBehaviour
         _shoot = InputSystem.actions.FindAction("Shoot");
     }
 
-    void Shoot()
+    private void HandleShooting()
+    {
+        UpdateReloadTimer();
+        TryToShoot();
+    }
+
+    private void UpdateReloadTimer()
     {
         _reloadTimer -= Time.deltaTime;
+    }
+
+    private void TryToShoot()
+    {
         if (_shoot.triggered && _reloadTimer < 0 && ammoAmount > 0)
         {
-            ammoAmount--;
-            _reloadTimer = ReloadTime;
-            Instantiate(_projectile, hitpoint, Quaternion.identity);
-            _swayStrength = SwayStart;
-            ApplyRecoil();
+            FireShot();
         }
+    }
+
+    private void FireShot()
+    {
+        ammoAmount--;
+        _reloadTimer = ReloadTime;
+        Instantiate(_projectile, hitpoint, Quaternion.identity);
+        _swayStrength = SwayStart;
+        ApplyRecoil();
     }
 
     void ApplyRecoil()

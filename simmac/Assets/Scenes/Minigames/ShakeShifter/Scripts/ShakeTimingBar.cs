@@ -10,15 +10,35 @@ public class ShakeTimingBar : MonoBehaviour
 
     void Start()
     {
-        _initialScale = transform.localScale.y;
-        _freeze = false;
-        _bottomY = transform.position.y - (transform.localScale.y / 2f);
+        InitializeVariables();
     }
 
     void Update()
     {
         if (_freeze) { return; }
 
+        UpdateScalingDirection();
+        UpdateBarScale();
+        UpdateBarPosition();
+        CheckForUserInput();
+    }
+
+    void FixedUpdate()
+    {
+        if (_freeze) { return; }
+
+        UpdateScaleMultiplier();
+    }
+
+    private void InitializeVariables()
+    {
+        _initialScale = transform.localScale.y;
+        _freeze = false;
+        _bottomY = transform.position.y - (transform.localScale.y / 2f);
+    }
+
+    private void UpdateScalingDirection()
+    {
         if (_scaleMultiplier <= 0)
         {
             _grow = true;
@@ -30,25 +50,32 @@ public class ShakeTimingBar : MonoBehaviour
             _grow = false;
             _scaleMultiplier = 1;
         }
+    }
 
+    private void UpdateBarScale()
+    {
         float newScale = _initialScale * _scaleMultiplier;
         transform.localScale = new Vector3(transform.localScale.x, newScale, transform.localScale.z);
+    }
 
-        float newHalfHeight = newScale / 2f;
+    private void UpdateBarPosition()
+    {
+        float newHalfHeight = transform.localScale.y / 2f;
         transform.position = new Vector3(transform.position.x,
                                         _bottomY + newHalfHeight,
                                         transform.position.z);
+    }
 
+    private void CheckForUserInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             _freeze = true;
         }
     }
 
-    void FixedUpdate()
+    private void UpdateScaleMultiplier()
     {
-        if (_freeze) { return; }
-
         if (_grow)
         {
             _scaleMultiplier += 0.01f;

@@ -11,7 +11,6 @@ public abstract class Event : ScriptableObject
     public float callTime;
     public bool hasBeenCalled;
     public abstract void CurrentEvent();
-
 }
 
 public class TestEvent : Event

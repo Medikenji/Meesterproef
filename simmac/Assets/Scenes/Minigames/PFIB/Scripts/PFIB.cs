@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PFIB : MonoBehaviour
 {
@@ -16,25 +18,16 @@ public class PFIB : MonoBehaviour
 
     void Start()
     {
-        friesToCreate = Random.Range(friesToCreate - 10, friesToCreate + 10);
+        GenerateBagSize();
     }
 
     void Update()
     {
-        for (int i = _fries.Count - 1; i >= 0; i--)
-        {
-            if (_fries[i].transform.position.y <= -10)
-            {
-                GameObject fryToRemove = _fries[i];
-                _fries.RemoveAt(i);
-                Destroy(fryToRemove);
-            }
-        }
+        DeleteFryFromListIfBelowTheScreen();
 
-        if (_fryCount == friesToCreate && !_gameEnded)
+        if (GameFinished())
         {
-            _gameEnded = true;
-            StartCoroutine(GameEnd(friesToCreate / 4));
+            EndGame();
         }
     }
 
@@ -46,6 +39,35 @@ public class PFIB : MonoBehaviour
         CreateFryAndTrackInList();
 
         _n = 0;
+    }
+
+    private bool GameFinished()
+    {
+        return _fryCount == friesToCreate && !_gameEnded;
+    }
+
+    private void EndGame()
+    {
+        _gameEnded = true;
+        StartCoroutine(GameEnd(friesToCreate / 4));
+    }
+
+    private void DeleteFryFromListIfBelowTheScreen()
+    {
+        for (int i = _fries.Count - 1; i >= 0; i--)
+        {
+            if (_fries[i].transform.position.y <= -10)
+            {
+                GameObject fryToRemove = _fries[i];
+                _fries.RemoveAt(i);
+                Destroy(fryToRemove);
+            }
+        }
+    }
+
+    private void GenerateBagSize()
+    {
+        friesToCreate = Random.Range(friesToCreate - 10, friesToCreate + 10);
     }
 
     void CreateFryAndTrackInList()
