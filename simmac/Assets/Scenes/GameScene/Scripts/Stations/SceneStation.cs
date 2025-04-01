@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SceneStation : Station
 {
-    public string nameOfSceneToOpen;
+    public string nameOfSceneToOpen { get; set; }
 
     public override void OnClick()
     {

@@ -23,6 +23,10 @@ public class Customer : MonoBehaviour
     void Update()
     {
         handleSatisfaction();
+        if (ClickedOnCollider())
+        {
+            TakeOrder();
+        }
     }
 
     void CreateOrder()
@@ -70,5 +74,29 @@ public class Customer : MonoBehaviour
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
+    }
+
+
+    private void CheckCollider()
+    {
+        if (GetComponent<Collider2D>() == null)
+        {
+            Debug.LogError($"No Collider2D found on '{gameObject.name}'!");
+        }
+    }
+
+    private bool ClickedOnCollider()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Collider2D hit = Physics2D.OverlapPoint(mousePosition);
+
+            if (hit != null && hit.gameObject == gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
