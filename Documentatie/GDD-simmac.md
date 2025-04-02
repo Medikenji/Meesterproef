@@ -2,7 +2,7 @@
 
 #### Douwe Westerdijk & Nolan Bijmholt </br> Alfa College - 2024/2025
 
-Versie 0.2.3
+Versie 1.0.0
 
 ### Inhoud
 
@@ -35,7 +35,7 @@ Versie 0.2.3
 *Simmac is een restaurant tycoon/simulator. Jij neemt de rol aan van restaurantmanager. Het is jouw taak om alles in orde te houden en het restaurant zo waardevol mogelijk te maken. Dit doe je door bestellingen te plaatsen, werknemers aan te nemen en te managen. Daarnaast moet je effectief complicaties binnen en buiten het restaurant behandelen om het restaurant draaiende te houden.
 Dit doe je in een systeem dat elke dag bijna onmerkbaar lastiger wordt, waardoor de stress nooit weggaat. Kun jij een nieuwe hoge score behalen?*
 
-Wij gaan een prototype maken van Simmac om te onderzoeken hoe de gameloop van het bestellingen plaatsen in herhalende minigames wordt ervaren. In dit GDD worden alle features van dit prototype getoond, en deze zullen op basis van feedback verder worden uitgewerkt tijdens de ontwikkeling van het uiteindelijke spel.
+Wij gaan een prototype maken van Simmac om te onderzoeken hoe de gameloop van het bestellingen plaatsen in herhalende minigames wordt ervaren. In dit GDD zijn alle features van dit prototype uitgewerkt, en deze zullen op basis van feedback verder worden uitgewerkt tijdens de ontwikkeling van het uiteindelijke spel.
 
 ---
 
@@ -43,57 +43,50 @@ Wij gaan een prototype maken van Simmac om te onderzoeken hoe de gameloop van he
 
 - **Engine:** *Unity 6000.0.40f1*
 - **Platform:** *PC*
-- **Besturing:** *Keyboard en muis*
+- **Besturing:** *Toetsenbord en muis*
 
 ---
 
 ### **Gameplay overzicht**
 
 Jij speelt als restaurantmanager van Simmac. Je kan rondlopen binnen het
-restaurant en de benodigde keuken- en servicefuncties bedienen op de
-stations te klikken en hun minigames te spelen om bestellingen te maken.
+restaurant, de benodigde keuken- en servicefuncties bedienen door op de
+stations te klikken, en hun minigames te spelen om bestellingen te maken.
 
 Aan het einde van de dag krijg je een overzicht van de boekhoudgegevens
 van het restaurant. Hier kun je kiezen om personeel aan te nemen.
 
 #### **Camera**
 
-Simmac is een 2D-spel met een dynamische camera die de speler volgt. Wanneer de
-camera maximaal uitzoomt, krijg je het hele restaurant te zien. De camera
-volgt de speler niet meer in deze staat, omdat je alles kan zien is de speler
-altijd zichtbaar. Dit is handig om de kassa in de gaten te houden voor klanten
-terwijl je zelf in de keuken staat.
+Simmac is een 2D-spel met een camera die de speler volgt. Als je de
+camera maximaal uitzoomt, krijg je het hele restaurant van boven te zien.
 
 #### **Speler**
 
 De speler kan vrij rondlopen in het restaurant en interacteren met de wereld. De
 speler beweegt met het toetsenbord en gebruikt de muis voor interacties.
 
-Interactie is alleen mogelijk binnen een vaste radius rondom de speler.
+De speler moet dichtbij een station staan om hier op te kunnen klikken.
 
 #### **Producten**
 
-Producten worden ingekocht, bereid en geserveerd – dit is de taak van de speler. Het inkopen van producten gebeurt automatisch zodra de speler begint met het maken van een bestelling. Pas echter op: wanneer de speler de verkeerde bestelling maakt, kan dit geld kosten.
+Producten worden ingekocht, bereid en geserveerd – dit is de taak van de speler.
+Het kost geld om een product te maken, het is aan de speler om te zorgen dat je de
+juiste producten maakt om geen onnodig geld uit te geven.
 
-Daarnaast hebben de producten vier verschillende types: standaard, rood, groen en blauw. Dit kost de speler geen extra geld, maar het is wel belangrijk om hierop te letten bij het maken van bestellingen.
+Producten hebben vier verschillende types: standaard, rood, groen en blauw. Deze types zijn als vervanger voor hoe je in het echt verschillende soorten burgers en drankjes kan bestellen. Deze types kosten de speler geen extra geld.
 
-Verder beschikken de producten over een interne kwaliteitsmeter, die varieert van 0 tot 100. De kwaliteit van de bestelling wordt bepaald door de som van de verschillende kwaliteiten, wat invloed heeft op de tevredenheid van de klant.
+Verder beschikken de producten over een kwaliteitsmeter, die varieert van 0 tot 100. De kwaliteit van de bestelling wordt bepaald door het gemiddelde van de verschillende kwaliteiten, wat invloed heeft op de tevredenheid van de klant.
 
-Op dit moment bevat het spel vier producten: milkshakes, burgers, friet en desserts.
+Het spel bevat vier producten: milkshakes, burgers, friet en desserts.
 
 #### **Bestellingen**
 
 Een bestelling wordt geplaats wanneer een klant naar de kassa voorin het restaurant
-loopt. De klant wacht voor de kassa totdat de speler hier heen loopt en op het
-station de klant klikt.
+loopt. De klant wacht voor de kassa totdat de speler hier heen loopt en op de klant klikt
 
 Wanneer een klant een bestelling plaatst, wordt deze opgeslagen in de Game Manager
-en weergegeven in de UI. Bestellingen bestaan uit burgers, friet, drankjes en
-desserts.
-
-Al het eten kan een *modifier* hebben. Dit maakt het een andere soort burger, of
-drankje. In Simmac zijn deze modifiers kleuren. Je kan voor het beginnen van een
-minigame kiezen wat voor soort mofifier je wilt gebruiken om de bestelling juist te maken. 
+en weergegeven in de UI.
 
 De speler moet de juiste stations gebruiken om de bestelling te maken. Als een
 product is gemaakt, wordt het op de Order Assembly Table (OAT) geplaatst.
@@ -103,47 +96,35 @@ automatisch afgegeven.
 
 #### **Order Assembly Table**
 
-De Order Assembly Table (OAT) is een centrale verzamelplaats voor alle gemaakte
-consumpties in de keuken. Alles wat in de keuken gemaakt wordt eindigt in de OAT voordat het naar een
-klant gaat.
+De OAT is een centrale verzamelplaats voor alle gemaakte consumpties in de keuken. Alles wat in de keuken gemaakt wordt eindigt in de OAT voordat het naar een klant gaat.
 
-Wanneer producten langdurig in de OAT liggen verslechtert hun kwaliteit na verloop van tijd.
+Des te langer een product in de OAT ligt, des te slechter de kwaliteit zal worden.
 Het is niet aan te raden om producten te maken zonder bestelling.
 
-Oudere bestellingen krijgen prioriteit naar de klant. De speler kan producten uit de OAT
-weggooien als ze te oud zijn. Als je dit niet doet kan een verouderd product aan de klant
-gegeven worden, waardoor de klant ontevreden zal zijn.
+Oudere bestellingen krijgen prioriteit naar de klant. De speler kan producten uit de OAT weggooien als ze te oud zijn. Als je dit niet doet kan een verouderd product aan de klant gegeven worden, waardoor de klant ontevreden zal zijn.
 
 #### **Klanten**
 
 Klanten bestellen bij de kassa. De bestelling wordt in de UI weergegeven.
 
-Klanten hebben een tevredenheidsmeter en een kans om een recensie achter te laten.
+Klanten hebben een tevredenheidsmeter.
 Terwijl ze wachten, daalt hun tevredenheid. Deze timer bepaald de tevredenheid die
-een klant kan hebben. Stel een klant wacht te lang en heeft een tevredenheid van 80%, dan
-is de beste tevredenheid voor deze klant dus 90%, ongeacht van hoe goed het eten is.
+een klant kan hebben. Stel een klant wacht te lang en heeft een tevredenheid van 90%, dan is de beste tevredenheid voor deze klant dus 90%, ongeacht van hoe goed het eten is.
 
-De tevredenheid van de klant is verder gebonden aan hoe goed het eten gemaakt is, en
+De tevredenheid van de klant is ook gebonden aan hoe goed het eten gemaakt is, en
 hoe oud dit eten is. Als je de minigames goed speelt resulteert dit in eten van 100%
-kwaliteit. Hoe langer eten in de OAT ligt, hoe lager de kwaliteit zal worden. De kwaliteit
-van het eten daalt lineair.
+kwaliteit. Hoe langer eten in de OAT ligt, hoe lager de kwaliteit zal worden. De kwaliteit van het eten daalt lineair met de tijd.
 
 Nadat ze hun bestelling krijgen, stijgt of daalt hun tevredenheid afhankelijk van
 de kwaliteit van het eten. Daarna verlaten ze het restaurant.
-
-Recensies worden beïnvloed door de bestellingen. Slechte of extreem goede
-bestellingen hebben meer impact op de kans dat een recensie wordt achtergelaten.
 
 #### **Medewerkers**
 
 Medewerkers kunnen worden aangenomen in het tussendaagse menu. Om dit te doen moet je een startbonus betalen en daarna hebben ze een vast dag salaris dat elke dag wordt uitbetaald.
 
-Medewerkers hebben een vaardigheden meter die van 0-100 gaat, wanneer ze beginnen zal dit per medewerker verschillen maar wel aan de lage kant zitten. Elke dag dat ze werken gaat dit omhoog tot een vast limiet dat verschilt per medewerker.
-
 Medewerkers worden aan het begin van de dag op een willekeurig station gezet. Hier blijven ze de hele dag en regelen ze het bereiden van de producten. Stations die door medewerkers gebruikt worden kunnen nog wel door de speler gebruikt worden.
 
-De vaardigheden meter van de medewerkers bepaald hoe goed de kwaliteit van hun producten zijn maar ook hoe weinig fouten ze maken. Zo kunnen ze denken dat ze een juiste variatie van een product hebben gemaakt maar kan het verkeerde in de OAT liggen. Hierdoor moet de speler altijd op blijven letten dat bestellingen wel af gemaakt zijn.
-
+De kwaliteit van het eten gemaakt door een medewerker heeft een willekeurige waarde.
 
 #### **Tussendaagse menu**
 
@@ -155,37 +136,37 @@ En daarna een menu gepresenteerd waar wat algemene statistieken staan (de huidig
 
 ### **Minigames**
 
-Je start een minigame door op een station te klikken. Elk station waar je eten / drinken
-maakt heeft een unieke minigame. Je kan alleen op de stations klikken als je er naast staat.
-Na het spelen van de minigame, verschijnt de consumptie die je hebt gemaakt in de OAT
+Je start een minigame door op een station te klikken. Elk station waar je eten / drinken maakt heeft een unieke minigame. Je kan alleen op de stations klikken als je er naast staat. Na het spelen van de minigame, verschijnt de consumptie die je hebt gemaakt in de OAT
 
 #### **Burger Minigame - Burger Stack**
 
 In de Burger Stack moet je proberen een perfecte burger te maken. Dit doe je door alle ingrediënten perfect te stapelen.
-Je begint met het onderste broodje die je links en rechts kan bewegen terwijl ingrediënten uit de lucht vallen. Probeer deze zo recht mogelijk op de burger te krijgen om een hogere score te krijgen.
+Je begint met het onderste broodje die je links en rechts kan bewegen terwijl ingrediënten uit de lucht vallen. Probeer deze zo recht mogelijk op de burger op te vangen om een hogere score te krijgen.
 
 #### **Fries Minigame - Put the Fries In the Bag**
 
-In PFIB beweegt een frietzak onderaan het scherm. De speler beweegt de zak met A
-en D of de pijltjestoetsen.
+In PFIB beweegt een frietzak onderaan het scherm. De speler beweegt de zak heen en weer om zoveel mogelijk frietjes op te vangen.
+
+De uiteindelijke score van de speler wordt berekend door te kijken naar hoeveel frietjes de speler gevangen heeft van de totale hoeveelheid gevallen frietjes.
 
 In het begin van het spel krijg je een frietzak van willekeurige grootte, deze
-zijn small, medium & large. Grotere frietzakken maken het spel makkelijker. De
-score hangt af van de hoeveelheid frieten die de speler vangt.
+zijn small, medium & large. Grotere frietzakken maken het spel makkelijker.
 
 #### **Drinks Minigame - Shake Shifter**
 
 De speler ziet een transparante milkshakebeker met een percentage bovenaan. Een
-kleur beweegt op en neer en vult de beker tijdelijk.
+kleur beweegt op en neer over de beker heen.
 
 De speler moet klikken wanneer de vulling exact overeenkomt met het percentage.
+
+Des te dichter bij de correcte waarde de speler klikt, des te beter de score is.
 
 #### **Dessert Minigame - Sniper Showdown / Pop the Cherry**
 
 De speler staat op een schietbaan en moet een kers op een ijsje schieten. Dit doet de speler met behulp van instrumenten zoals zijn afstandsmeter, windmeter en geweer.
 Ook kan de speler zijn geweer calibreren voor hele verre schoten.
 
-De speler krijgt vier pogingen om het kersje er goed op te schieten. 
+De speler krijgt vier pogingen om het kersje er goed op te schieten.
 Bij elke misser gaat de kwaliteit met een vaste hoeveelheid omlaag en als de speler alles mist wordt de kwaliteit een vaste lage waarde.
 
 ---
@@ -200,19 +181,18 @@ Recht boven staat hoeveel geld het restaurant heeft, dit is om de speler te moti
 
 ### **Game Manager**
 
-De GameManager is het centrale punt van het spel en regelt alle verbindingen via een static singleton.
-Hierdoor hoeven we alleen maar alle code naar een soort spel-database te sturen voor eenvoudig gebruik.
+De GameManager is het centrale punt van het spel en regelt alle verbindingen van de klanten, de stations, de minigames, en de speler.
 
-Daarnaast beheert de GameManager savefiles en autosaves.
-Deze worden opgeslagen in de persistentDataPath als een savegame.simmac-bestand.
+De GameManager beheert ook de savefiles en autosaves.
+Deze worden opgeslagen in de persistentDataPath als een `savegame.simmac` bestand.
 
-Ook worden alle orders in de GameManager opgeslagen en vervolgens doorgestuurd naar de UI en de OAT. Verder wordt de tijdsdoorloop geregeld met functies vanuit de GameManager.
+De tijdsdoorloop van het spel wordt ook geregeld vanuit de GameManager.
 
 ---
 
 ### **Save States**
 
-"De gebruiker krijgt één actieve save om mee te spelen. Deze save laadt de GameManager in, die alle benodigde informatie bevat om het spel correct op te starten.
+De gebruiker krijgt één actieve save om mee te spelen. Deze save laadt de GameManager in, die alle benodigde informatie bevat om het spel correct op te starten.
 
 Het spel wordt automatisch opgeslagen in het tussendaagse menu aan het einde van de dag. Hierdoor kan de speler halverwege de dag stoppen en later opnieuw proberen.
 
