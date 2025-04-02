@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
-        Debug.Log(loadCurrentGame());
         instance.current_state = loadCurrentGame();
         saveCurrentGame();
         StartOfDay();
@@ -43,6 +42,8 @@ public class GameManager : MonoBehaviour
             {
                 _instance = new GameObject("GameManager").AddComponent<GameManager>();
                 Debug.Log("Created GameManager instance");
+                Debug.Log(OATManager.instance + "Creating OATManager");
+
             }
             return _instance;
         }

@@ -1,23 +1,46 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class Order
 {
-    public List<OrderableItem> _orderableItems { get; private set; }
+    private List<OrderableItem> _orderableItems;
+
+    public List<OrderableItem> orderableItems
+    {
+        get
+        {
+            bool allItemsAreOat = _orderableItems.All(item => item.state == State.Oat);
+
+            if (allItemsAreOat)
+            {
+                foreach (OrderableItem item in _orderableItems)
+                {
+                    item.state = State.Finished;
+                }
+                state = State.Finished;
+            }
+            return _orderableItems;
+        }
+        private set
+        {
+            _orderableItems = value;
+        }
+    }
     public State state = State.Imagined;
     public Order()
     {
-        _orderableItems = new List<OrderableItem>();
+        orderableItems = new List<OrderableItem>();
     }
 
     public void addToOrder(OrderableItem item)
     {
-        _orderableItems.Add(item);
+        orderableItems.Add(item);
     }
 
     public void setActive()
     {
         state = State.Waiting;
-        foreach (OrderableItem item in _orderableItems)
+        foreach (OrderableItem item in orderableItems)
         {
             item.state = State.Waiting;
         }
@@ -26,11 +49,11 @@ public class Order
     public float getQuality()
     {
         float total = 0.0f;
-        foreach (OrderableItem item in _orderableItems)
+        foreach (OrderableItem item in orderableItems)
         {
             total += item.quality;
         }
-        return total / _orderableItems.Count;
+        return total / orderableItems.Count;
     }
 
     public enum State

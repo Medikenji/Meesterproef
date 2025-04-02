@@ -22,6 +22,10 @@ public class Customer : MonoBehaviour
     void Update()
     {
         HandleSatisfaction();
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TakeOrder();
+        }
     }
 
     private void InitializeSatisfaction()
@@ -62,7 +66,7 @@ public class Customer : MonoBehaviour
     private float CalculateOrderCost()
     {
         float cost = 0;
-        foreach (OrderableItem item in order._orderableItems)
+        foreach (OrderableItem item in order.orderableItems)
         {
             cost += item.cost;
         }

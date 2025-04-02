@@ -115,7 +115,7 @@ public class GameUI : MonoBehaviour
     private void CreateOrderItemsDisplay(GameObject order, int orderIndex)
     {
         Order currentOrder = GameManager.instance.orders[orderIndex];
-        for (int j = 0; j < currentOrder._orderableItems.Count; j++)
+        for (int j = 0; j < currentOrder.orderableItems.Count; j++)
         {
             CreateOrderItemDisplay(order, currentOrder, j);
         }
@@ -123,7 +123,7 @@ public class GameUI : MonoBehaviour
 
     private void CreateOrderItemDisplay(GameObject order, Order currentOrder, int itemIndex)
     {
-        OrderableItem item = currentOrder._orderableItems[itemIndex];
+        OrderableItem item = currentOrder.orderableItems[itemIndex];
         GameObject itemDisplay = Instantiate(orderItemPrefab, order.transform);
 
         UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
