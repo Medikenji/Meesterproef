@@ -1,70 +1,60 @@
-## Game Design Document Simmac
+## Game Design Document Simmac Prototyoe
 
 #### Douwe Westerdijk & Nolan Bijmholt </br> Alfa College - 2024/2025
-Versie 0.1.7
+
+Versie 0.2.3
+
 ### Inhoud
 
-- [Game Vision](#game-vision)
-- [Technische Details](#technische-details)
-- [Gameplay](#gameplay-overzicht)
+  - [Inhoud](#inhoud)
+  - [Game Vision](#game-vision)
+  - [Technische Details](#technische-details)
+  - [Gameplay overzicht](#gameplay-overzicht)
     - [Camera](#camera)
     - [Speler](#speler)
     - [Producten](#producten)
     - [Bestellingen](#bestellingen)
-    - [Order Assembly Table](#oat)
+    - [Order Assembly Table](#order-assembly-table)
     - [Klanten](#klanten)
     - [Medewerkers](#medewerkers)
-    - [Tussendaagse Menu](#tussendaagse-menu)
-- [Minigames](#minigames)
-    - [Burger Stack](#burger-minigame---burger-stack)
-    - [Put the Fries In the Bag (PFIB)](#fries-minigame---put-the-fries-in-the-bag)
-    - [Shake Shifter](#drinks-minigame---milkshake-shift)
-    - [Sniper Showdown/ Pop the Cherry](#dessert-minigame---sniper-showdown--pop-the-cherry)
-- [UI](#ui)
-- [Eindes](#eindes)
-- [Game Manager](#game-manager)
-- [Progressie & Spelbalans](#progressie--spelbalans)
-- [Evenementen & Speciale Mechanieken](#evenementen--speciale-mechanieken)
-- [Achievements](#achievements)
-- [Save States](#save-states)
-- [Audiovisueel](#audiovisual)
-- [Taakverdeling](#taakverdeling)
-- [Speelduur & Moeilijkheid](#speelduur--moeilijkheid)
+    - [Tussendaagse menu](#tussendaagse-menu)
+  - [Minigames](#minigames)
+    - [Burger Minigame - Burger Stack](#burger-minigame---burger-stack)
+    - [Fries Minigame - Put the Fries In the Bag](#fries-minigame---put-the-fries-in-the-bag)
+    - [Drinks Minigame - Shake Shifter](#drinks-minigame---shake-shifter)
+    - [Dessert Minigame - Sniper Showdown / Pop the Cherry](#dessert-minigame---sniper-showdown--pop-the-cherry)
+  - [UI](#ui)
+  - [Game Manager](#game-manager)
+  - [Save States](#save-states)
+
 
 ---
 
 ### **Game Vision**
 
-*Simmac is een restaurant tycoon / simulator. Je speelt als de restauranteigenaar
-van het restaurant Simmac. Het is jouw taak om de klanten tevreden te houden
-door hun bestellingen op te nemen, de producten te maken, de bestelling af te
-leveren, en het restaurant staande te houden.*
+*Simmac is een restaurant tycoon/simulator. Jij neemt de rol aan van restaurantmanager. Het is jouw taak om alles in orde te houden en het restaurant zo waardevol mogelijk te maken. Dit doe je door bestellingen te plaatsen, werknemers aan te nemen en te managen. Daarnaast moet je effectief complicaties binnen en buiten het restaurant behandelen om het restaurant draaiende te houden.
+Dit doe je in een systeem dat elke dag bijna onmerkbaar lastiger wordt, waardoor de stress nooit weggaat. Kun jij een nieuwe hoge score behalen?*
 
-*Let op dat je klanten niet te lang laat wachten of slecht eten geeft! De toekomst
-van het restaurant ligt in de recensies van je klanten. Hoe lang hou jij het vol?
-Neem werknemers aan om de werkdruk te verlagen en ga de strijd aan tegen de
-economie om je restaurant draaiende te houden!*
+Wij gaan een prototype maken van Simmac om te onderzoeken hoe de gameloop van het bestellingen plaatsen in herhalende minigames wordt ervaren. In dit GDD worden alle features van dit prototype getoond, en deze zullen op basis van feedback verder worden uitgewerkt tijdens de ontwikkeling van het uiteindelijke spel.
 
 ---
 
 ### **Technische Details**
+
 - **Engine:** *Unity 6000.0.40f1*
 - **Platform:** *PC*
-- **Besturing:**
-    - Bewegen: *WASD - Pijltjestoetsen*
-    - Interactie: *(Linkermuisknop)*
-    - Menu/Pauze: *(Escape)*
+- **Besturing:** *Keyboard en muis*
 
 ---
 
 ### **Gameplay overzicht**
+
 Jij speelt als restaurantmanager van Simmac. Je kan rondlopen binnen het
 restaurant en de benodigde keuken- en servicefuncties bedienen op de
-stations te klikken en hun minigames te spelen.
+stations te klikken en hun minigames te spelen om bestellingen te maken.
 
 Aan het einde van de dag krijg je een overzicht van de boekhoudgegevens
-van het restaurant. Hier kun je kiezen om personeel aan te nemen en ingrediënten
-te kopen.
+van het restaurant. Hier kun je kiezen om personeel aan te nemen.
 
 #### **Camera**
 
@@ -83,19 +73,19 @@ Interactie is alleen mogelijk binnen een vaste radius rondom de speler.
 
 #### **Producten**
 
-Producten worden ingekocht, bereid en geserveerd. Dit is de taak van de speler. Bij het inkopen moet de speler er om denken dat producten maar een bepaalde tijd bruikbaar zijn en dus niet te veel koopt in verband met verspilling.
+Producten worden ingekocht, bereid en geserveerd – dit is de taak van de speler. Het inkopen van producten gebeurt automatisch zodra de speler begint met het maken van een bestelling. Pas echter op: wanneer de speler de verkeerde bestelling maakt, kan dit geld kosten.
 
-Ook hebben producten 4 verschillende types: standaard, rood, groen en blauw. Dit hoeft de speler niet in te kopen maar wordt wel gebruikt bij bestellingen.
+Daarnaast hebben de producten vier verschillende types: standaard, rood, groen en blauw. Dit kost de speler geen extra geld, maar het is wel belangrijk om hierop te letten bij het maken van bestellingen.
 
-Ook hebben producten een interne kwaliteits meter. Deze varieerd van 0 tot 100 en bepaald hoe tevreden de klant is met de bestelling door alle kwaliteiten bij elkaar op te tellen.
+Verder beschikken de producten over een interne kwaliteitsmeter, die varieert van 0 tot 100. De kwaliteit van de bestelling wordt bepaald door de som van de verschillende kwaliteiten, wat invloed heeft op de tevredenheid van de klant.
 
-Op dit moment bevat het spel 4 producten: Milkshakes, burgers, friet en desserts.
+Op dit moment bevat het spel vier producten: milkshakes, burgers, friet en desserts.
 
 #### **Bestellingen**
 
 Een bestelling wordt geplaats wanneer een klant naar de kassa voorin het restaurant
 loopt. De klant wacht voor de kassa totdat de speler hier heen loopt en op het
-station (de kassa) klikt.
+station de klant klikt.
 
 Wanneer een klant een bestelling plaatst, wordt deze opgeslagen in de Game Manager
 en weergegeven in de UI. Bestellingen bestaan uit burgers, friet, drankjes en
@@ -129,8 +119,8 @@ gegeven worden, waardoor de klant ontevreden zal zijn.
 Klanten bestellen bij de kassa. De bestelling wordt in de UI weergegeven.
 
 Klanten hebben een tevredenheidsmeter en een kans om een recensie achter te laten.
-Terwijl ze wachten, daalt hun tevredenheid. Deze timer bepaald de maximale tevredenheid die
-een klant kan hebben. Stel een klant wacht te lang en heeft een tevredenheid van 90%, dan
+Terwijl ze wachten, daalt hun tevredenheid. Deze timer bepaald de tevredenheid die
+een klant kan hebben. Stel een klant wacht te lang en heeft een tevredenheid van 80%, dan
 is de beste tevredenheid voor deze klant dus 90%, ongeacht van hoe goed het eten is.
 
 De tevredenheid van de klant is verder gebonden aan hoe goed het eten gemaakt is, en
@@ -146,7 +136,7 @@ bestellingen hebben meer impact op de kans dat een recensie wordt achtergelaten.
 
 #### **Medewerkers**
 
-Medewerkers kunnen worden aangenomen in het tussendaagse menu. Om dit te doen moet je een startbonus betalen en daarna hebben ze een vast dag salaris dat 1 keer per week in 1 keer wordt uitbetaald.
+Medewerkers kunnen worden aangenomen in het tussendaagse menu. Om dit te doen moet je een startbonus betalen en daarna hebben ze een vast dag salaris dat elke dag wordt uitbetaald.
 
 Medewerkers hebben een vaardigheden meter die van 0-100 gaat, wanneer ze beginnen zal dit per medewerker verschillen maar wel aan de lage kant zitten. Elke dag dat ze werken gaat dit omhoog tot een vast limiet dat verschilt per medewerker.
 
@@ -159,7 +149,7 @@ De vaardigheden meter van de medewerkers bepaald hoe goed de kwaliteit van hun p
 
 Aan het einde van de dag krijgt de speler het tussendaagse menu. Hier wordt eerst een overzicht gepresenteerd voor alle inkomsten en uitgaves.
 
-En daarna een menu gepresenteerd waar wat algemene statistieken staan (de huidige dag, hoeveel medewerkers, etc.). Ook kan de speler hier medewerkers aannemen, voorraad voorspellingen zien en bestellen en naar de volgende dag gaan. Ook krijgt de speler de optie wanneer genoeg geld is verzameld om het restaurant te verkopen om het spel te beëindigen.
+En daarna een menu gepresenteerd waar wat algemene statistieken staan (de huidige dag, hoeveel medewerkers, etc.). Ook kan de speler hier medewerkers aannemen en verder naar de volgende dag gaan.
 
 ---
 
