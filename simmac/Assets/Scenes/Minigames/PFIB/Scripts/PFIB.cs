@@ -1,55 +1,106 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PFIB : MonoBehaviour
 {
     public GameObject fry;
-    public List<GameObject> fries;
     public int friesToCreate;
+    public TextMeshProUGUI gameText;
+    public TextMeshProUGUI scoreText;
+    private int _fryCount;
+    [SerializeField] private List<GameObject> _fries;
+    [SerializeField] private bool _gameEnded = false;
     private int _n;
-    private int _yPosNewFry = 10;
+
     void Start()
     {
-
+        GenerateBagSize();
     }
 
     void Update()
     {
+        DeleteFryFromListIfBelowTheScreen();
 
+        if (GameFinished())
+        {
+            EndGame();
+        }
     }
 
     void FixedUpdate()
     {
-        if (++_n != 5) { return; }
-        if (fries.Count >= friesToCreate) { return; }
+        if (++_n != 7) { return; }
+        if (_fryCount >= friesToCreate) { return; }
 
         CreateFryAndTrackInList();
 
         _n = 0;
     }
 
+    private bool GameFinished()
+    {
+        return _fryCount == friesToCreate && !_gameEnded;
+    }
+
+    private void EndGame()
+    {
+        _gameEnded = true;
+        StartCoroutine(GameEnd(friesToCreate / 4));
+    }
+
+    private void DeleteFryFromListIfBelowTheScreen()
+    {
+        for (int i = _fries.Count - 1; i >= 0; i--)
+        {
+            if (_fries[i].transform.position.y <= -10)
+            {
+                GameObject fryToRemove = _fries[i];
+                _fries.RemoveAt(i);
+                Destroy(fryToRemove);
+            }
+        }
+    }
+
+    private void GenerateBagSize()
+    {
+        friesToCreate = Random.Range(friesToCreate - 10, friesToCreate + 10);
+    }
+
     void CreateFryAndTrackInList()
     {
-        if (fries.Count == 0)
+        if (_fries.Count == 0)
         {
             int randX = Random.Range(-8, 8);
-            _yPosNewFry += 6;
 
-            GameObject tempFry = Instantiate(fry, new Vector3(randX, _yPosNewFry, 0), Quaternion.identity);
-            fries.Add(tempFry);
+            GameObject tempFry = Instantiate(fry, new Vector3(randX, 10, 0), Quaternion.identity);
+            _fries.Add(tempFry);
         }
         else
         {
-            Vector3 prevPosition = fries[fries.Count - 1].transform.position;
+            Vector3 prevPosition = _fries[_fries.Count - 1].transform.position;
 
             float offset = Random.Range(-2f, 2f);
             float newX = Mathf.Clamp(prevPosition.x + offset, -8f, 8f);
 
-            _yPosNewFry += 6;
-
-            GameObject tempFry = Instantiate(fry, new Vector3(newX, _yPosNewFry, 0), Quaternion.identity);
-            fries.Add(tempFry);
+            GameObject tempFry = Instantiate(fry, new Vector3(newX, 10, 0), Quaternion.identity);
+            _fries.Add(tempFry);
         }
+        _fryCount++;
+    }
+
+    IEnumerator GameEnd(int WaitForSeconds)
+    {
+        yield return new WaitForSeconds(WaitForSeconds);
+
+        int friesCaught = _fries.Count;
+
+        gameText.text = $"You caught {friesCaught}/{friesToCreate} fries!";
+        scoreText.text = $"You get a score of {(float)friesCaught / friesToCreate * 100:F0}%!";
+
+        scoreText.gameObject.SetActive(true);
     }
 }

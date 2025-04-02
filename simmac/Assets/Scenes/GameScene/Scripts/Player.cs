@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private float _setSpeed = 8;
     private Rigidbody2D _rb;
@@ -13,30 +13,59 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _move = InputSystem.actions.FindAction("Move");
+        InitializeComponents();
+        SetupInputActions();
     }
 
     void Update()
     {
         HandleInput();
+        UpdateMovementSpeed();
+        ApplyVelocity();
+    }
+
+    private void InitializeComponents()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+    }
+
+    private void SetupInputActions()
+    {
+        _move = InputSystem.actions.FindAction("Move");
+    }
+
+    private void UpdateMovementSpeed()
+    {
         _speed = _setSpeed;
+    }
+
+    private void ApplyVelocity()
+    {
         _rb.linearVelocity = _velocity;
     }
 
     void HandleInput()
     {
-        Vector2 MoveValue = _move.ReadValue<Vector2>();
+        Vector2 moveValue = _move.ReadValue<Vector2>();
 
-        if (MoveValue != Vector2.zero)
+        UpdateAnimationParameters(moveValue);
+        CalculateVelocity(moveValue);
+    }
+
+    private void UpdateAnimationParameters(Vector2 moveValue)
+    {
+        if (moveValue != Vector2.zero)
         {
-            _animator.SetFloat("LastInputX", MoveValue.x);
-            _animator.SetFloat("LastInputY", MoveValue.y);
+            _animator.SetFloat("LastInputX", moveValue.x);
+            _animator.SetFloat("LastInputY", moveValue.y);
         }
+    }
 
-        MoveValue *= _speed;
-        MoveValue = Vector2.ClampMagnitude(MoveValue, _speed);
-        _velocity = MoveValue;
+    private void CalculateVelocity(Vector2 moveValue)
+    {
+        moveValue *= _speed;
+        moveValue = Vector2.ClampMagnitude(moveValue, _speed);
+        _velocity = moveValue;
     }
 }
