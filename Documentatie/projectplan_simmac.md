@@ -130,3 +130,11 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
 
 - ### Flowchart van de gameloop
 ![Flowchart Gameloop](flowchart-simmac-11-03v2.png)
+
+# Links
+
+- ### GitHub repository
+https://github.com/Medikenji/Meesterproef
+
+- ### Planning
+https://docs.google.com/spreadsheets/d/1UAxxr9gHdqxGKr9qrRfpPmZMmMEpT43-x3lhe_vaecc/edit?usp=sharing
