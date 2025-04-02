@@ -98,7 +98,7 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
     - [x] Voorstel
     - [x] GDD
     - [ ] Testplan
-    - [ ] Technisch Ontwerp
+    - [~] Technisch Ontwerp
 
 - ### Features
     - [x] Stations
