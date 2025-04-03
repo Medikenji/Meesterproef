@@ -18,6 +18,7 @@ public class OATManager : MonoBehaviour
         {
             handleOrders();
             _recheck = false;
+            GameUI.RefreshOrderDisplay();
         }
     }
 
@@ -26,7 +27,6 @@ public class OATManager : MonoBehaviour
         OrderableItem item = new OrderableItem(type, modifier, setQuality: quality);
         instance.items.Add(item);
         recheckOrders();
-        GameUI.RefreshOrderDisplay();
     }
     void handleOrders()
     {

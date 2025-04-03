@@ -60,7 +60,7 @@ public class Customer : MonoBehaviour
         float cost = CalculateOrderCost();
         GameManager.instance.current_state.money += cost;
         GameManager.instance.orders.Add(order);
-        GameUI.RefreshOrderDisplay();
+        OATManager.recheckOrders();
     }
 
     private float CalculateOrderCost()

@@ -132,7 +132,6 @@ public class GameUI : MonoBehaviour
         if (item.state == Order.State.Oat)
         {
             image.color = Color.black;
-            print("debug");
         }
 
         PositionOrderItem(itemDisplay, order, itemIndex);
