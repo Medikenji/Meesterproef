@@ -44,7 +44,7 @@ public class Customer : MonoBehaviour
         {
             for (int j = 0; j < Random.Range(1, MaxAverageOrderSize); j++)
             {
-                order.addToOrder(new OrderableItem());
+                order.addToOrder(new OrderableItem(randomiseTypeAndModifier: true));
             }
         }
     }
@@ -56,13 +56,13 @@ public class Customer : MonoBehaviour
         float cost = CalculateOrderCost();
         GameManager.instance.current_state.money += cost;
         GameManager.instance.orders.Add(order);
-        GameUI.UpdateOrderAmount();
+        OATManager.recheckOrders();
     }
 
     private float CalculateOrderCost()
     {
         float cost = 0;
-        foreach (OrderableItem item in order._orderableItems)
+        foreach (OrderableItem item in order.orderableItems)
         {
             cost += item.cost;
         }

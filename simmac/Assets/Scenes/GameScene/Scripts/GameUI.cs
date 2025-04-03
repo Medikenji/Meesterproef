@@ -55,7 +55,7 @@ public class GameUI : MonoBehaviour
     }
 
     #region OrderFunctions
-    public static void UpdateOrderAmount()
+    public static void RefreshOrderDisplay()
     {
         instantiated = false;
     }
@@ -100,7 +100,7 @@ public class GameUI : MonoBehaviour
     private void SetupOrderHeader(GameObject order, int orderIndex)
     {
         TextMeshProUGUI text = order.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = "#Order " + orderIndex;
+        text.text = "#Order " + (orderIndex + 1);
     }
 
     private void PositionOrderDisplay(GameObject order, int orderIndex)
@@ -115,7 +115,7 @@ public class GameUI : MonoBehaviour
     private void CreateOrderItemsDisplay(GameObject order, int orderIndex)
     {
         Order currentOrder = GameManager.instance.orders[orderIndex];
-        for (int j = 0; j < currentOrder._orderableItems.Count; j++)
+        for (int j = 0; j < currentOrder.orderableItems.Count; j++)
         {
             CreateOrderItemDisplay(order, currentOrder, j);
         }
@@ -123,12 +123,15 @@ public class GameUI : MonoBehaviour
 
     private void CreateOrderItemDisplay(GameObject order, Order currentOrder, int itemIndex)
     {
-        OrderableItem item = currentOrder._orderableItems[itemIndex];
+        OrderableItem item = currentOrder.orderableItems[itemIndex];
         GameObject itemDisplay = Instantiate(orderItemPrefab, order.transform);
-
         UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
         image.color = GetColorForModifier(item.modifier);
         image.sprite = GetSpriteForItemType(item.type);
+        if (item.state == Order.State.Oat)
+        {
+            image.color = Color.black;
+        }
 
         PositionOrderItem(itemDisplay, order, itemIndex);
     }
@@ -149,7 +152,7 @@ public class GameUI : MonoBehaviour
             OrderableItem.Modifier.Default => Color.white,
             OrderableItem.Modifier.Red => Color.red,
             OrderableItem.Modifier.Green => Color.green,
-            OrderableItem.Modifier.Blue => Color.cyan,
+            OrderableItem.Modifier.Blue => Color.blue,
             _ => Color.black,
         };
     }

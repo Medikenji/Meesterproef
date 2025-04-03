@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
 {
     // public fields
     public _GameState current_state;
-    [SerializeField]
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
     public EventHandler eventHandler;
@@ -43,6 +42,8 @@ public class GameManager : MonoBehaviour
             {
                 _instance = new GameObject("GameManager").AddComponent<GameManager>();
                 Debug.Log("Created GameManager instance");
+                Debug.Log(OATManager.instance + "Creating OATManager");
+
             }
             return _instance;
         }
