@@ -125,7 +125,7 @@ public class GameUI : MonoBehaviour
     {
         OrderableItem item = currentOrder.orderableItems[itemIndex];
         GameObject itemDisplay = Instantiate(orderItemPrefab, order.transform);
-
+        Debug.Log($"OrderableItem created: Type={item.type}, Modifier={item.modifier}, State={item.state}, Quality={item.quality}, Cost={item.cost}");
         UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
         image.color = GetColorForModifier(item.modifier);
         image.sprite = GetSpriteForItemType(item.type);
@@ -153,7 +153,7 @@ public class GameUI : MonoBehaviour
             OrderableItem.Modifier.Default => Color.white,
             OrderableItem.Modifier.Red => Color.red,
             OrderableItem.Modifier.Green => Color.green,
-            OrderableItem.Modifier.Blue => Color.cyan,
+            OrderableItem.Modifier.Blue => Color.blue,
             _ => Color.black,
         };
     }
