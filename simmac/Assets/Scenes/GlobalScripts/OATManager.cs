@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class OATManager : MonoBehaviour
@@ -22,9 +21,16 @@ public class OATManager : MonoBehaviour
         }
     }
 
+    static public void AddOrderToOat(OrderableItem.Type type, OrderableItem.Modifier modifier, float quality)
+    {
+        OrderableItem item = new OrderableItem(type, modifier, setQuality: quality);
+        instance.items.Add(item);
+        recheckOrders();
+        GameUI.RefreshOrderDisplay();
+    }
     void handleOrders()
     {
-        if (GameManager.instance.orders == null || items == null)
+        if (GameManager.instance.orders == null || instance.items == null)
             return;
         foreach (Order order in GameManager.instance.orders)
         {
@@ -34,18 +40,16 @@ public class OATManager : MonoBehaviour
             for (int i = 0; i < order.orderableItems.Count; i++)
             {
                 OrderableItem orderItem = order.orderableItems[i];
+                Debug.Log($"OrderableItem: Type={orderItem.type}, Modifier={orderItem.modifier}, State={orderItem.state}, Quality={orderItem.quality}");
                 if (orderItem.state != Order.State.Waiting)
                     continue;
 
-                var matchingItem = items.FirstOrDefault(item => item.type == orderItem.type && item.modifier == orderItem.modifier);
+                var matchingItem = instance.items.FirstOrDefault(item => item.type == orderItem.type && item.modifier == orderItem.modifier);
                 if (matchingItem != null)
                 {
-                    Debug.Log($"Matching item found: {matchingItem.type}, {matchingItem.modifier}");
-                    Debug.Log($"Order item before update: {order.orderableItems[i].type}, {order.orderableItems[i].modifier}, State: {order.orderableItems[i].state}");
                     order.orderableItems[i] = matchingItem;
-                    items.Remove(matchingItem);
+                    instance.items.Remove(matchingItem);
                     order.orderableItems[i].state = Order.State.Oat;
-                    Debug.Log($"Order item after update: {order.orderableItems[i].type}, {order.orderableItems[i].modifier}, State: {order.orderableItems[i].state}");
                 }
             }
         }

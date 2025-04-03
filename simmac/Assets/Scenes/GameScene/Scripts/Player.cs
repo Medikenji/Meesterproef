@@ -22,6 +22,22 @@ public class Player : MonoBehaviour
         HandleInput();
         UpdateMovementSpeed();
         ApplyVelocity();
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            OATManager.AddOrderToOat(OrderableItem.Type.Burger, OrderableItem.Modifier.Default, 100);
+        }
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            OATManager.AddOrderToOat(OrderableItem.Type.Fries, OrderableItem.Modifier.Default, 100);
+        }
+        if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            OATManager.AddOrderToOat(OrderableItem.Type.Icecream, OrderableItem.Modifier.Default, 100);
+        }
+        if (Keyboard.current.digit4Key.wasPressedThisFrame)
+        {
+            OATManager.AddOrderToOat(OrderableItem.Type.Milkshake, OrderableItem.Modifier.Default, 100);
+        }
     }
 
     private void InitializeComponents()

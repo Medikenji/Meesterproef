@@ -9,9 +9,16 @@ public class OrderableItem
     public Type type;
     public Modifier modifier;
 
-    public OrderableItem()
+    public OrderableItem(OrderableItem.Type setType = Type.Burger, OrderableItem.Modifier setModifier = Modifier.Default, Order.State setState = Order.State.Imagined, float setQuality = 100, bool randomiseTypeAndModifier = false)
     {
-        InitializeRandomTypeAndModifier();
+        type = setType;
+        modifier = setModifier;
+        state = setState;
+        quality = setQuality;
+        if (randomiseTypeAndModifier)
+        {
+            InitializeRandomTypeAndModifier();
+        }
         CalculateCostBasedOnType();
     }
 

@@ -55,7 +55,7 @@ public class GameUI : MonoBehaviour
     }
 
     #region OrderFunctions
-    public static void UpdateOrderAmount()
+    public static void RefreshOrderDisplay()
     {
         instantiated = false;
     }
@@ -100,7 +100,7 @@ public class GameUI : MonoBehaviour
     private void SetupOrderHeader(GameObject order, int orderIndex)
     {
         TextMeshProUGUI text = order.GetComponentInChildren<TextMeshProUGUI>();
-        text.text = "#Order " + orderIndex;
+        text.text = "#Order " + (orderIndex + 1);
     }
 
     private void PositionOrderDisplay(GameObject order, int orderIndex)
@@ -129,6 +129,11 @@ public class GameUI : MonoBehaviour
         UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
         image.color = GetColorForModifier(item.modifier);
         image.sprite = GetSpriteForItemType(item.type);
+        if (item.state == Order.State.Oat)
+        {
+            image.color = Color.black;
+            print("debug");
+        }
 
         PositionOrderItem(itemDisplay, order, itemIndex);
     }
