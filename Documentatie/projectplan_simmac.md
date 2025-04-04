@@ -8,7 +8,8 @@
 -   Douwe Westerdijk (Ontwikkelaar):
     -   Telefoon: +31622177314
     -   Email: dh.westerdijk@student.alfa-college.nl
--   Rik Teerling (Klant)
+-   Rik Teerling (Klant):
+    -   Email: r.teerling@alfa-college.nl
 
 ## Versiebeheer
 
@@ -94,34 +95,34 @@ Gaan we samen bespreken.
 Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze taken uitgevoerd worden staat in de strokenplanning. Maar hier is een gedetaileerder overzicht.
 
 - ### Documentatie
-    - [x] Projectplan
-    - [x] Voorstel
-    - [x] GDD
-    - [ ] Testplan
-    - [~] Technisch Ontwerp
+    -  Projectplan
+    -  Voorstel
+    -  GDD
+    -  Testplan
+    -  Technisch Ontwerp
 
 - ### Features
-    - [x] Stations
-        - [x] Interactie met speler
-        - [x] Opent scene
-    - [ ] GameManager
-        - [x] Class GameManager
-        - [ ] Verbinden met stationen
-        - [ ] Verbinden met klanten
-        - [ ] Verbinden met UI.
-    - [x] Movement
-        - [x] Kan bewegen
-        - [x] Sprite verandert als je van richting verandert
-    - [x] Camera
-        - [x] Speler volgen
-        - [x] In en uitzoomen
+    - Stations
+        - Interactie met speler
+        - Opent scene
+    - GameManager
+        - Class GameManager
+        - Verbinden met stationen
+        - Verbinden met klanten
+        - Verbinden met UI.
+    - Movement
+        - Kan bewegen
+        - Sprite verandert als je van richting verandert
+    - Camera
+        - Speler volgen
+        - In en uitzoomen
 
 - ### Testen
-    - Baseer dit op het test plan
+    - Nog niet uitgeschreven
 
 - ### Assets
-    - [x] Tilemap
-    - [x] Assets voor minigames
+    - Tilemap
+    - Assets voor minigames
 
 # Technisch ontwerp
 
