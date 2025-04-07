@@ -2,7 +2,7 @@
 
 #### Douwe Westerdijk & Nolan Bijmholt </br> Alfa College - 2024/2025
 
-Versie 1.0.0
+Versie 2.1.6
 
 ### Inhoud
 
