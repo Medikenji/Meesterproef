@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Buffers.Text;
 
 public class SceneStation : Station
 {
     public string nameOfSceneToOpen;
+    public GameObject minigamePopup;
 
     public override void OnClick()
     {
+        minigamePopup.SetActive(true);
         StartCoroutine(LoadScene());
     }
 

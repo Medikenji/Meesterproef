@@ -4,12 +4,14 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour
 {
     private bool _playerInRange = false;
-    void Start()
+
+    protected void Start()
     {
         CheckCollider();
     }
 
     public abstract void OnClick(); // override this class
+
     private void CheckCollider()
     {
         if (GetComponent<Collider2D>() == null)
