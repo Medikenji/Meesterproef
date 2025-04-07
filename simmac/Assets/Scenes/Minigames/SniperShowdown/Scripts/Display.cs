@@ -3,37 +3,54 @@ using UnityEngine;
 
 public class Display : MonoBehaviour
 {
+    [SerializeField] private Sniper _sniper;
+    [SerializeField] private Target _target;
 
-    // serialized private fields
-    [SerializeField]
-    private Sniper _sniper;
-    [SerializeField]
-    private Target _target;
-
-    // private fields
     private TextMeshProUGUI _windStats;
     private TextMeshProUGUI _calStats;
     private TextMeshProUGUI _ammoDisplay;
+
     void Start()
     {
-        GameObject temp;
-        temp = GameObject.Find("Wind Stats");
-        _windStats = temp.GetComponent<TextMeshProUGUI>();
-        temp = GameObject.Find("Calibration Stats");
-        _calStats = temp.GetComponent<TextMeshProUGUI>();
-        temp = GameObject.Find("Ammo Display");
-        _ammoDisplay = temp.GetComponent<TextMeshProUGUI>();
+        InitializeTextComponents();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        _windStats.text = "Target is " + (int)_target.distance + " units away, and there is a wind with a strength of " + (int)_target.windStrength;
-        _calStats.text = "Distance calibration: " + _sniper.distanceCal.ToString("F1") + "\nWind calibration: " + _sniper.windCal.ToString("F1");
-        _ammoDisplay.text = AmmoFormatting(); 
+        UpdateWindStats();
+        UpdateCalibrationStats();
+        UpdateAmmoDisplay();
     }
 
-    string AmmoFormatting()
+    private void InitializeTextComponents()
+    {
+        _windStats = FindTextComponent("Wind Stats");
+        _calStats = FindTextComponent("Calibration Stats");
+        _ammoDisplay = FindTextComponent("Ammo Display");
+    }
+
+    private TextMeshProUGUI FindTextComponent(string objectName)
+    {
+        GameObject temp = GameObject.Find(objectName);
+        return temp.GetComponent<TextMeshProUGUI>();
+    }
+
+    private void UpdateWindStats()
+    {
+        _windStats.text = "Target is " + (int)_target.distance + " units away, and there is a wind with a strength of " + (int)_target.windStrength;
+    }
+
+    private void UpdateCalibrationStats()
+    {
+        _calStats.text = "Distance calibration: " + _sniper.distanceCal.ToString("F1") + "\nWind calibration: " + _sniper.windCal.ToString("F1");
+    }
+
+    private void UpdateAmmoDisplay()
+    {
+        _ammoDisplay.text = FormatAmmoDisplay();
+    }
+
+    private string FormatAmmoDisplay()
     {
         string text = "";
         for (int i = 0; i < _sniper.ammoAmount; i++)

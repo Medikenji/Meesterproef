@@ -2,20 +2,16 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // public fields
     public float distance;
     public float windStrength;
 
-    // serialized private fields
     [SerializeField] private Sniper _sniper;
     [SerializeField] private Collider2D _collider;
 
-    // private fields
     private bool beenHit = false;
     private bool hitstate = false;
     private float _travelTime;
 
-    // const values
     public const float ScaleFactor = -0.15f;
     public const float ScaleOffset = 3.85f;
     private const float MinDistance = 3.0f;
@@ -43,20 +39,45 @@ public class Target : MonoBehaviour
 
     private void InitializeTarget()
     {
+        SetRandomTargetParameters();
+        CalculateTravelTime();
+        CalculateAndApplyScale();
+    }
+
+    private void SetRandomTargetParameters()
+    {
         distance = Random.Range(MinDistance, MaxDistance);
         windStrength = Random.Range(MinWindStrength, MaxWindStrength);
+    }
+
+    private void CalculateTravelTime()
+    {
         _travelTime = distance * TravelTimeFactor;
+    }
+
+    private void CalculateAndApplyScale()
+    {
         float scale = (distance * ScaleFactor) + ScaleOffset;
         transform.localScale = new Vector3(scale, scale, scale);
     }
 
     private void HandleHit()
     {
+        UpdateTravelTime();
+        CheckTravelTimeCompletion();
+    }
+
+    private void UpdateTravelTime()
+    {
         if (_travelTime > 0)
         {
             _travelTime -= Time.deltaTime;
         }
-        else
+    }
+
+    private void CheckTravelTimeCompletion()
+    {
+        if (_travelTime <= 0)
         {
             hitstate = true;
         }
