@@ -1,22 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Station : MonoBehaviour
 {
+    private bool _playerInRange = false;
     void Start()
     {
         CheckCollider();
     }
 
-    void Update()
-    {
-        if (ClickedOnCollider())
-        {
-            OnClick();
-        }
-    }
-
     public abstract void OnClick(); // override this class
-
     private void CheckCollider()
     {
         if (GetComponent<Collider2D>() == null)
@@ -25,18 +18,29 @@ public abstract class Station : MonoBehaviour
         }
     }
 
-    private bool ClickedOnCollider()
+    void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _playerInRange)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D hit = Physics2D.OverlapPoint(mousePosition);
-
-            if (hit != null && hit.gameObject == gameObject)
-            {
-                return true;
-            }
+            OnClick();
         }
-        return false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        print($"Collided with: {collision.gameObject.name}");
+        if (collision.CompareTag("Player"))
+        {
+            _playerInRange = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        print($"Stopped colliding with: {collision.gameObject.name}");
+        if (collision.CompareTag("Player"))
+        {
+            _playerInRange = false;
+        }
     }
 }

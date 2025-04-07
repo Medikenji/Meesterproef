@@ -99,4 +99,12 @@ public class Customer : MonoBehaviour
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
     }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakeOrder();
+        }
+    }
 }
