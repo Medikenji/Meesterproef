@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using MessagePack;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
     public EventHandler eventHandler;
-    public int customerAmount;
+    public int customerAmount = 0;
 
     // private fields
     private static GameManager _instance = null;
@@ -20,13 +21,20 @@ public class GameManager : MonoBehaviour
     // const fields
     public const float dayDurationInSeconds = 300;
 
-    void Start()
+    public void LoadGame()
     {
         _mainSavePath = Path.Combine(Application.persistentDataPath, "savegame.simmac");
-        Debug.Log(loadCurrentGame());
         instance.current_state = loadCurrentGame();
         saveCurrentGame();
-        StartOfDay();
+    }
+
+    void Start()
+    {
+        LoadGame();
+        if (current_state.state == State.InGame || current_state.state == State.NewSave)
+        {
+            StartOfDay();
+        }
     }
 
     void Update()
@@ -62,14 +70,19 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        if (current_state.money < -100)
+            current_state.state = State.GameOver;
+        else
+            current_state.state = State.InMenu;
         saveCurrentGame();
+        SceneManager.LoadScene("MenuScene");
     }
 
     private void HandleDayTime()
     {
         if (_passTime)
         {
-            dayTimeLeft -= Time.deltaTime;
+            dayTimeLeft -= Time.deltaTime * 8;
         }
         if (dayTimeLeft <= 0)
         {
@@ -110,7 +123,7 @@ public class GameManager : MonoBehaviour
         }
         catch
         {
-            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
+            return new _GameState { is_current_game = false, state = State.NewSave, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
         }
     }
 
@@ -133,7 +146,7 @@ public class GameManager : MonoBehaviour
         [Key(1)]
         public bool is_current_game;
         [Key(2)]
-        public bool game_over;
+        public State state;
         [Key(3)]
         public int current_day;
         [Key(4)]
@@ -142,6 +155,14 @@ public class GameManager : MonoBehaviour
         public int customers_served;
         [Key(6)]
         public float stars;
+    }
+
+    public enum State
+    {
+        NewSave,
+        InGame,
+        InMenu,
+        GameOver
     }
 
     #endregion

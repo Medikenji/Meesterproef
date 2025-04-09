@@ -1,5 +1,3 @@
-using System.IO.Compression;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
@@ -14,6 +12,7 @@ public class Customer : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.customerAmount++;
         InitializeSatisfaction();
         CalculateOrderSize();
         CreateOrder();
