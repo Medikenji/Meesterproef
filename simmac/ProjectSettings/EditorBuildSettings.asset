@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/SniperShowdown.unity
     guid: 202754be537ef7b4a818d0e489f09dde
+  - enabled: 1
+    path: Assets/Scenes/UiScenes/ChooseMinigameScene.unity
+    guid: 0806228c2fe9b47cdbab7111b2c0dfee
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f765ae2141a14ae459b7f8d535cf1470, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

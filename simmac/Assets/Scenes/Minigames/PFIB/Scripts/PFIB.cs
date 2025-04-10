@@ -25,9 +25,9 @@ public class PFIB : MonoBehaviour
     {
         DeleteFryFromListIfBelowTheScreen();
 
-        if (GameFinished())
+        if (EndGame())
         {
-            EndGame();
+            ReturnToGameIfEscPressed();
         }
     }
 
@@ -46,10 +46,14 @@ public class PFIB : MonoBehaviour
         return _fryCount == friesToCreate && !_gameEnded;
     }
 
-    private void EndGame()
+    private bool EndGame()
     {
-        _gameEnded = true;
+        if (_gameEnded) { return true;}
+
+        _gameEnded = GameFinished();
         StartCoroutine(GameEnd(friesToCreate / 4));
+
+        return _gameEnded;
     }
 
     private void DeleteFryFromListIfBelowTheScreen()
@@ -102,5 +106,14 @@ public class PFIB : MonoBehaviour
         scoreText.text = $"You get a score of {(float)friesCaught / friesToCreate * 100:F0}%!";
 
         scoreText.gameObject.SetActive(true);
+    }
+
+    private void ReturnToGameIfEscPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            print("Exiting minigame...");
+            StartCoroutine(SceneStation.ReturnToMainScene());
+        }
     }
 }

@@ -5,19 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // public fields
-    public _GameState current_state;
+    public SaveState current_state;
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
     public EventHandler eventHandler;
     public int customerAmount;
-
-    // private fields
+    public MinigameAttributes minigameAttributes = new MinigameAttributes();
     private static GameManager _instance = null;
     private static string _mainSavePath;
     private bool _passTime;
 
-    // const fields
     public const float dayDurationInSeconds = 300;
 
     void Start()
@@ -26,6 +23,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(loadCurrentGame());
         instance.current_state = loadCurrentGame();
         saveCurrentGame();
+
         StartOfDay();
     }
 
@@ -48,7 +46,6 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
     public void StartOfDay()
     {
         customerAmount = 0;
@@ -102,15 +99,15 @@ public class GameManager : MonoBehaviour
 
     #region  SaveGame functions
 
-    private _GameState loadCurrentGame()
+    private SaveState loadCurrentGame()
     {
         try
         {
-            return MessagePackSerializer.Deserialize<_GameState>(File.ReadAllBytes(_mainSavePath));
+            return MessagePackSerializer.Deserialize<SaveState>(File.ReadAllBytes(_mainSavePath));
         }
         catch
         {
-            return new _GameState { is_current_game = false, game_over = false, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
+            return new SaveState { is_current_game = false, game_over = false, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
         }
     }
 
@@ -124,11 +121,17 @@ public class GameManager : MonoBehaviour
 
     #region  Structs
 
+    public struct MinigameAttributes
+    {
+        public OrderableItem.Type type;
+        public OrderableItem.Modifier modifier;
+    }
+
     /// <summary>
     /// A struct that stores everything needed for saving and loading a game
     /// </summary>
     [MessagePackObject]
-    public struct _GameState
+    public struct SaveState
     {
         [Key(1)]
         public bool is_current_game;
