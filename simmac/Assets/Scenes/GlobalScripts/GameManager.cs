@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     {
         if (_passTime)
         {
-            dayTimeLeft -= Time.deltaTime * 8;
+            dayTimeLeft -= Time.deltaTime;
         }
         if (dayTimeLeft <= 0)
         {
