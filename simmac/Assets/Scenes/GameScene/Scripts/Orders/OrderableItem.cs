@@ -8,11 +8,13 @@ public class OrderableItem
     public Order.State state = Order.State.Imagined;
     public Type type;
     public Modifier modifier;
+    public float StartTime;
 
     public OrderableItem(OrderableItem.Type setType = Type.Burger, OrderableItem.Modifier setModifier = Modifier.Default, Order.State setState = Order.State.Imagined, float setQuality = 100, bool randomiseTypeAndModifier = false)
     {
         type = setType;
         modifier = setModifier;
+        StartTime = GameManager.instance.dayTimeLeft;
         state = setState;
         quality = setQuality;
         if (randomiseTypeAndModifier)
@@ -29,7 +31,6 @@ public class OrderableItem
         type = (Type)values.GetValue(random.Next(values.Length));
         modifier = (Modifier)values.GetValue(random.Next(values.Length));
     }
-
     private void CalculateCostBasedOnType()
     {
         switch (type)

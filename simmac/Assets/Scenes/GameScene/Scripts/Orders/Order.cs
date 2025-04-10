@@ -17,6 +17,7 @@ public class Order
                 foreach (OrderableItem item in _orderableItems)
                 {
                     item.state = State.Finished;
+                    item.quality = 100 - (item.StartTime - GameManager.instance.dayTimeLeft);
                 }
                 state = State.Finished;
             }
