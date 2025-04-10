@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private bool _passTime;
 
     // const fields
-    public const float dayDurationInSeconds = 5;
+    public const float dayDurationInSeconds = 300;
 
     public void LoadGame()
     {
