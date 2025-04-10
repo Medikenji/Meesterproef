@@ -30,7 +30,7 @@ public class Customer : MonoBehaviour
 
     private void InitializeSatisfaction()
     {
-        satisfaction = Random.Range(90, 100);
+        satisfaction = UnityEngine.Random.Range(90, 100);
     }
 
     private void CalculateOrderSize()
@@ -108,6 +108,14 @@ public class Customer : MonoBehaviour
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
+        leaveReview = Random.Range(0f, 100f) < reviewChance;
+        if (leaveReview)
+        {
+            int review = Mathf.CeilToInt(satisfaction * 0.05f);
+            GameManager.instance.current_state.reviewAmount++;
+            GameManager.instance.current_state.stars = (GameManager.instance.current_state.stars + review) / GameManager.instance.current_state.reviewAmount;
+        }
+        Destroy(this);
     }
 
     void OnMouseOver()

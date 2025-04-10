@@ -2,7 +2,7 @@
 
 #### Douwe Westerdijk & Nolan Bijmholt </br> Alfa College - 2024/2025
 
-Versie 2.1.6
+Versie 2.1.7
 
 ### Inhoud
 
@@ -16,7 +16,6 @@ Versie 2.1.6
     - [Bestellingen](#bestellingen)
     - [Order Assembly Table](#order-assembly-table)
     - [Klanten](#klanten)
-    - [Medewerkers](#medewerkers)
     - [Tussendaagse menu](#tussendaagse-menu)
   - [Minigames](#minigames)
     - [Burger Minigame - Burger Stack](#burger-minigame---burger-stack)
@@ -118,19 +117,11 @@ kwaliteit. Hoe langer eten in de OAT ligt, hoe lager de kwaliteit zal worden. De
 Nadat ze hun bestelling krijgen, stijgt of daalt hun tevredenheid afhankelijk van
 de kwaliteit van het eten. Daarna verlaten ze het restaurant.
 
-#### **Medewerkers**
-
-Medewerkers kunnen worden aangenomen in het tussendaagse menu. Om dit te doen moet je een startbonus betalen en daarna hebben ze een vast dag salaris dat elke dag wordt uitbetaald.
-
-Medewerkers worden aan het begin van de dag op een willekeurig station gezet. Hier blijven ze de hele dag en regelen ze het bereiden van de producten. Stations die door medewerkers gebruikt worden kunnen nog wel door de speler gebruikt worden.
-
-De kwaliteit van het eten gemaakt door een medewerker heeft een willekeurige waarde.
-
 #### **Tussendaagse menu**
 
 Aan het einde van de dag krijgt de speler het tussendaagse menu. Hier wordt eerst een overzicht gepresenteerd voor alle inkomsten en uitgaves.
 
-En daarna een menu gepresenteerd waar wat algemene statistieken staan (de huidige dag, hoeveel medewerkers, etc.). Ook kan de speler hier medewerkers aannemen en verder naar de volgende dag gaan.
+En daarna een menu gepresenteerd waar wat algemene statistieken staan (de huidige dag, hoeveel geld, etc.). De speler kan hier naar de volgende dag gaan.
 
 ---
 
