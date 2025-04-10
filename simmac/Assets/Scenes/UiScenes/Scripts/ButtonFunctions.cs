@@ -1,18 +1,33 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    public void SwitchScene(string SceneName)
+    public void StartScene()
     {
-        Debug.Log("Switching Scene to " + SceneName);
-        SceneManager.LoadScene(SceneName);
+        GameManager.instance.LoadGame();
+        if (GameManager.instance.current_state.state == GameManager.State.NewSave || GameManager.instance.current_state.state == GameManager.State.InGame)
+        {
+            SceneManager.LoadScene("GameScene");
+        }
+        if (GameManager.instance.current_state.state == GameManager.State.InMenu || GameManager.instance.current_state.state == GameManager.State.GameOver)
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 
     public void QuitGame()
     {
         Debug.Log("Program closed by user");
         Application.Quit();
+    }
+
+    public void NextDay()
+    {
+        GameManager.instance.LoadGame();
+        GameManager.instance.current_state.state = GameManager.State.InGame;
+        GameManager.instance.current_state.current_day++;
+        GameManager.saveCurrentGame();
+        SceneManager.LoadScene("GameScene");
     }
 }

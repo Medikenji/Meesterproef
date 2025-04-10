@@ -1,29 +1,41 @@
-using System.IO.Compression;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
     public Order order;
+    private float satisfaction;
     private int orderSize;
     private float reviewChance = 10;
     private bool leaveReview = false;
     private bool isWaiting = false;
     private const int MaxAverageOrderSize = 4;
-    public float satisfaction;
+
+    private bool orderTaken = false;
+
     void Start()
     {
-        // Clusterfuck of a number that changes the orderSize in a smooth way, put the formula (1+0.2x^0.7) in a graph to see a visual representation
-        satisfaction = Random.Range(90, 100);
-        orderSize = Mathf.FloorToInt(Random.Range(1f, 1f + 0.2f * Mathf.Pow(GameManager.instance.current_state.current_day, 0.7f)));
+        GameManager.instance.customerAmount++;
+        InitializeSatisfaction();
+        CalculateOrderSize();
         CreateOrder();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        handleSatisfaction();
+        HandleSatisfaction();
+    }
+
+    private void InitializeSatisfaction()
+    {
+        satisfaction = Random.Range(90, 100);
+    }
+
+    private void CalculateOrderSize()
+    {
+        // Formula (1+0.2x^0.7) creates a smooth progression as days increase
+        float dayFactor = GameManager.instance.current_state.current_day;
+        float orderSizeMultiplier = 1f + 0.2f * Mathf.Pow(dayFactor, 0.7f);
+        orderSize = Mathf.FloorToInt(Random.Range(1f, orderSizeMultiplier));
     }
 
     void CreateOrder()
@@ -33,42 +45,70 @@ public class Customer : MonoBehaviour
         {
             for (int j = 0; j < Random.Range(1, MaxAverageOrderSize); j++)
             {
-                OrderableItem item = new OrderableItem();
-                order.addToOrder(new OrderableItem());
+                order.addToOrder(new OrderableItem(randomiseTypeAndModifier: true));
             }
         }
     }
 
     public void TakeOrder()
     {
+        if (orderTaken)
+            return;
+        orderTaken = true;
         isWaiting = true;
         order.setActive();
+        float cost = CalculateOrderCost();
+        GameManager.instance.current_state.money += cost;
+        GameManager.instance.orders.Add(order);
+        OATManager.recheckOrders();
+    }
+
+    private float CalculateOrderCost()
+    {
         float cost = 0;
-        foreach (OrderableItem item in order._orderableItems)
+        foreach (OrderableItem item in order.orderableItems)
         {
             cost += item.cost;
         }
-        GameManager.instance.current_state.money += cost;
-        GameManager.instance.orders.Add(order);
+        return cost;
     }
 
-    void handleSatisfaction()
+    void HandleSatisfaction()
     {
         if (isWaiting)
         {
-            satisfaction -= 0.5f * Time.deltaTime;
+            DecreaseSatisfactionWhileWaiting();
             return;
         }
+
         if (order.state == Order.State.Finished)
         {
-            satisfaction += order.getQuality() * 0.2f;
-            leave();
+            IncreaseSatisfactionForCompletedOrder();
+            Leave();
         }
     }
 
-    void leave()
+    private void DecreaseSatisfactionWhileWaiting()
+    {
+        satisfaction -= 0.5f * Time.deltaTime;
+    }
+
+    private void IncreaseSatisfactionForCompletedOrder()
+    {
+        satisfaction += order.getQuality() * 0.2f;
+    }
+
+    void Leave()
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakeOrder();
+        }
     }
 }
