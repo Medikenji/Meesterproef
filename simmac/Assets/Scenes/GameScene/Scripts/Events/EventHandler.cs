@@ -97,6 +97,6 @@ public class EventHandler : MonoBehaviour
 
     void LoadEvents()
     {
-        TestEvent.LoadEvent();
+        Robbery.LoadEvent();
     }
 }
