@@ -3,12 +3,14 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     public Order order;
+    private float satisfaction;
     private int orderSize;
     private float reviewChance = 10;
     private bool leaveReview = false;
     private bool isWaiting = false;
     private const int MaxAverageOrderSize = 4;
-    public float satisfaction;
+
+    private bool orderTaken = false;
 
     void Start()
     {
@@ -50,6 +52,9 @@ public class Customer : MonoBehaviour
 
     public void TakeOrder()
     {
+        if (orderTaken)
+            return;
+        orderTaken = true;
         isWaiting = true;
         order.setActive();
         float cost = CalculateOrderCost();
