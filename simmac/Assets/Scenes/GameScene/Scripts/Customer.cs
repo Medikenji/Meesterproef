@@ -14,6 +14,9 @@ public class Customer : MonoBehaviour
 
     void Start()
     {
+        float randomX = Random.Range(0.5f, 12.5f);
+        float randomY = Random.Range(-5.5f, -6.5f);
+        transform.position = new Vector3(randomX, randomY, transform.position.z);
         GameManager.instance.customerAmount++;
         InitializeSatisfaction();
         CalculateOrderSize();
@@ -56,6 +59,9 @@ public class Customer : MonoBehaviour
             return;
         orderTaken = true;
         isWaiting = true;
+        float randomX = Random.Range(-12.5f, -2.5f);
+        float randomY = Random.Range(-2.5f, -6.5f);
+        transform.position = new Vector3(randomX, randomY, transform.position.z);
         order.setActive();
         float cost = CalculateOrderCost();
         GameManager.instance.current_state.money += cost;

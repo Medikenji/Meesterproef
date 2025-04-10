@@ -40,7 +40,6 @@ public class OATManager : MonoBehaviour
             for (int i = 0; i < order.orderableItems.Count; i++)
             {
                 OrderableItem orderItem = order.orderableItems[i];
-                Debug.Log($"OrderableItem: Type={orderItem.type}, Modifier={orderItem.modifier}, State={orderItem.state}, Quality={orderItem.quality}");
                 if (orderItem.state != Order.State.Waiting)
                     continue;
 
