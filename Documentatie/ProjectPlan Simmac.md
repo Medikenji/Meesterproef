@@ -1,5 +1,7 @@
 # Projectplan Prototype Simmac
 
+Versie 1.2.5
+
 ## Contact gegevens van betrokken mensen
 
 -   Nolan Bijmholt (Ontwikkelaar):
@@ -155,10 +157,6 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
     - Verschillende producttypes
     - Kwaliteitscontrole voor bestellingen
     - Effecten van productkwaliteit op klanttevredenheid
-
-- #### Medewerkers
-    - Medewerkers aannemen
-    - Medewerkers hebben een vaardigheids niveau
 
 - #### UI
     - Dynamische UI-elementen afhankelijk van de situatie

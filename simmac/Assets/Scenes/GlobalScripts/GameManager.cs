@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
         }
         catch
         {
-            return new _GameState { is_current_game = false, state = State.NewSave, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1 };
+            return new _GameState { is_current_game = false, state = State.NewSave, current_day = 0, money = 1000.0f, customers_served = 0, stars = 1, reviewAmount = 1 };
         }
     }
 
@@ -182,6 +182,8 @@ public class GameManager : MonoBehaviour
         public int customers_served;
         [Key(6)]
         public float stars;
+        [Key(6)]
+        public int reviewAmount;
     }
 
     public enum State
