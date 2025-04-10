@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private bool _passTime;
 
     // const fields
-    public const float dayDurationInSeconds = 300;
+    public const float dayDurationInSeconds = 5;
 
     public void LoadGame()
     {
@@ -50,8 +50,6 @@ public class GameManager : MonoBehaviour
             {
                 _instance = new GameObject("GameManager").AddComponent<GameManager>();
                 Debug.Log("Created GameManager instance");
-                Debug.Log(OATManager.instance + "Creating OATManager");
-
             }
             return _instance;
         }
@@ -74,6 +72,7 @@ public class GameManager : MonoBehaviour
             current_state.state = State.GameOver;
         else
             current_state.state = State.InMenu;
+
         saveCurrentGame();
         SceneManager.LoadScene("MenuScene");
     }

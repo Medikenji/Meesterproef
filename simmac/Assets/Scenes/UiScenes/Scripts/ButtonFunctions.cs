@@ -21,4 +21,13 @@ public class ButtonFunctions : MonoBehaviour
         Debug.Log("Program closed by user");
         Application.Quit();
     }
+
+    public void NextDay()
+    {
+        GameManager.instance.LoadGame();
+        GameManager.instance.current_state.state = GameManager.State.InGame;
+        GameManager.instance.current_state.current_day++;
+        GameManager.saveCurrentGame();
+        SceneManager.LoadScene("GameScene");
+    }
 }
