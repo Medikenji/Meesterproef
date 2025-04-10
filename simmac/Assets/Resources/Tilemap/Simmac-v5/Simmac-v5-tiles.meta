@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:simmac/Assets/Resources/Tilemap/Simmac-v5/Simmac-v5-tiles.meta
 guid: 31d5e41624a7a56e3ad344a875ada5bd
+========
+guid: b6f1f5f5d18213c0bbf3401e0f6c2e69
+>>>>>>>> Gamemanager:simmac/Assets/Resources/Tilemap/Simmac-v5.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

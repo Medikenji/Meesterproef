@@ -13,17 +13,18 @@ public abstract class Event : ScriptableObject
     public abstract void CurrentEvent();
 }
 
-public class TestEvent : Event
+public class Robbery : Event
 {
-    public override int rarity { get { return 1; } }
+    public override int rarity { get { return 14; } }
 
     public override void CurrentEvent()
     {
-        Debug.Log("Event0 happend");
+        Debug.Log("Someone stole from the register");
+        GameManager.instance.current_state.money *= 0.9f;
     }
 
     public static void LoadEvent()
     {
-        EventHandler.allEvents.Add(new TestEvent());
+        EventHandler.allEvents.Add(new Robbery());
     }
 }

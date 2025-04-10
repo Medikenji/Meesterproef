@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:simmac/Assets/Scenes/GameScene/Prefabs/Order Item.prefab.meta
 guid: ec8cbb72c064afcc69746cedf5b16880
+========
+guid: 90074869fed933ebbace9213a379df44
+>>>>>>>> Gamemanager:simmac/Assets/Resources/Tilemap/Simmac-v5/Simmac-v5.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

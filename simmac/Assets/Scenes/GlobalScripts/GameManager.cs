@@ -15,8 +15,20 @@ public class GameManager : MonoBehaviour
 
     // private fields
     private static GameManager _instance = null;
+
+    private GameObject customerPrefab;
     private static string _mainSavePath;
     private bool _passTime;
+    private float customerCountdown = 5;
+
+    private void Awake()
+    {
+        customerPrefab = Resources.Load<GameObject>("Customer");
+        if (customerPrefab == null)
+        {
+            Debug.LogError("Customer could not be found in Resources folder.");
+        }
+    }
 
     // const fields
     public const float dayDurationInSeconds = 300;
@@ -84,6 +96,12 @@ public class GameManager : MonoBehaviour
         if (_passTime)
         {
             dayTimeLeft -= Time.deltaTime;
+            customerCountdown -= Time.deltaTime;
+            if (customerCountdown <= 0)
+            {
+                SummonCustomers();
+                customerCountdown = Random.Range(5, 25);
+            }
         }
         if (dayTimeLeft <= 0)
         {
@@ -92,6 +110,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void SummonCustomers()
+    {
+        int randomAmount = Random.Range(1, 4);
+        for (int i = 0; i < randomAmount; i++)
+        {
+            Instantiate(customerPrefab);
+        }
+    }
     #region  DayTime functions
     public void StartDayTime()
     {
