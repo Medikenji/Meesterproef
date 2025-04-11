@@ -24,10 +24,20 @@ public class PFIB : MonoBehaviour
     void Update()
     {
         DeleteFryFromListIfBelowTheScreen();
-
         if (GameFinished())
         {
             EndGame();
+        }
+
+        if (_gameEnded)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OATManager.AddOrderToOat(OrderableItem.Type.Fries, GameManager.instance.minigameModifier.modifier, _fries.Count / friesToCreate * 100);
+                Destroy(transform.parent.gameObject);
+                GameManager.instance.ToggleCameraAndCanvas();
+                GameManager.instance.StartDayTime();
+            }
         }
     }
 

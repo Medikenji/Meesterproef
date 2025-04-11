@@ -10,6 +10,7 @@ public class ShakeShifter : MonoBehaviour
     private float _percentageMultiplier;
     private float _maxScale = 7f;
     private bool _freeze;
+    private int _difference;
 
     void Start()
     {
@@ -21,6 +22,13 @@ public class ShakeShifter : MonoBehaviour
     {
         if (_freeze)
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OATManager.AddOrderToOat(OrderableItem.Type.Milkshake, GameManager.instance.minigameModifier.modifier, GetScore(_difference));
+                Destroy(transform.parent.gameObject);
+                GameManager.instance.ToggleCameraAndCanvas();
+                GameManager.instance.StartDayTime();
+            }
             return;
         }
 
@@ -71,10 +79,10 @@ public class ShakeShifter : MonoBehaviour
     {
         int currentPercentage = Mathf.RoundToInt(CalculateCurrentPercentage());
         int goalPercentage = Mathf.RoundToInt(_percentageMultiplier * 100f);
-        int difference = Mathf.Abs(goalPercentage - currentPercentage);
+        _difference = Mathf.Abs(goalPercentage - currentPercentage);
 
-        Debug.Log($"Goal: {goalPercentage}%, Current: {currentPercentage}%, Difference: {difference}");
-        percentageGoal.text = $"The goal was to get {goalPercentage}%, you clicked on {currentPercentage} which means you have a {difference}% difference! This gives you a score of {GetScore(difference)}%!";
+        Debug.Log($"Goal: {goalPercentage}%, Current: {currentPercentage}%, Difference: {_difference}");
+        percentageGoal.text = $"The goal was to get {goalPercentage}%, you clicked on {currentPercentage} which means you have a {_difference}% difference! This gives you a score of {GetScore(_difference)}%!";
     }
 
     int GetScore(int diff)

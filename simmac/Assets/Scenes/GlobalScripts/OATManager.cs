@@ -28,6 +28,7 @@ public class OATManager : MonoBehaviour
         instance.items.Add(item);
         recheckOrders();
     }
+
     void handleOrders()
     {
         if (GameManager.instance.orders == null || instance.items == null)

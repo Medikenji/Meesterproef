@@ -50,6 +50,14 @@ public class SniperShowdown : MonoBehaviour
         HandleHitpoint();
         HandleShooting();
         ApplySway();
+
+        if (GameEnded())
+        {
+            OATManager.AddOrderToOat(OrderableItem.Type.Icecream, GameManager.instance.minigameModifier.modifier, _score);
+            Destroy(transform.parent.gameObject);
+            GameManager.instance.ToggleCameraAndCanvas();
+            GameManager.instance.StartDayTime();
+        }
     }
 
     private void InitializeSniper()
