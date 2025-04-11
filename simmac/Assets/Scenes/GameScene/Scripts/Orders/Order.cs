@@ -1,23 +1,20 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 public class Order
 {
     private List<OrderableItem> _orderableItems;
-
+    public State state;
     public List<OrderableItem> orderableItems
     {
         get
         {
-            bool allItemsAreOat = _orderableItems.All(item => item.state == State.Oat);
-
-            if (allItemsAreOat)
+            if (_orderableItems != null && _orderableItems.Count > 0 && _orderableItems.All(item => item.state == State.Oat))
             {
                 foreach (OrderableItem item in _orderableItems)
                 {
                     item.state = State.Finished;
-                    item.quality = 100 - (item.StartTime - GameManager.instance.dayTimeLeft);
+                    item.quality -= (item.StartTime - GameManager.instance.dayTimeLeft) * 0.5f;
                 }
                 state = State.Finished;
             }
@@ -28,9 +25,10 @@ public class Order
             _orderableItems = value;
         }
     }
-    public State state = State.Imagined;
+
     public Order()
     {
+        state = State.Imagined;
         orderableItems = new List<OrderableItem>();
     }
 

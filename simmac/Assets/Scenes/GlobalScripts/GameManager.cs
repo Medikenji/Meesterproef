@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         public int customers_served;
         [Key(6)]
         public float stars;
-        [Key(6)]
+        [Key(7)]
         public int reviewAmount;
     }
 

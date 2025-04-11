@@ -9,7 +9,6 @@ public class Customer : MonoBehaviour
     private bool leaveReview = false;
     private bool isWaiting = false;
     private const int MaxAverageOrderSize = 4;
-
     private bool orderTaken = false;
 
     void Start()
@@ -30,7 +29,7 @@ public class Customer : MonoBehaviour
 
     private void InitializeSatisfaction()
     {
-        satisfaction = UnityEngine.Random.Range(90, 100);
+        satisfaction = Random.Range(90, 100);
     }
 
     private void CalculateOrderSize()
@@ -115,7 +114,7 @@ public class Customer : MonoBehaviour
             GameManager.instance.current_state.reviewAmount++;
             GameManager.instance.current_state.stars = (GameManager.instance.current_state.stars + review) / GameManager.instance.current_state.reviewAmount;
         }
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     void OnMouseOver()
