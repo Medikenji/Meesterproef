@@ -1,6 +1,6 @@
 # Projectplan Prototype Simmac
 
-Versie 1.2.5
+Versie 1.3.5
 
 ## Contact gegevens van betrokken mensen
 
@@ -29,6 +29,12 @@ Daarnaast gebruiken we VSCode om onze documentatie in Markdown te maken, omdat h
 Voor versiebeheer hebben we gekozen voor GitHub, vanwege de gebruiksvriendelijke interface en de uitgebreide versiebeheerfuncties. Bovendien draagt het bij aan het GitHub-portfolio van de ontwikkelaars.
 
 Voor het maken van klassendiagrammen en flowcharts gebruiken wij yEd. Dit programma is gratis en biedt alle functionaliteit die wij nodig hebben voor het creëren van klassendiagrammen.
+
+## Eisen en wensen
+
+Omdat het doel van dit project het testen van het minigame-gedeelte van Simmac is, is het de bedoeling dat wij de gameloop van klanten die een bestelling plaatsen en de speler die de bestellingen maakt, af hebben.
+
+Het is dus de bedoeling dat wij goed werkende demo's hebben van de vier spellen en ook hun functionaliteit implementeren, zodat deze tijdens het testen beoordeeld kunnen worden.
 
 ## Planning
 
