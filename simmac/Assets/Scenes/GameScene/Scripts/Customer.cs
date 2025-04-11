@@ -3,11 +3,11 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     public Order order;
-    private float satisfaction;
+    [SerializeField] private float satisfaction;
     private int orderSize;
     private float reviewChance = 10;
     private bool leaveReview = false;
-    private bool isWaiting = false;
+    private bool isWaitingOnOrder = false;
     private const int MaxAverageOrderSize = 4;
     private bool orderTaken = false;
 
@@ -57,7 +57,7 @@ public class Customer : MonoBehaviour
         if (orderTaken)
             return;
         orderTaken = true;
-        isWaiting = true;
+        isWaitingOnOrder = true;
         float randomX = Random.Range(-12.5f, -2.5f);
         float randomY = Random.Range(-2.5f, -6.5f);
         transform.position = new Vector3(randomX, randomY, transform.position.z);
@@ -77,15 +77,14 @@ public class Customer : MonoBehaviour
         }
         return cost;
     }
-
     void HandleSatisfaction()
     {
-        if (isWaiting)
+        DecreaseSatisfaction();
+        if (isWaitingOnOrder)
         {
-            DecreaseSatisfactionWhileWaiting();
+            DecreaseSatisfaction();
             return;
         }
-
         if (order.state == Order.State.Finished)
         {
             IncreaseSatisfactionForCompletedOrder();
@@ -93,9 +92,9 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void DecreaseSatisfactionWhileWaiting()
+    private void DecreaseSatisfaction()
     {
-        satisfaction -= 0.5f * Time.deltaTime;
+        satisfaction -= 0.25f * Time.deltaTime;
     }
 
     private void IncreaseSatisfactionForCompletedOrder()
