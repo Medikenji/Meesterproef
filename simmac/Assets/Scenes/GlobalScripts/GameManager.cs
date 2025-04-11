@@ -23,9 +23,14 @@ public class GameManager : MonoBehaviour
     private static string _mainSavePath;
     private bool _passTime;
     private float customerCountdown = 5;
+    private GameObject _mainCamera;
+    private GameObject _mainCanvas;
 
     private void Awake()
     {
+        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        _mainCanvas = GameObject.FindGameObjectWithTag("Main UI");
+
         customerPrefab = Resources.Load<GameObject>("Customer");
         if (customerPrefab == null)
         {
@@ -70,6 +75,12 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    public void ToggleCameraAndCanvas()
+    {
+        _mainCamera.SetActive(!_mainCamera.activeSelf);
+        _mainCanvas.SetActive(!_mainCanvas.activeSelf);
     }
 
     public void StartOfDay()

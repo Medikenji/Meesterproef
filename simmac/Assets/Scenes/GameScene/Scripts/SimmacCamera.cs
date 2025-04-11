@@ -3,19 +3,14 @@ using UnityEngine.InputSystem;
 
 public class SimmacCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Camera _camera;
-    [SerializeField]
-    private GameObject _followTarget;
-    [SerializeField]
-    private Vector2 snapPosition;
-    [SerializeField]
-    private int stoicSize = 20;
-    [SerializeField]
-    private int minSize = 3;
-    [SerializeField]
-    private int scrollSpeed = 1;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject _followTarget;
+    [SerializeField] private Vector2 snapPosition;
+    [SerializeField] private int stoicSize = 20;
+    [SerializeField] private int minSize = 3;
+    [SerializeField] private int scrollSpeed = 1;
     private InputAction _scroll;
+    public bool _isInMinigame = false;
 
     void Start()
     {

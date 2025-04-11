@@ -5,7 +5,7 @@ using UnityEngine;
 public class OATManager : MonoBehaviour
 {
     private static OATManager _instance = null;
-    public List<OrderableItem> items { get; private set; } = new List<OrderableItem>();
+    [SerializeField] public List<OrderableItem> items { get; private set; } = new List<OrderableItem>();
     private static bool _recheck = true;
     void Start()
     {

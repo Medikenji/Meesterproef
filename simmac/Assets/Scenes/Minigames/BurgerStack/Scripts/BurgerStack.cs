@@ -23,6 +23,17 @@ public class BurgerStack : MonoBehaviour
         CalculateStackScore();
         RenderText();
         DisplayText();
+
+        if (GameFinished())
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OATManager.AddOrderToOat(OrderableItem.Type.Burger, GameManager.instance.minigameModifier.modifier, _scoredPercentage);
+                Destroy(transform.parent.gameObject);
+                GameManager.instance.ToggleCameraAndCanvas();
+                GameManager.instance.StartDayTime();
+            }
+        }
     }
 
     private void CalculateStackScore()
@@ -94,5 +105,10 @@ public class BurgerStack : MonoBehaviour
     {
         yield return new WaitForSeconds(s);
         textField.enabled = true;
+    }
+
+    private bool GameFinished()
+    {
+        return _textTriggered;
     }
 }

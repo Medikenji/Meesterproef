@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: 835c300a36c923e75839d0801127d98e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - regularBtn: {instanceID: 0}
+  - redBtn: {instanceID: 0}
+  - greenBtn: {instanceID: 0}
+  - blueBtn: {instanceID: 0}
+  - exitBtn: {instanceID: 0}
+  - _burgerStack: {fileID: 4704535097683009348, guid: 26289863f0f29d102856ea02e767bb9e, type: 3}
+  - _PFIB: {fileID: 6005016459548614993, guid: b4d9d4f50e55f2657965aaf85d83fe0a, type: 3}
+  - _shakeShifter: {fileID: 712811066699268731, guid: de2bb6c9f37cb3d2cb85123084ca479c, type: 3}
+  - _sniperShowdown: {fileID: 4577171412066171670, guid: b96618d1e23a2ba50b9a47f4b3410ace, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

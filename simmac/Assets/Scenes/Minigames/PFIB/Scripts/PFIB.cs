@@ -18,12 +18,17 @@ public class PFIB : MonoBehaviour
 
     void Start()
     {
-        GenerateBagSize();
+        GenerateFriesAmount();
     }
 
     void Update()
     {
         DeleteFryFromListIfBelowTheScreen();
+
+        if (GameFinished())
+        {
+            EndGame();
+        }
     }
 
     void FixedUpdate()
@@ -43,7 +48,7 @@ public class PFIB : MonoBehaviour
 
     private bool EndGame()
     {
-        if (_gameEnded) { return true;}
+        if (_gameEnded) { return true; }
 
         _gameEnded = GameFinished();
         StartCoroutine(GameEnd(friesToCreate / 4));
@@ -55,7 +60,7 @@ public class PFIB : MonoBehaviour
     {
         for (int i = _fries.Count - 1; i >= 0; i--)
         {
-            if (_fries[i].transform.position.y <= -10)
+            if (_fries[i].transform.position.y <= 1100)
             {
                 GameObject fryToRemove = _fries[i];
                 _fries.RemoveAt(i);
@@ -64,7 +69,7 @@ public class PFIB : MonoBehaviour
         }
     }
 
-    private void GenerateBagSize()
+    private void GenerateFriesAmount()
     {
         friesToCreate = Random.Range(friesToCreate - 10, friesToCreate + 10);
     }
@@ -75,7 +80,7 @@ public class PFIB : MonoBehaviour
         {
             int randX = Random.Range(-8, 8);
 
-            GameObject tempFry = Instantiate(fry, new Vector3(randX, 10, 0), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(1133, 1143, 3), Quaternion.identity);
             _fries.Add(tempFry);
         }
         else
@@ -85,7 +90,7 @@ public class PFIB : MonoBehaviour
             float offset = Random.Range(-2f, 2f);
             float newX = Mathf.Clamp(prevPosition.x + offset, -8f, 8f);
 
-            GameObject tempFry = Instantiate(fry, new Vector3(newX, 10, 0), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(1133, 1143, 3), Quaternion.identity);
             _fries.Add(tempFry);
         }
         _fryCount++;

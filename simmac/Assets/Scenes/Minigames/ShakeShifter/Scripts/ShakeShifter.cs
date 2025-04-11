@@ -32,7 +32,6 @@ public class ShakeShifter : MonoBehaviour
     {
         _freeze = false;
         _percentageMultiplier = Random.Range(0, 100) * 0.01f;
-        // _percentageMultiplier = 1f; // Note: this overrides the random value
     }
 
     private void SetupLinePosition()

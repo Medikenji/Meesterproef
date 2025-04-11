@@ -32,8 +32,8 @@ public class SniperShowdown : MonoBehaviour
     private const float MAX_WIND_CAL = 20.0f;
 
     // D: Could've just made plain floats and used Clampf() to handle min/max values
-    private const float MIN_POSITION = -17.0f;
-    private const float MAX_POSITION = 17.0f;
+    private const float MIN_POSITION = -17.0f + 3219f;
+    private const float MAX_POSITION = 17.0f + 3219f;
     private const float MIN_RECOIL = 1.5f;
     private const float MAX_RECOIL = 3.5f;
 

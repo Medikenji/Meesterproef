@@ -12,7 +12,7 @@ public class BurgerIngredient : MonoBehaviour
         _move = InputSystem.actions.FindAction("Move");
 
         int randOffset = Random.Range(-6, 6);
-        transform.position = new Vector3(randOffset, transform.position.y, transform.position.z);
+        transform.position = new Vector3(8842 + randOffset, transform.position.y, transform.position.z);
     }
 
     void Update()
