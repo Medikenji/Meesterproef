@@ -124,4 +124,12 @@ public class Customer : MonoBehaviour
             TakeOrder();
         }
     }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakeOrder();
+        }
+    }
 }

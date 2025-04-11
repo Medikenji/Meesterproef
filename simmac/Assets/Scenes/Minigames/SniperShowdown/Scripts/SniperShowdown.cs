@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Sniper : MonoBehaviour
+public class SniperShowdown : MonoBehaviour
 {
     public Vector3 hitpoint;
     public float distanceCal = 0;
     public float windCal = 0;
     public int ammoAmount;
 
-    [SerializeField] private Sniper _scope;
+    [SerializeField] private SniperShowdown _scope;
     [SerializeField] private Target _target;
     [SerializeField] private GameObject _projectile;
 
+    private int _score;
     private float _reloadTimer = 0;
     private float _swayStrength;
     private Vector3 _sway = Vector3.zero;
@@ -22,17 +23,19 @@ public class Sniper : MonoBehaviour
     private InputAction _move;
     private InputAction _shoot;
 
-    private const int AmmoAmount = 4;
-    private const float SwayStart = 1;
-    private const float ReloadTime = 3.0f;
-    private const float MaxSwayStrength = 3.0f;
-    private const float SwayIncreaseFactor = 0.05f;
-    private const float MaxDistanceCal = 30.0f;
-    private const float MaxWindCal = 20.0f;
-    private const float MinPosition = -17.0f;
-    private const float MaxPosition = 17.0f;
-    private const float MinRecoil = 1.5f;
-    private const float MaxRecoil = 3.5f;
+    private const int AMMO_AMOUNT = 4;
+    private const float SWAY_START = 1;
+    private const float RELOAD_TIME = 3.0f;
+    private const float MAX_SWAY_STRENGTH = 3.0f;
+    private const float SWAY_INCREASE_FACTOR = 0.05f;
+    private const float MAX_DISTANCE_CAL = 30.0f;
+    private const float MAX_WIND_CAL = 20.0f;
+
+    // D: Could've just made plain floats and used Clampf() to handle min/max values
+    private const float MIN_POSITION = -17.0f;
+    private const float MAX_POSITION = 17.0f;
+    private const float MIN_RECOIL = 1.5f;
+    private const float MAX_RECOIL = 3.5f;
 
     void Start()
     {
@@ -47,6 +50,11 @@ public class Sniper : MonoBehaviour
         HandleHitpoint();
         HandleShooting();
         ApplySway();
+
+        if (GameEnded())
+        {
+            ReturnToGameIfEscPressed();
+        }
     }
 
     private void InitializeSniper()
@@ -58,12 +66,12 @@ public class Sniper : MonoBehaviour
 
     private void InitializeAmmo()
     {
-        ammoAmount = AmmoAmount;
+        ammoAmount = AMMO_AMOUNT;
     }
 
     private void InitializeSway()
     {
-        _swayStrength = SwayStart;
+        _swayStrength = SWAY_START;
     }
 
     private void DrawDebugLine()
@@ -82,16 +90,16 @@ public class Sniper : MonoBehaviour
         Cursor.visible = false;
         Vector2 moveInput = _move.ReadValue<Vector2>();
         Vector3 newPosition = _scope.transform.position + new Vector3(moveInput.x, moveInput.y, 0) * Time.deltaTime;
-        newPosition.x = Mathf.Clamp(newPosition.x, MinPosition, MaxPosition);
-        newPosition.y = Mathf.Clamp(newPosition.y, MinPosition, MaxPosition);
+        newPosition.x = Mathf.Clamp(newPosition.x, MIN_POSITION, MAX_POSITION);
+        newPosition.y = Mathf.Clamp(newPosition.y, MIN_POSITION, MAX_POSITION);
         _scope.transform.position = newPosition;
     }
 
     void HandleSway()
     {
-        if (_swayStrength < MaxSwayStrength)
+        if (_swayStrength < MAX_SWAY_STRENGTH)
         {
-            _swayStrength += _swayStrength * SwayIncreaseFactor * Time.deltaTime;
+            _swayStrength += _swayStrength * SWAY_INCREASE_FACTOR * Time.deltaTime;
         }
         _sway = new Vector3(Random.Range(-_swayStrength, _swayStrength), Random.Range(-_swayStrength, _swayStrength), 0) * Time.deltaTime;
     }
@@ -126,8 +134,8 @@ public class Sniper : MonoBehaviour
 
     private void ClampCalibrationValues()
     {
-        distanceCal = Mathf.Clamp(distanceCal, -MaxDistanceCal, MaxDistanceCal);
-        windCal = Mathf.Clamp(windCal, -MaxWindCal, MaxWindCal);
+        distanceCal = Mathf.Clamp(distanceCal, -MAX_DISTANCE_CAL, MAX_DISTANCE_CAL);
+        windCal = Mathf.Clamp(windCal, -MAX_WIND_CAL, MAX_WIND_CAL);
     }
 
     private void CalculateHitpoint()
@@ -167,20 +175,55 @@ public class Sniper : MonoBehaviour
     private void FireShot()
     {
         ammoAmount--;
-        _reloadTimer = ReloadTime;
+        _reloadTimer = RELOAD_TIME;
         Instantiate(_projectile, hitpoint, Quaternion.identity);
-        _swayStrength = SwayStart;
+        _swayStrength = SWAY_START;
         ApplyRecoil();
     }
 
     void ApplyRecoil()
     {
-        float recoil = Random.Range(MinRecoil, MaxRecoil);
+        float recoil = Random.Range(MIN_RECOIL, MAX_RECOIL);
         _scope.transform.position += new Vector3(recoil, recoil, 0);
     }
 
     public bool shot()
     {
         return _shoot.triggered;
+    }
+
+    private void ReturnToGameIfEscPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StartCoroutine(SceneStation.ReturnToMainScene());
+        }
+    }
+
+    private bool GameEnded()
+    {
+        if (_target.hitstate)
+        {
+            // Print different scores based on remaining ammo
+            if (ammoAmount == 1)
+            {
+                _score = 100;
+            }
+            else if (ammoAmount == 2)
+            {
+                _score = 90;
+            }
+            else if (ammoAmount == 3)
+            {
+                _score = 70;
+            }
+            else if (ammoAmount == AMMO_AMOUNT)
+            {
+                _score = 10;
+            }
+
+            return true;
+        }
+        return false;
     }
 }

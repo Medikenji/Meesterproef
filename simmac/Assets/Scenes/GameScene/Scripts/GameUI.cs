@@ -3,23 +3,15 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject orderPrefab;
-    [SerializeField]
-    private GameObject orderItemPrefab;
-    [SerializeField]
-    private TextMeshProUGUI moneyText;
-    [SerializeField]
-    private TextMeshProUGUI dayText;
-
-    [SerializeField]
-    private Sprite burgerSprite;
-    [SerializeField]
-    private Sprite friesSprite;
-    [SerializeField]
-    private Sprite milkshakeSprite;
-    [SerializeField]
-    private Sprite dessertSprite;
+    [SerializeField] private GameObject _orderPrefab;
+    [SerializeField] private GameObject _orderItemPrefab;
+    [SerializeField] private GameObject _HelpTextCanvas;
+    [SerializeField] private TextMeshProUGUI _moneyText;
+    [SerializeField] private TextMeshProUGUI _dayText;
+    [SerializeField] private Sprite _burgerSprite;
+    [SerializeField] private Sprite _friesSprite;
+    [SerializeField] private Sprite _milkshakeSprite;
+    [SerializeField] private Sprite _dessertSprite;
 
     static private bool instantiated;
 
@@ -40,7 +32,7 @@ public class GameUI : MonoBehaviour
         int totalMinutes = CalculateTotalMinutes(metricTime);
         int hours = openingTimeHour + totalMinutes / 60;
         int minutes = totalMinutes % 60;
-        dayText.text = $"{hours:D2}:{minutes:D2}";
+        _dayText.text = $"{hours:D2}:{minutes:D2}";
     }
 
     private int CalculateTotalMinutes(float metricTime)
@@ -51,7 +43,7 @@ public class GameUI : MonoBehaviour
 
     private void UpdateMoneyDisplay()
     {
-        moneyText.text = "€" + GameManager.instance.current_state.money.ToString("F2");
+        _moneyText.text = "€" + GameManager.instance.current_state.money.ToString("F2");
     }
 
     #region OrderFunctions
@@ -74,7 +66,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject == moneyText.gameObject || child.gameObject == dayText.gameObject)
+            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject)
                 continue;
             Destroy(child.gameObject);
         }
@@ -85,7 +77,7 @@ public class GameUI : MonoBehaviour
         int maxOrders = Mathf.Min(GameManager.instance.orders.Count, 6);
         for (int i = 0; i < maxOrders; i++)
         {
-            GameObject order = Instantiate(orderPrefab, transform);
+            GameObject order = Instantiate(_orderPrefab, transform);
             SetupOrderDisplay(ref order, i);
         }
     }
@@ -124,7 +116,7 @@ public class GameUI : MonoBehaviour
     private void CreateOrderItemDisplay(GameObject order, Order currentOrder, int itemIndex)
     {
         OrderableItem item = currentOrder.orderableItems[itemIndex];
-        GameObject itemDisplay = Instantiate(orderItemPrefab, order.transform);
+        GameObject itemDisplay = Instantiate(_orderItemPrefab, order.transform);
         UnityEngine.UI.Image image = itemDisplay.GetComponent<UnityEngine.UI.Image>();
         image.color = GetColorForModifier(item.modifier);
         image.sprite = GetSpriteForItemType(item.type);
@@ -161,10 +153,10 @@ public class GameUI : MonoBehaviour
     {
         return type switch
         {
-            OrderableItem.Type.Burger => burgerSprite,
-            OrderableItem.Type.Fries => friesSprite,
-            OrderableItem.Type.Milkshake => milkshakeSprite,
-            OrderableItem.Type.Icecream => dessertSprite,
+            OrderableItem.Type.Burger => _burgerSprite,
+            OrderableItem.Type.Fries => _friesSprite,
+            OrderableItem.Type.Milkshake => _milkshakeSprite,
+            OrderableItem.Type.Icecream => _dessertSprite,
             _ => null
         };
     }

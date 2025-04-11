@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using UnityEngine.UIElements;
 
 public class BurgerStack : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class BurgerStack : MonoBehaviour
         CalculateStackScore();
         RenderText();
         DisplayText();
+
+        if (_textTriggered)
+        {
+            ReturnToGameIfEscPressed();
+        }
     }
 
     private void CalculateStackScore()
@@ -93,5 +99,13 @@ public class BurgerStack : MonoBehaviour
     {
         yield return new WaitForSeconds(s);
         textField.enabled = true;
+    }
+
+    private void ReturnToGameIfEscPressed()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StartCoroutine(SceneStation.ReturnToMainScene());
+        }
     }
 }
