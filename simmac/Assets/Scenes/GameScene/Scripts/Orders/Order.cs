@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 public class Order
@@ -10,9 +9,7 @@ public class Order
     {
         get
         {
-            bool allItemsAreOat = _orderableItems.All(item => item.state == State.Oat);
-
-            if (allItemsAreOat)
+            if (_orderableItems != null && _orderableItems.Count > 0 && _orderableItems.All(item => item.state == State.Oat))
             {
                 foreach (OrderableItem item in _orderableItems)
                 {
@@ -27,9 +24,10 @@ public class Order
             _orderableItems = value;
         }
     }
-    public State state = State.Imagined;
+    public State state;
     public Order()
     {
+        state = State.Imagined;
         orderableItems = new List<OrderableItem>();
     }
 

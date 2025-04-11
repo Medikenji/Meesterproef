@@ -154,6 +154,8 @@ public class GameManager : MonoBehaviour
         public int customers_served;
         [Key(6)]
         public float stars;
+        [Key(7)]
+        public int reviewAmount;
     }
 
     public enum State

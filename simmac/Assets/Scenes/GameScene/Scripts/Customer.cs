@@ -97,5 +97,21 @@ public class Customer : MonoBehaviour
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
+        leaveReview = Random.Range(0f, 100f) < reviewChance;
+        if (leaveReview)
+        {
+            int review = Mathf.CeilToInt(satisfaction * 0.05f);
+            GameManager.instance.current_state.reviewAmount++;
+            GameManager.instance.current_state.stars = (GameManager.instance.current_state.stars + review) / GameManager.instance.current_state.reviewAmount;
+        }
+        Destroy(gameObject);
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakeOrder();
+        }
     }
 }
