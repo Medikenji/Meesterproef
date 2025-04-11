@@ -50,11 +50,6 @@ public class SniperShowdown : MonoBehaviour
         HandleHitpoint();
         HandleShooting();
         ApplySway();
-
-        if (GameEnded())
-        {
-            ReturnToGameIfEscPressed();
-        }
     }
 
     private void InitializeSniper()
@@ -190,14 +185,6 @@ public class SniperShowdown : MonoBehaviour
     public bool shot()
     {
         return _shoot.triggered;
-    }
-
-    private void ReturnToGameIfEscPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StartCoroutine(SceneStation.ReturnToMainScene());
-        }
     }
 
     private bool GameEnded()

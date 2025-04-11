@@ -21,7 +21,6 @@ public class ShakeShifter : MonoBehaviour
     {
         if (_freeze)
         {
-            ReturnToGameIfEscPressed();
             return;
         }
 
@@ -93,14 +92,6 @@ public class ShakeShifter : MonoBehaviour
         {
             // Add a default return value for other cases
             return Mathf.Max(0, 100 - diff); // Ensuring score doesn't go below 0
-        }
-    }
-
-    private void ReturnToGameIfEscPressed()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StartCoroutine(SceneStation.ReturnToMainScene());
         }
     }
 }
