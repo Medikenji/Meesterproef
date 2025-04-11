@@ -24,11 +24,6 @@ public class PFIB : MonoBehaviour
     void Update()
     {
         DeleteFryFromListIfBelowTheScreen();
-
-        if (GameFinished())
-        {
-            EndGame();
-        }
     }
 
     void FixedUpdate()
@@ -46,10 +41,14 @@ public class PFIB : MonoBehaviour
         return _fryCount == friesToCreate && !_gameEnded;
     }
 
-    private void EndGame()
+    private bool EndGame()
     {
-        _gameEnded = true;
+        if (_gameEnded) { return true;}
+
+        _gameEnded = GameFinished();
         StartCoroutine(GameEnd(friesToCreate / 4));
+
+        return _gameEnded;
     }
 
     private void DeleteFryFromListIfBelowTheScreen()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Display : MonoBehaviour
 {
-    [SerializeField] private Sniper _sniper;
+    [SerializeField] private SniperShowdown _sniper;
     [SerializeField] private Target _target;
 
     private TextMeshProUGUI _windStats;

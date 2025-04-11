@@ -19,7 +19,10 @@ public class ShakeShifter : MonoBehaviour
 
     void Update()
     {
-        if (_freeze) { return; }
+        if (_freeze)
+        {
+            return;
+        }
 
         UpdatePercentageDisplays();
         CheckForUserInput();

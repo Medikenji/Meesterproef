@@ -5,11 +5,11 @@ public class Target : MonoBehaviour
     public float distance;
     public float windStrength;
 
-    [SerializeField] private Sniper _sniper;
+    [SerializeField] private SniperShowdown _sniper;
     [SerializeField] private Collider2D _collider;
 
     private bool beenHit = false;
-    private bool hitstate = false;
+    public bool hitstate { get; private set; }
     private float _travelTime;
 
     public const float ScaleFactor = -0.15f;
@@ -23,6 +23,7 @@ public class Target : MonoBehaviour
     void Start()
     {
         InitializeTarget();
+        hitstate = false;
     }
 
     void Update()

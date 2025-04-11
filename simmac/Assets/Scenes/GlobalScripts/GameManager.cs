@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public float dayTimeLeft { get; private set; }
     public EventHandler eventHandler;
     public int customerAmount = 0;
+    public string ActiveAdditiveScene;
+    public MinigameModifier minigameModifier;
+
 
     // private fields
     private static GameManager _instance = null;
@@ -192,6 +195,12 @@ public class GameManager : MonoBehaviour
         InGame,
         InMenu,
         GameOver
+    }
+
+    public struct MinigameModifier
+    {
+        public OrderableItem.Type type;
+        public OrderableItem.Modifier modifier;
     }
 
     #endregion
