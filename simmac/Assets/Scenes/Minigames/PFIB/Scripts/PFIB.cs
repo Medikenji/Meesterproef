@@ -33,6 +33,7 @@ public class PFIB : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Debug.Log(GameManager.instance.minigameModifier.modifier);
                 OATManager.AddOrderToOat(OrderableItem.Type.Fries, GameManager.instance.minigameModifier.modifier, _fries.Count / friesToCreate * 100);
                 Destroy(transform.parent.gameObject);
                 GameManager.instance.ToggleCameraAndCanvas();

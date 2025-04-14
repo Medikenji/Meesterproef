@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
             if (customerCountdown <= 0)
             {
                 SummonCustomers();
-                customerCountdown = Random.Range(5, 25);
+                customerCountdown = Random.Range(15, 35);
             }
         }
         if (dayTimeLeft <= 0)

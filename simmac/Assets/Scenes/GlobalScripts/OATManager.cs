@@ -26,6 +26,7 @@ public class OATManager : MonoBehaviour
     {
         OrderableItem item = new OrderableItem(type, modifier, setQuality: quality);
         instance.items.Add(item);
+        Debug.Log($"Added OrderableItem: Type={type}, Modifier={modifier}, Quality={quality}");
         recheckOrders();
     }
 
@@ -44,7 +45,7 @@ public class OATManager : MonoBehaviour
                 if (orderItem.state != Order.State.Waiting)
                     continue;
 
-                var matchingItem = instance.items.FirstOrDefault(item => item.type == orderItem.type && item.modifier == orderItem.modifier);
+                OrderableItem matchingItem = instance.items.FirstOrDefault(item => item.type == orderItem.type && item.modifier == orderItem.modifier);
                 if (matchingItem != null)
                 {
                     order.orderableItems[i] = matchingItem;

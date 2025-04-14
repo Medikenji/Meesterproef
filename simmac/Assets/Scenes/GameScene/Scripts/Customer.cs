@@ -80,15 +80,16 @@ public class Customer : MonoBehaviour
     void HandleSatisfaction()
     {
         DecreaseSatisfaction();
-        if (isWaitingOnOrder)
-        {
-            DecreaseSatisfaction();
-            return;
-        }
         if (order.state == Order.State.Finished)
         {
             IncreaseSatisfactionForCompletedOrder();
             Leave();
+        }
+        if (isWaitingOnOrder)
+        {
+            DecreaseSatisfaction();
+            order.checkState();
+            return;
         }
     }
 
@@ -106,6 +107,8 @@ public class Customer : MonoBehaviour
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
+        GameManager.instance.orders.RemoveAll(order => order.state == Order.State.Finished);
+        GameUI.RefreshOrderDisplay();
         leaveReview = Random.Range(0f, 100f) < reviewChance;
         if (leaveReview)
         {
