@@ -11,6 +11,7 @@ Versie 1.3.5
     -   Telefoon: +31622177314
     -   Email: dh.westerdijk@student.alfa-college.nl
 -   Rik Teerling (Klant)
+    - Email: r.teerling@alfa-college.nl
 
 ## Versiebeheer
 
@@ -153,7 +154,7 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
 - #### Movement
     - Kan bewegen
     - Sprite verandert als je van richting verandert
-  
+
 - #### Camera
     - Speler volgen
     - In- en uitzoomen
