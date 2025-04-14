@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EventHandler : MonoBehaviour
 {
+    // This is called allEvents because Unity reserves the keyword 'event'
     public static List<Event> allEvents = new List<Event>();
     [SerializeField] private List<Event> currentEvents = new List<Event>();
     private int eventsPerDay = 2;
@@ -91,7 +92,7 @@ public class EventHandler : MonoBehaviour
     private void AddEventToDay(Event evt)
     {
         evt.callTime = Random.Range(MaxTimeLastEvent,
-                                     GameManager.dayDurationInSeconds - MinTimeFirstEvent);
+                                     GameManager.DAY_DURATION_SECONDS - MinTimeFirstEvent);
         currentEvents.Add(evt);
     }
 

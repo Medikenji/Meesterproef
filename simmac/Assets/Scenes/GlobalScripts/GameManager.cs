@@ -4,9 +4,9 @@ using MessagePack;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Singleton my beloved <3
 public class GameManager : MonoBehaviour
 {
-    // public fields
     public _GameState current_state;
     public List<Order> orders = new List<Order>();
     public float dayTimeLeft { get; private set; }
@@ -16,16 +16,17 @@ public class GameManager : MonoBehaviour
     public MinigameModifier minigameModifier;
     public bool ignoreStationClick = false;
 
+    public const float DAY_DURATION_SECONDS = 300;
 
-    // private fields
     private static GameManager _instance = null;
 
     private GameObject customerPrefab;
     private static string _mainSavePath;
     private bool _passTime;
-    private float customerCountdown = 5;
+    private float _customerCountdown = 5;
     private GameObject _mainCamera;
     private GameObject _mainCanvas;
+
 
     private void Awake()
     {
@@ -38,9 +39,6 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Customer could not be found in Resources folder.");
         }
     }
-
-    // const fields
-    public const float dayDurationInSeconds = 300;
 
     public void LoadGame()
     {
@@ -87,7 +85,7 @@ public class GameManager : MonoBehaviour
     public void StartOfDay()
     {
         customerAmount = 0;
-        dayTimeLeft = dayDurationInSeconds;
+        dayTimeLeft = DAY_DURATION_SECONDS;
         _passTime = true;
     }
     private void EndOfDay()
@@ -97,10 +95,15 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
         if (current_state.money < -100)
+        {
             current_state.state = State.GameOver;
+        }
         else
+        {
             current_state.state = State.InMenu;
+        }
 
         saveCurrentGame();
         SceneManager.LoadScene("MenuScene");
@@ -111,13 +114,15 @@ public class GameManager : MonoBehaviour
         if (_passTime)
         {
             dayTimeLeft -= Time.deltaTime;
-            customerCountdown -= Time.deltaTime;
-            if (customerCountdown <= 0)
+            _customerCountdown -= Time.deltaTime;
+
+            if (_customerCountdown <= 0)
             {
                 SummonCustomers();
-                customerCountdown = Random.Range(5, 25);
+                _customerCountdown = Random.Range(5, 25);
             }
         }
+
         if (dayTimeLeft <= 0)
         {
             EndOfDay();
@@ -133,7 +138,9 @@ public class GameManager : MonoBehaviour
             Instantiate(customerPrefab);
         }
     }
+
     #region  DayTime functions
+
     public void StartDayTime()
     {
         _passTime = true;

@@ -6,11 +6,12 @@ using UnityEngine.UIElements;
 
 public class BurgerStack : MonoBehaviour
 {
+    public TextMeshProUGUI textField;
     public List<BurgerIngredient> ingredients;
+
     private float _realPercentage;
     private int _scoredPercentage;
     private float _totalPercentage;
-    public TextMeshProUGUI textField;
     private bool _textTriggered = false;
 
     void Start()
@@ -45,7 +46,7 @@ public class BurgerStack : MonoBehaviour
 
             for (int i = 0; i < ingredients.Count; i++)
             {
-                if (ingredients[i] == null) continue;
+                if (ingredients[i] == null) { continue; }
 
                 // Calculate absolute X difference
                 float xDifference = Mathf.Abs(ingredients[i].transform.position.x - firstPosition.x);
@@ -89,7 +90,7 @@ public class BurgerStack : MonoBehaviour
 
     private void DisplayText()
     {
-        if (ingredients.Count > 0 && ingredients[ingredients.Count - 1].movesWithPlayer == true && !_textTriggered)
+        if (ingredients.Count > 0 && ingredients[ingredients.Count - 1].playerControlled == true && !_textTriggered)
         {
             _textTriggered = true;
         }

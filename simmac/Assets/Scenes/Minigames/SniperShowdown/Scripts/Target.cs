@@ -8,17 +8,17 @@ public class Target : MonoBehaviour
     [SerializeField] private SniperShowdown _sniper;
     [SerializeField] private Collider2D _collider;
 
-    private bool beenHit = false;
+    private bool _beenHit = false;
     public bool hitstate { get; private set; }
     private float _travelTime;
 
-    public const float ScaleFactor = -0.15f;
-    public const float ScaleOffset = 3.85f;
-    private const float MinDistance = 3.0f;
-    private const float MaxDistance = 12.0f;
-    private const float MinWindStrength = -8f;
-    private const float MaxWindStrength = 8f;
-    private const float TravelTimeFactor = 0.01f;
+    public const float SCALE_FACTOR = -0.15f;
+    public const float SCALE_OFFSET = 3.85f;
+    private const float MIN_DISTANCE = 3.0f;
+    private const float MAX_DISTANCE = 12.0f;
+    private const float MIN_WIND_STRENGTH = -8f;
+    private const float MAX_WIND_STRENGTH = 8f;
+    private const float TRAVEL_TIME_FACTOR = 0.01f;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class Target : MonoBehaviour
 
     void Update()
     {
-        if (beenHit)
+        if (_beenHit)
         {
             HandleHit();
         }
@@ -47,18 +47,18 @@ public class Target : MonoBehaviour
 
     private void SetRandomTargetParameters()
     {
-        distance = Random.Range(MinDistance, MaxDistance);
-        windStrength = Random.Range(MinWindStrength, MaxWindStrength);
+        distance = Random.Range(MIN_DISTANCE, MAX_DISTANCE);
+        windStrength = Random.Range(MIN_WIND_STRENGTH, MAX_WIND_STRENGTH);
     }
 
     private void CalculateTravelTime()
     {
-        _travelTime = distance * TravelTimeFactor;
+        _travelTime = distance * TRAVEL_TIME_FACTOR;
     }
 
     private void CalculateAndApplyScale()
     {
-        float scale = (distance * ScaleFactor) + ScaleOffset;
+        float scale = (distance * SCALE_FACTOR) + SCALE_OFFSET;
         transform.localScale = new Vector3(scale, scale, scale);
     }
 
@@ -88,7 +88,7 @@ public class Target : MonoBehaviour
     {
         if (_sniper.shot() && _collider.OverlapPoint(_sniper.hitpoint))
         {
-            beenHit = true;
+            _beenHit = true;
         }
     }
 }

@@ -10,13 +10,21 @@ public class OrderableItem
     public Modifier modifier;
     public float StartTime;
 
-    public OrderableItem(OrderableItem.Type setType = Type.Burger, OrderableItem.Modifier setModifier = Modifier.Default, Order.State setState = Order.State.Imagined, float setQuality = 100, bool randomiseTypeAndModifier = false)
+    public OrderableItem
+    (
+        OrderableItem.Type setType = Type.Burger,
+        OrderableItem.Modifier setModifier = Modifier.Default,
+        Order.State setState = Order.State.Imagined,
+        float setQuality = 100,
+        bool randomiseTypeAndModifier = false
+    )
     {
         type = setType;
         modifier = setModifier;
         StartTime = GameManager.instance.dayTimeLeft;
         state = setState;
         quality = setQuality;
+
         if (randomiseTypeAndModifier)
         {
             InitializeRandomTypeAndModifier();

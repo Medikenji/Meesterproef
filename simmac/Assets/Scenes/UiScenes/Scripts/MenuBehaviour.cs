@@ -10,6 +10,7 @@ public class MenuBehaviour : MonoBehaviour
         float money = GameManager.instance.current_state.money;
         int totalCustomersServed = GameManager.instance.current_state.customers_served;
         bool isGameOver = false;
+
         if (GameManager.instance.current_state.state == GameManager.State.GameOver)
         {
             isGameOver = true;
@@ -20,12 +21,7 @@ public class MenuBehaviour : MonoBehaviour
         {
             info.text = $"Day: {day}\nMoney: {money}\nTotal Customers Served: {totalCustomersServed}\nGame Over";
         }
+
         info.text = $"Day: {day}\nMoney: {money}\nTotal Customers Served: {totalCustomersServed}";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

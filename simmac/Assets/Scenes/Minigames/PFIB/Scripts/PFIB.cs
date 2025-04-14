@@ -11,6 +11,7 @@ public class PFIB : MonoBehaviour
     public int friesToCreate;
     public TextMeshProUGUI gameText;
     public TextMeshProUGUI scoreText;
+
     private int _fryCount;
     [SerializeField] private List<GameObject> _fries;
     [SerializeField] private bool _gameEnded = false;
@@ -24,6 +25,7 @@ public class PFIB : MonoBehaviour
     void Update()
     {
         DeleteFryFromListIfBelowTheScreen();
+
         if (GameFinished())
         {
             EndGame();
@@ -88,9 +90,9 @@ public class PFIB : MonoBehaviour
     {
         if (_fries.Count == 0)
         {
-            int randX = Random.Range(-8, 8);
+            int randX = Random.Range(-6, 6);
 
-            GameObject tempFry = Instantiate(fry, new Vector3(1133, 1143, 3), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(1133 + randX, 1143, 3), Quaternion.identity);
             _fries.Add(tempFry);
         }
         else
@@ -98,9 +100,9 @@ public class PFIB : MonoBehaviour
             Vector3 prevPosition = _fries[_fries.Count - 1].transform.position;
 
             float offset = Random.Range(-2f, 2f);
-            float newX = Mathf.Clamp(prevPosition.x + offset, -8f, 8f);
+            float newX = Mathf.Clamp(prevPosition.x + offset, 1125f, 1140f);
 
-            GameObject tempFry = Instantiate(fry, new Vector3(1133, 1143, 3), Quaternion.identity);
+            GameObject tempFry = Instantiate(fry, new Vector3(newX, 1143, 3), Quaternion.identity);
             _fries.Add(tempFry);
         }
         _fryCount++;
