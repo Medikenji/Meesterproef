@@ -69,7 +69,7 @@ De speler moet dichtbij een station staan om hier op te kunnen klikken.
 
 #### **Producten**
 
-Producten worden ingekocht, bereid en geserveerd – dit is de taak van de speler.
+Producten worden bereid en geserveerd – dit is de taak van de speler.
 Het kost geld om een product te maken, het is aan de speler om te zorgen dat je de
 juiste producten maakt om geen onnodig geld uit te geven.
 
@@ -178,6 +178,8 @@ De GameManager beheert ook de savefiles en autosaves.
 Deze worden opgeslagen in de persistentDataPath als een `savegame.simmac` bestand.
 
 De tijdsdoorloop van het spel wordt ook geregeld vanuit de GameManager.
+
+Funcies te Simmac als geheel overkoepelen en doorgegeven moeten worden aan delen van Simmac die niet geschikken over onderlinge communicatie staan ook in de GameManager om er voor te zorgen dat er een centrale plaats is waar informatie bestaat.
 
 ---
 
