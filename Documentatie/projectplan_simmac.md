@@ -187,7 +187,7 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
 # Technisch ontwerp
 
 - ### Klassendiagram
-![Klassendiagram](klassendiagram-simmac-11-03v1.png)
+![Klassendiagram](klassendiagram-simmac-14-04.png)
 
 - ### Flowchart van de gameloop
 ![Flowchart Gameloop](flowchart-simmac-11-03v2.png)
