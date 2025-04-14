@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class BurgerIngredient : MonoBehaviour
 {
-    public bool movesWithPlayer;
+    public bool playerControlled;
     public float speed;
     private InputAction _move;
 
@@ -17,14 +17,14 @@ public class BurgerIngredient : MonoBehaviour
 
     void Update()
     {
-        if (!movesWithPlayer) { return ;}
+        if (!playerControlled) { return ;}
 
         HandleInput();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        movesWithPlayer = true;
+        playerControlled = true;
     }
 
     void HandleInput()

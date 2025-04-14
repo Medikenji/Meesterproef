@@ -7,6 +7,7 @@ public class ShakeShifter : MonoBehaviour
     public GameObject shiftingBar; // aka the shifter
     public TextMeshProUGUI percentageUpdating;
     public TextMeshProUGUI percentageGoal;
+
     private float _percentageMultiplier;
     private float _maxScale = 7f;
     private bool _freeze;

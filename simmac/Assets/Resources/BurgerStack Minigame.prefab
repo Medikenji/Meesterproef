@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d5357ddf3941b5cbb98eb3586e04b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textField: {fileID: 3426480827839510123}
   ingredients:
   - {fileID: 3197440772684704960}
   - {fileID: 3285223255550534968}
@@ -333,7 +334,6 @@ MonoBehaviour:
   - {fileID: 7376568017375655677}
   - {fileID: 8866382030979331821}
   - {fileID: 3007425063880082945}
-  textField: {fileID: 3426480827839510123}
 --- !u!1 &6892473687967703461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1388,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7571929757067688193, guid: c7ff982cef00ff03c8a5c1a0350ddf5f, type: 3}
       propertyPath: movesWithPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571929757067688193, guid: c7ff982cef00ff03c8a5c1a0350ddf5f, type: 3}
+      propertyPath: playerControlled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8126793175552014872, guid: c7ff982cef00ff03c8a5c1a0350ddf5f, type: 3}

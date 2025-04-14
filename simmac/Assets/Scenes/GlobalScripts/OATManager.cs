@@ -5,13 +5,9 @@ using UnityEngine;
 public class OATManager : MonoBehaviour
 {
     private static OATManager _instance = null;
-    [SerializeField] public List<OrderableItem> items { get; private set; } = new List<OrderableItem>();
+    public List<OrderableItem> items { get; private set; } = new List<OrderableItem>();
     private static bool _recheck = true;
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (_recheck)
@@ -32,18 +28,17 @@ public class OATManager : MonoBehaviour
 
     void handleOrders()
     {
-        if (GameManager.instance.orders == null || instance.items == null)
-            return;
+        if (GameManager.instance.orders == null || instance.items == null) { return; }
+
         foreach (Order order in GameManager.instance.orders)
         {
-            if (order.state != Order.State.Waiting || order.orderableItems == null)
-                continue;
+            if (order.state != Order.State.Waiting || order.orderableItems == null) { continue; }
 
             for (int i = 0; i < order.orderableItems.Count; i++)
             {
                 OrderableItem orderItem = order.orderableItems[i];
-                if (orderItem.state != Order.State.Waiting)
-                    continue;
+
+                if (orderItem.state != Order.State.Waiting) { continue; }
 
                 OrderableItem matchingItem = instance.items.FirstOrDefault(item => item.type == orderItem.type && item.modifier == orderItem.modifier);
                 if (matchingItem != null)

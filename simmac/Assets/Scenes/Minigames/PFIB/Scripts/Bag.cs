@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Bag : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D _rb;
     public float speed;
     private InputAction _move;
 
@@ -23,6 +23,6 @@ public class Bag : MonoBehaviour
     {
         Vector2 moveValue = _move.ReadValue<Vector2>();
         Vector2 velocity = new(moveValue.x * speed, 0);
-        rb.linearVelocity = velocity;
+        _rb.linearVelocity = velocity;
     }
 }

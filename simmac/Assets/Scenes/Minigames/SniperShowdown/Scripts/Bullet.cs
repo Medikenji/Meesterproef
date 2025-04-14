@@ -5,8 +5,8 @@ public class Bullet : MonoBehaviour
     public SpriteRenderer sprite;
     private float _travelTime;
     private float _scale;
-    private const float ScaleMultiplier = 0.4f;
-    private const float TravelTimeFactor = 0.01f;
+    private const float SCALE_MULTIPLIER = 0.4f;
+    private const float TRAVEL_TIME_MULTIPLIER = 0.01f;
     private Target _target;
     private Collider2D _targetCollider;
 
@@ -49,8 +49,8 @@ public class Bullet : MonoBehaviour
 
     private void CalculateBulletProperties()
     {
-        _scale = ((_target.distance * Target.ScaleFactor) + Target.ScaleOffset) * ScaleMultiplier;
-        _travelTime = _target.distance * TravelTimeFactor;
+        _scale = ((_target.distance * Target.SCALE_FACTOR) + Target.SCALE_OFFSET) * SCALE_MULTIPLIER;
+        _travelTime = _target.distance * TRAVEL_TIME_MULTIPLIER;
     }
 
     private void InitializeBullet()

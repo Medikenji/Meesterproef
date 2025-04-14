@@ -666,6 +666,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7993684280380013328, guid: 418208e90acea069ba84991776b8b537, type: 3}
+      propertyPath: _rb
+      value: 
+      objectReference: {fileID: 944058680710942724}
+    - target: {fileID: 7993684280380013328, guid: 418208e90acea069ba84991776b8b537, type: 3}
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
@@ -678,6 +682,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418208e90acea069ba84991776b8b537, type: 3}
+--- !u!50 &944058680710942724 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1049846258010604034, guid: 418208e90acea069ba84991776b8b537, type: 3}
+  m_PrefabInstance: {fileID: 254512502318600710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5271438107603134423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5381762806196270545, guid: 418208e90acea069ba84991776b8b537, type: 3}

@@ -14,7 +14,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Sprite _milkshakeSprite;
     [SerializeField] private Sprite _dessertSprite;
 
-    static private bool instantiated;
+    static private bool _instantiated;
 
     // make sure the restaurant isnt open after 24:00 because the clock really isnt made for that
     private const int dayDurationInHours = 15;
@@ -45,8 +45,8 @@ public class GameUI : MonoBehaviour
 
     private int CalculateTotalMinutes(float metricTime)
     {
-        return Mathf.FloorToInt((GameManager.dayDurationInSeconds - metricTime) /
-                               GameManager.dayDurationInSeconds * dayDurationInHours * 60);
+        return Mathf.FloorToInt((GameManager.DAY_DURATION_SECONDS - metricTime) /
+                               GameManager.DAY_DURATION_SECONDS * dayDurationInHours * 60);
     }
 
     private void UpdateMoneyDisplay()
@@ -57,25 +57,27 @@ public class GameUI : MonoBehaviour
     #region OrderFunctions
     public static void RefreshOrderDisplay()
     {
-        instantiated = false;
+        _instantiated = false;
     }
 
     private void UpdateOrdersDisplay()
     {
-        if (instantiated) return;
+        if (_instantiated) { return; }
 
         ClearExistingOrders();
         CreateNewOrderDisplays();
 
-        instantiated = true;
+        _instantiated = true;
     }
 
     private void ClearExistingOrders()
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject || child.gameObject == _ratingText.gameObject)
+            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject)
+            {
                 continue;
+            }
             Destroy(child.gameObject);
         }
     }
@@ -147,6 +149,7 @@ public class GameUI : MonoBehaviour
 
     private Color GetColorForModifier(OrderableItem.Modifier modifier)
     {
+        // Fun fact all switch statements look like this if you code in Rust ^.^
         return modifier switch
         {
             OrderableItem.Modifier.Default => Color.white,
