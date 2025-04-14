@@ -14,6 +14,8 @@ In dit document reflecteer ik op mijn ervaringen tijdens het ontwikkelen van het
 Ik zal bespreken wat mijn leerdoelen waren voor dit project, in hoeverre ik deze heb bereikt en welke nieuwe inzichten ik heb opgedaan. Daarnaast reflecteer ik op mijn eigen rol in het proces en mijn uitvoering van het project.
 Ook bespreek ik de resultaten die ik uit deze ervaring heb gehaald.
 
+<div style="page-break-after: always;"></div>
+
 ## Leerdoelen
 
 - ### Communicatie
@@ -39,6 +41,8 @@ Ook bespreek ik de resultaten die ik uit deze ervaring heb gehaald.
 
   Ook het werken in Unity was een echte hit or miss ervaring: sommige onderdelen gingen verrassend makkelijk, terwijl andere die aanvankelijk simpel leken uiteindelijk meer moeite kostten dan verwacht. Een betere voorbereiding op de afzonderlijke onderdelen had dit kunnen voorkomen en had gezorgd voor een betere tijdsverdeling.
 
+<div style="page-break-after: always;"></div>
+
 ## Situaties
 
 ### Wat ging goed?
@@ -61,17 +65,28 @@ Ik had vaak moeite met het inschatten van hoeveel werk bepaalde onderdelen zoude
 
 Ook was het soms moeilijk om goed in te schatten hoeveel werk er al afgerond was. Daardoor moest ik af en toe Douwe vragen om mee te kijken en te beoordelen hoeveel van mijn werk daadwerkelijk af was.
 
+<div style="page-break-after: always;"></div>
+
 ### Hoe heb je problemen opgelost?
 
->Ik heb de problemen opgelost door het een paar dagen even te laten bezinken, en daarna in overleg met Nolan een andere aanpak verzinnen. (bv. i.p.v. mooie assets overgaan naar puur functionele assets) Deze aanpak hebben we samen veel gebruikt bij de latere ontwikkelfase, bijvoorbeeld om de keuzes te maken om bepaalde elementen toch uit het prototype van simmac te laten door gebrek aan tijd. Door de goede samenwerking met Nolan zorgde dit niet voor problemen en kwamen we altijd uit op een goede oplossing voor ons beide.
+Ik heb problemen opgelost door er simpelweg aan te werken. Vaak bleek het probleem minder groot te zijn dan ik in eerste instantie dacht, en was beginnen gewoon al de oplossing.
+
+Bij eventuele codeproblemen was er niets dat niet opgelost kon worden door goed door te zoeken of advies aan Douwe te vragen.
 
 ### Wat heb je geleerd?
 
->Ik heb geleerd om voordat ik begin met serieus ontwikkelen om eerst te functionaliteiten te testen. Eerst de documentatie lezen, eerst een test project maken waar je heel simpel de dingen gebruikt voor het eerst om ze logisch in de praktijk te snappen.
+Ik heb geleerd om meer vertrouwen te hebben in wat ik doe en om opdrachten aan te pakken zoals nodig is, zonder te blijven hangen in kleine tegenslagen.
+
+Daarnaast heb ik veel geleerd over het documenteren van een spel, iets waar ik eerder nauwelijks ervaring mee had.
 
 ### Hoe verliep de samenwerking?
 
->Vlekkeloos. Ik vond de samenwerking enorm fijn. Ik zou het als perfect omschrijven. We konden zeer goed overweg met elkaar en er waren nooit conflicten tussen visies over het spel. Ook situaties zoals iemand die later aanwezig was was nooit een probleem. Zolang er communicatie was was er geen conflict, dit zorgde voor een erg fijne, vertrouwde werksfeer die ik ervaarde als zeer prettig.
+De samenwerking verliep zo goed als perfect. De communicatie was duidelijk en het was bovendien gewoon leuk en prettig om aan dit project te werken. Alles werd concreet geregeld en afgestemd. Bij eventuele aftakkingen van de originele ideeën werd dit altijd goed overlegd en besproken.
 
+Ook wanneer ik niet tevreden was over bepaalde dingen die Douwe had gedaan, stond hij daarvoor open en paste hij zich aan. Dat maakte hem tot een bijzonder fijne medewerker, van begin tot eind.
 
-## Eindconclusie  
+## Eindconclusie
+
+Ik ben uiteindelijk heel tevreden over het eindresultaat. Er liep soms wat stroef, maar het is ons toch gelukt om te maken wat we wilden vóór de deadline. Ik vond het ook heel fijn om weer eens langdurig aan een project te werken dat ik leuk vind en dat ik graag gerealiseerd zou willen zien.
+
+Naar mijn gevoel heb ik veel geleerd, en ik kan dit meenemen naar toekomstige projecten waar mijn nieuwe kennis van pas zou kunnen komen.

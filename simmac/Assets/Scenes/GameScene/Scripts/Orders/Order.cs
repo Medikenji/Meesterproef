@@ -3,33 +3,25 @@ using System.Linq;
 
 public class Order
 {
-    private List<OrderableItem> _orderableItems;
+    public List<OrderableItem> orderableItems { get; private set; }
     public State state;
-    public List<OrderableItem> orderableItems
-    {
-        get
-        {
-            if (_orderableItems != null && _orderableItems.Count > 0 && _orderableItems.All(item => item.state == State.Oat))
-            {
-                foreach (OrderableItem item in _orderableItems)
-                {
-                    item.state = State.Finished;
-                    item.quality -= (item.StartTime - GameManager.instance.dayTimeLeft) * 0.5f;
-                }
-                state = State.Finished;
-            }
-            return _orderableItems;
-        }
-        private set
-        {
-            _orderableItems = value;
-        }
-    }
-
     public Order()
     {
         state = State.Imagined;
         orderableItems = new List<OrderableItem>();
+    }
+
+    public void checkState()
+    {
+        if (orderableItems != null && orderableItems.Count > 0 && orderableItems.All(item => item.state == State.Oat))
+        {
+            foreach (OrderableItem item in orderableItems)
+            {
+                item.state = State.Finished;
+                item.quality -= (item.StartTime - GameManager.instance.dayTimeLeft) * 0.5f;
+            }
+            state = State.Finished;
+        }
     }
 
     public void addToOrder(OrderableItem item)
