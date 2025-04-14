@@ -6,6 +6,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject _orderPrefab;
     [SerializeField] private GameObject _orderItemPrefab;
     [SerializeField] private GameObject _HelpTextCanvas;
+    [SerializeField] private TextMeshProUGUI _ratingText;
     [SerializeField] private TextMeshProUGUI _moneyText;
     [SerializeField] private TextMeshProUGUI _dayText;
     [SerializeField] private Sprite _burgerSprite;
@@ -21,9 +22,16 @@ public class GameUI : MonoBehaviour
 
     void Update()
     {
+        UpdateReviewDisplay();
         UpdateTimeDisplay();
         UpdateMoneyDisplay();
         UpdateOrdersDisplay();
+    }
+
+
+    private void UpdateReviewDisplay()
+    {
+        _ratingText.text = "Current Rating: " + GameManager.instance.current_state.stars;
     }
 
     private void UpdateTimeDisplay()
@@ -66,7 +74,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject)
+            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject || child.gameObject == _ratingText.gameObject)
                 continue;
             Destroy(child.gameObject);
         }
