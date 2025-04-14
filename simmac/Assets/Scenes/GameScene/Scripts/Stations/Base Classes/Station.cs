@@ -22,9 +22,10 @@ public abstract class Station : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && _playerInRange)
+        if (Input.GetMouseButtonDown(0) && _playerInRange && !GameManager.instance.ignoreStationClick)
         {
             OnClick();
+            GameManager.instance.ignoreStationClick = true;
         }
     }
 

@@ -5,9 +5,12 @@
 Dit is het reflectieverslag van project Simmac van Douwe Westerdijk. Hier schrijft Douwe op hoe hij het project vond gaan, wat beter kon, en wat juist goed ging. Dit is bedoeld om de opdrachtgever inzicht te geven over wat de ontwikkelaars zelf vonden van de gang van zaken.
 
 ## Inhoudsopgave
-  - [Inhoudsopgave](#inhoudsopgave)
   - [Inleiding](#inleiding)
+  - [Inhoudsopgave](#inhoudsopgave)
   - [Leerdoelen](#leerdoelen)
+    - [Comminucatie](#comminucatie)
+    - [Analyseren](#analyseren)
+    - [Uitvoeren](#uitvoeren)
   - [Situaties](#situaties)
     - [Wat ging goed?](#wat-ging-goed)
     - [Wat kon beter?](#wat-kon-beter)

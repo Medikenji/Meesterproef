@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int customerAmount = 0;
     public string ActiveAdditiveScene;
     public MinigameModifier minigameModifier;
+    public bool ignoreStationClick = false;
 
 
     // private fields
