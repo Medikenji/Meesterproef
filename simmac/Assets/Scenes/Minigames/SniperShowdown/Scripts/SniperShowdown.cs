@@ -57,6 +57,9 @@ public class SniperShowdown : MonoBehaviour
             Destroy(transform.parent.gameObject);
             GameManager.instance.ToggleCameraAndCanvas();
             GameManager.instance.StartDayTime();
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

@@ -75,6 +75,7 @@ public class MinigameScreenManager : MonoBehaviour
 
     public IEnumerator UnloadAdditiveScene()
     {
+        GameManager.instance.ignoreStationClick = false;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("GameScene"));
 
         if (string.IsNullOrEmpty(GameManager.instance.ActiveAdditiveScene))
