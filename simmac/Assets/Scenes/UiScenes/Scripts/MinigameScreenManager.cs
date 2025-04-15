@@ -46,7 +46,6 @@ public class MinigameScreenManager : MonoBehaviour
 
     public void StartMinigame(OrderableItem.Type type, OrderableItem.Modifier mod)
     {
-        print($"Playing {type} with {mod}");
         GameManager.instance.minigameModifier.modifier = mod;
         switch (type)
         {

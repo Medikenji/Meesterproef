@@ -74,7 +74,7 @@ public class GameUI : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject)
+            if (child.gameObject == _moneyText.gameObject || child.gameObject == _dayText.gameObject || child.gameObject == _ratingText.gameObject)
             {
                 continue;
             }

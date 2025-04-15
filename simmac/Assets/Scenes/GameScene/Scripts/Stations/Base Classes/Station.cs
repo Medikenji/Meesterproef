@@ -31,7 +31,6 @@ public abstract class Station : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print($"Collided with: {collision.gameObject.name}");
         if (collision.CompareTag("Player"))
         {
             _playerInRange = true;
@@ -40,7 +39,6 @@ public abstract class Station : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        print($"Stopped colliding with: {collision.gameObject.name}");
         if (collision.CompareTag("Player"))
         {
             _playerInRange = false;

@@ -22,7 +22,6 @@ public class OATManager : MonoBehaviour
     {
         OrderableItem item = new OrderableItem(type, modifier, setQuality: quality);
         instance.items.Add(item);
-        Debug.Log($"Added OrderableItem: Type={type}, Modifier={modifier}, Quality={quality}");
         recheckOrders();
     }
 

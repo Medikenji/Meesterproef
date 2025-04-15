@@ -91,12 +91,12 @@ public class Customer : MonoBehaviour
         if (_isWaitingOnOrder)
         {
             DecreaseSatisfaction();
-            return;
-        }
-        if (order.state == Order.State.Finished)
-        {
-            IncreaseSatisfactionForCompletedOrder();
-            Leave();
+            order.checkState();
+            if (order.state == Order.State.Finished)
+            {
+                IncreaseSatisfactionForCompletedOrder();
+                Leave();
+            }
         }
     }
 
@@ -114,16 +114,15 @@ public class Customer : MonoBehaviour
     {
         GameManager.instance.customerAmount--;
         GameManager.instance.current_state.customers_served++;
-
+        GameManager.instance.orders.RemoveAll(order => order.state == Order.State.Finished);
+        GameUI.RefreshOrderDisplay();
         _leaveReview = Random.Range(0f, 100f) < _reviewChance;
-
         if (_leaveReview)
         {
             int review = Mathf.CeilToInt(_satisfaction * 0.05f);
             GameManager.instance.current_state.reviewAmount++;
             GameManager.instance.current_state.stars = (GameManager.instance.current_state.stars + review) / GameManager.instance.current_state.reviewAmount;
         }
-
         Destroy(gameObject);
     }
 

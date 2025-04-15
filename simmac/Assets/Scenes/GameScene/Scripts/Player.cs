@@ -19,9 +19,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
-        UpdateMovementSpeed();
-        ApplyVelocity();
+        if (GameManager.instance.passTime)
+        {
+            HandleInput();
+            UpdateMovementSpeed();
+            ApplyVelocity();
+        }
     }
 
     private void InitializeComponents()

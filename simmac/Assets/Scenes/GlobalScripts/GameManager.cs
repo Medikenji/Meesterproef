@@ -13,16 +13,15 @@ public class GameManager : MonoBehaviour
     public EventHandler eventHandler;
     public int customerAmount = 0;
     public string ActiveAdditiveScene;
+    public bool passTime { get; private set; }
     public MinigameModifier minigameModifier;
     public bool ignoreStationClick = false;
 
     public const float DAY_DURATION_SECONDS = 300;
 
     private static GameManager _instance = null;
-
     private GameObject customerPrefab;
     private static string _mainSavePath;
-    private bool _passTime;
     private float _customerCountdown = 5;
     private GameObject _mainCamera;
     private GameObject _mainCanvas;
@@ -86,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         customerAmount = 0;
         dayTimeLeft = DAY_DURATION_SECONDS;
-        _passTime = true;
+        passTime = true;
     }
     private void EndOfDay()
     {
@@ -111,7 +110,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleDayTime()
     {
-        if (_passTime)
+        if (passTime)
         {
             dayTimeLeft -= Time.deltaTime;
             _customerCountdown -= Time.deltaTime;
@@ -143,11 +142,11 @@ public class GameManager : MonoBehaviour
 
     public void StartDayTime()
     {
-        _passTime = true;
+        passTime = true;
     }
     public void StopDayTime()
     {
-        _passTime = false;
+        passTime = false;
     }
 
     public void SkipDayTime(float amountOfSeconds)
@@ -157,7 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void ToggleDayTime()
     {
-        _passTime = !_passTime;
+        passTime = !passTime;
     }
 
     #endregion

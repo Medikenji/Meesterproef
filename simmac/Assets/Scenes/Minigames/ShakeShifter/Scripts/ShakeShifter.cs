@@ -81,8 +81,6 @@ public class ShakeShifter : MonoBehaviour
         int currentPercentage = Mathf.RoundToInt(CalculateCurrentPercentage());
         int goalPercentage = Mathf.RoundToInt(_percentageMultiplier * 100f);
         _difference = Mathf.Abs(goalPercentage - currentPercentage);
-
-        Debug.Log($"Goal: {goalPercentage}%, Current: {currentPercentage}%, Difference: {_difference}");
         percentageGoal.text = $"The goal was to get {goalPercentage}%, you clicked on {currentPercentage} which means you have a {_difference}% difference! This gives you a score of {GetScore(_difference)}%!";
     }
 
