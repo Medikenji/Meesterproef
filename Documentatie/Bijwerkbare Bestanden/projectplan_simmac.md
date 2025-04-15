@@ -1,6 +1,6 @@
 # Projectplan Prototype Simmac
 
-Versie 1.3.5
+Versie 1.3.7
 
 ## Contact gegevens van betrokken mensen
 
@@ -187,10 +187,10 @@ Dit zijn de taken die uitgevoerd moeten worden voor dit project, door wie deze t
 # Technisch ontwerp
 
 - ### Klassendiagram
-![Klassendiagram](klassendiagram-simmac-14-04.png)
+![Klassendiagram](klassendiagram-simmac-15-04.png)
 
 - ### Flowchart van de gameloop
-![Flowchart Gameloop](flowchart-simmac-11-03v2.png)
+![Flowchart Gameloop](flowchart-simmac-15-04.png)
 
 # Links
 
