@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public MinigameModifier minigameModifier;
     public bool ignoreStationClick = false;
 
-    public const float DAY_DURATION_SECONDS = 300;
+    public const float DAY_DURATION_SECONDS = 180;
 
     private static GameManager _instance = null;
     private GameObject customerPrefab;
@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-
+        orders.Clear();
+        OATManager.instance.clearAllItems();
         if (current_state.money < -100)
         {
             current_state.state = State.GameOver;
@@ -103,7 +104,6 @@ public class GameManager : MonoBehaviour
         {
             current_state.state = State.InMenu;
         }
-
         saveCurrentGame();
         SceneManager.LoadScene("MenuScene");
     }

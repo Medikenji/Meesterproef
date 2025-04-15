@@ -132,7 +132,7 @@ public class GameUI : MonoBehaviour
         image.sprite = GetSpriteForItemType(item.type);
         if (item.state == Order.State.Oat)
         {
-            image.color = Color.black;
+            image.color = new Color(0, 0, 0, 0.5f);
         }
 
         PositionOrderItem(itemDisplay, order, itemIndex);

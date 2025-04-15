@@ -26,7 +26,8 @@ public class Customer : MonoBehaviour
 
     void Update()
     {
-        HandleSatisfaction();
+        if (GameManager.instance.passTime)
+            HandleSatisfaction();
     }
 
     private void InitializeSatisfaction()
@@ -87,7 +88,6 @@ public class Customer : MonoBehaviour
     }
     void HandleSatisfaction()
     {
-        DecreaseSatisfaction();
         if (_isWaitingOnOrder)
         {
             DecreaseSatisfaction();
@@ -97,12 +97,14 @@ public class Customer : MonoBehaviour
                 IncreaseSatisfactionForCompletedOrder();
                 Leave();
             }
+            return;
         }
+        DecreaseSatisfaction(2);
     }
 
-    private void DecreaseSatisfaction()
+    private void DecreaseSatisfaction(float modifier = 1)
     {
-        _satisfaction -= 0.25f * Time.deltaTime;
+        _satisfaction -= 0.25f * Time.deltaTime * modifier;
     }
 
     private void IncreaseSatisfactionForCompletedOrder()

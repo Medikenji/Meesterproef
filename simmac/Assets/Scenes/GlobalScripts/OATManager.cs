@@ -18,6 +18,11 @@ public class OATManager : MonoBehaviour
         }
     }
 
+    public void clearAllItems()
+    {
+        items.Clear();
+    }
+
     static public void AddOrderToOat(OrderableItem.Type type, OrderableItem.Modifier modifier, float quality)
     {
         OrderableItem item = new OrderableItem(type, modifier, setQuality: quality);
