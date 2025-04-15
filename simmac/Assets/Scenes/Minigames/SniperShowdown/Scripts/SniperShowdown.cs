@@ -200,24 +200,28 @@ public class SniperShowdown : MonoBehaviour
 
     private bool GameEnded()
     {
-        if (_target.hitstate)
+        if (_target.hitstate || ammoAmount == 0)
         {
             // Print different scores based on remaining ammo
+            if (ammoAmount < 1)
+            {
+                _score = 10;
+            }
             if (ammoAmount == 1)
             {
-                _score = 100;
+                _score = 25;
             }
             else if (ammoAmount == 2)
             {
-                _score = 90;
+                _score = 50;
             }
             else if (ammoAmount == 3)
             {
                 _score = 70;
             }
-            else if (ammoAmount == AMMO_AMOUNT)
+            else if (ammoAmount == AMMO_AMOUNT - 1)
             {
-                _score = 10;
+                _score = 100;
             }
 
             return true;
