@@ -8,12 +8,10 @@
 
 In dit document staat alles wat er nog nodig is om het prototype van Simmac verder uit te werken. Alle voorstellen zijn gebaseerd op het testrapport en een hernieuwde blik op de tot dusver voltooide demo van het Simmac prototype.
 
-<div style="page-break-after: always;"></div>
-
 ### Test resultaten
 
 **Tutorial GUI**<br/>
-***Geschatte tijdsduur:2 dagen***
+***Geschatte tijdsduur: 2 dagen***
 
 Alle minigames hebben nog een GUI nodig die uitlegt hoe de spellen werken. Hoewel dit niet bij elk spel voor problemen zorgde, is het voor de consistentie wel wenselijk om dit bij alle spellen toe te voegen. Dit scherm zal verschijnen zodra een spel voor het eerst wordt gespeeld in een nieuwe save.
 Dit komt in de vorm van een uitleg video met bijbehoorende tekst.
@@ -21,7 +19,7 @@ Dit komt in de vorm van een uitleg video met bijbehoorende tekst.
 ---
 
 **Bugs**<br/>
-***Geschatte tijdsduur:3 dagen***
+***Geschatte tijdsduur: 3 dagen***
 
 Er zijn ook enkele bugs gevonden, zoals visuele bugs bij Shake Shifter en een collision-bug bij Put the Fries in the Bag (PFIB). Daarnaast lijkt het bij PFIB onmogelijk om het spel perfect uit te voeren. Daarom is het, naast het oplossen van de collision-bug, ook belangrijk om te kijken naar een mogelijke herziening van het puntensysteem.
 
@@ -30,7 +28,7 @@ Ook is er bij alle spellen een probleem met het correct verwijderen van assets n
 ---
 
 **Sniper Showdown**<br/>
-***Geschattte tijdsduur:2 dagen***
+***Geschattte tijdsduur: 2 dagen***
 
 Sniper Showdown is over het algemeen positief ontvangen, maar er waren wel opmerkingen over de moeilijkheidsgraad en de initiële begrijpelijkheid van het spel. Er zullen GUI-elementen toegevoegd moeten worden om de besturing duidelijker te maken, en ook hints voor de eerste keer spelen om het doel van het spel beter uit te leggen.
 
@@ -44,8 +42,6 @@ Er was ook kritiek op de audiovisuele aspecten van het spel. Dit was te verwacht
 Hoewel we momenteel gebruikmaken van basisassets voor een minimale visuele ervaring, zal waarschijnlijk alles inclusief de UI, de hoofdgame en de minigames opnieuw ontworpen moeten worden door iemand met ervaring en expertise. Deze persoon zal ook nodig zijn voor het ontwikkelen van nieuwe assets voor toekomstige functies, wat betekent dat we ons team zullen moeten uitbreiden.
 
 Het implementeren van alle huidige benodigde assets zal naar verwachting ongeveer 15 dagen kosten. Bij het toevoegen van nieuwe features zal het werk aan de audiovisuele elementen continu moeten worden voortgezet.
-
-<div style="page-break-after: always;"></div>
 
 ### Nog niet geimplementeerde features
 
@@ -77,14 +73,14 @@ Bij het refactoren van de code zal rekening worden gehouden met dit nieuwe syste
 ---
 
 **Evenemeten**<br/>
-***Geschatte tijdsduur 6 dagen***
+***Geschatte tijdsduur: 6 dagen***
 
 Er moeten ook meer evenementen aan het spel worden toegevoegd. De code voor het eventsysteem is al aanwezig, maar er moeten nog extra evenementen worden bedacht en geïmplementeerd om het spel dynamischer, interessanter en iets chaotischer te maken.
 
 ---
 
 **Gamefeel**<br/>
-***Geschatte tijdsduur 12 dagen**
+***Geschatte tijdsduur: 12 dagen***
 
 Het spel moet grondig getest worden, en op basis van toekomstige feedback uit nieuwe tests zullen we het spel zorgvuldig moeten balanceren. Dit is nodig om ervoor te zorgen dat alle systemen goed en stabiel met elkaar samenwerken.
 
