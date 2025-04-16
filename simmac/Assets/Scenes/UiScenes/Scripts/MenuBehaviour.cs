@@ -6,6 +6,7 @@ public class MenuBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI info;
     void Start()
     {
+        GameManager.instance.LoadGame();
         int day = GameManager.instance.current_state.current_day;
         float money = GameManager.instance.current_state.money;
         int totalCustomersServed = GameManager.instance.current_state.customers_served;

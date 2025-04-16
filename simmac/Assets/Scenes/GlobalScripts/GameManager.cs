@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public MinigameModifier minigameModifier;
     public bool ignoreStationClick = false;
 
-    public const float DAY_DURATION_SECONDS = 180;
+    public const float DAY_DURATION_SECONDS = 60;
 
     private static GameManager _instance = null;
     private GameObject customerPrefab;
